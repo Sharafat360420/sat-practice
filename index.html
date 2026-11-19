@@ -129,7 +129,7 @@
       </div>
 
       <!-- Primary Exam Mode Cards -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
+      <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch mb-8">
         <!-- Card 1: Full Adaptive Simulation -->
         <div class="bg-white rounded-2xl border-2 border-[#1e3a8a] p-6 sm:p-8 shadow-md flex flex-col justify-between relative overflow-hidden">
           <div class="absolute top-0 right-0 bg-[#1e3a8a] text-white text-xs font-bold px-3 py-1 rounded-bl-xl">
@@ -140,21 +140,25 @@
               <i data-lucide="layers" class="w-6 h-6"></i>
             </div>
             <h2 class="text-2xl font-bold text-slate-900 mb-2">Full Adaptive Simulation</h2>
-            <p class="text-slate-600 text-sm mb-6">
-              Complete 4-module adaptive exam covering Reading & Writing and Math, with an optional 10-minute break between sections and adaptive Module 2 routing.
+            <p class="text-slate-600 text-sm mb-5">
+              Complete 4-module adaptive exam covering Reading &amp; Writing and Math, with an optional 10-minute break between sections and adaptive Module 2 routing.
             </p>
-            <ul class="space-y-2.5 text-sm text-slate-700 mb-8">
-              <li class="flex items-center gap-2.5">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 shrink-0"></i>
-                <span><strong>Section 1:</strong> Reading & Writing (Module 1 → Adaptive Module 2)</span>
+            <ul class="space-y-2.5 text-sm text-slate-700 mb-6">
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                <span><strong>Section 1:</strong> Reading &amp; Writing (Module 1 → Adaptive Module 2)</span>
               </li>
-              <li class="flex items-center gap-2.5">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
                 <span><strong>Section 2:</strong> Math with Graphing Calculator (Module 1 → Adaptive Module 2)</span>
               </li>
-              <li class="flex items-center gap-2.5">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 shrink-0"></i>
-                <span>Includes optional 10-minute inter-section break & full 400–1600 score report</span>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                <span><strong>21 Geometry &amp; Trigonometry Math Exercises</strong> + Reading &amp; Writing Bank</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                <span>Optional 10-minute break &amp; full 400–1600 score report</span>
               </li>
             </ul>
           </div>
@@ -164,9 +168,6 @@
           </button>
         </div>
 
-        <!-- Card 2: Dedicated Math Only Test + Focused Practice Modes -->
-        <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm flex flex-col justify-between">
-          <div>
         <!-- Card 2: Quick Focused Practice -->
         <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm flex flex-col justify-between">
           <div>
@@ -192,7 +193,7 @@
               <button onclick="startExam('math_only')" class="w-full p-3.5 rounded-xl border border-slate-200 hover:border-blue-400 hover:bg-blue-50/50 transition text-left flex items-center justify-between group cursor-pointer">
                 <div>
                   <div class="font-semibold text-slate-900 group-hover:text-blue-900">Math Sprint (MC + Grid-In)</div>
-                  <div class="text-xs text-slate-500">12 Questions • Adaptive Module 1 &amp; 2 • 18 Mins</div>
+                  <div class="text-xs text-slate-500">21 Questions • Adaptive Module 1 &amp; 2 • Ch 19–21 Exercises</div>
                 </div>
                 <i data-lucide="chevron-right" class="w-5 h-5 text-slate-400 group-hover:text-blue-700 shrink-0"></i>
               </button>
@@ -206,32 +207,32 @@
         </div>
       </div>
 
-      <!-- Digital SAT Structure Overview -->
-      <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+      <!-- Digital SAT Structure Overview (Full-Width Row Below Cards) -->
+      <div class="max-w-5xl mx-auto bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
         <h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
           <i data-lucide="layout-grid" class="w-5 h-5 text-blue-700"></i>
-          Digital SAT Structure & Scoring Overview
+          Digital SAT Structure &amp; Scoring Overview
         </h3>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 min-w-0">
             <div class="text-xs font-bold uppercase tracking-wider text-blue-700 mb-1">Section 1 • RW</div>
-            <div class="font-bold text-slate-900 text-base mb-1">Reading & Writing</div>
-            <p class="text-xs text-slate-600">Concise passages with discrete questions across Craft & Structure, Information & Ideas, Conventions, and Expression of Ideas.</p>
+            <div class="font-bold text-slate-900 text-base mb-1 break-words">Reading &amp; Writing</div>
+            <p class="text-xs text-slate-600 leading-relaxed">Concise passages with discrete questions across Craft &amp; Structure, Information &amp; Ideas, Conventions, and Expression of Ideas.</p>
           </div>
-          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 min-w-0">
             <div class="text-xs font-bold uppercase tracking-wider text-indigo-700 mb-1">Section 2 • Math</div>
-            <div class="font-bold text-slate-900 text-base mb-1">Quantitative Reasoning</div>
-            <p class="text-xs text-slate-600">Multiple-choice and Student-Produced Response (SPR) numeric grid-ins across Algebra, Advanced Math, Data Analysis, and Geometry.</p>
+            <div class="font-bold text-slate-900 text-base mb-1 break-words">Quantitative Reasoning</div>
+            <p class="text-xs text-slate-600 leading-relaxed">Multiple-choice and Student-Produced Response (SPR) numeric grid-ins across Algebra, Advanced Math, Data Analysis, and Geometry.</p>
           </div>
-          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 min-w-0">
             <div class="text-xs font-bold uppercase tracking-wider text-amber-700 mb-1">MST Routing</div>
-            <div class="font-bold text-slate-900 text-base mb-1">Multistage Adaptive</div>
-            <p class="text-xs text-slate-600">Meeting the Module 1 accuracy threshold routes you to the Higher-Difficulty Module 2, unlocking a higher score ceiling.</p>
+            <div class="font-bold text-slate-900 text-base mb-1 break-words">Multistage Adaptive</div>
+            <p class="text-xs text-slate-600 leading-relaxed">Meeting the Module 1 accuracy threshold routes you to the Higher-Difficulty Module 2, unlocking a higher score ceiling.</p>
           </div>
-          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 min-w-0">
             <div class="text-xs font-bold uppercase tracking-wider text-emerald-700 mb-1">Scaled Score</div>
-            <div class="font-bold text-slate-900 text-base mb-1">400 – 1600 Scale</div>
-            <p class="text-xs text-slate-600">200–800 per section, weighted by Module 2 difficulty tier, paired with a domain-by-domain review.</p>
+            <div class="font-bold text-slate-900 text-base mb-1 break-words">400 – 1600 Scale</div>
+            <p class="text-xs text-slate-600 leading-relaxed">200–800 per section, weighted by Module 2 difficulty tier, paired with a domain-by-domain review.</p>
           </div>
         </div>
       </div>
