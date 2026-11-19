@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bluebook™ Digital SAT Practice Simulator</title>
-  
+
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
+
   <!-- Google Fonts: Inter & Source Serif 4 (for authentic SAT reading passages) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,22 +34,22 @@
       line-height: 1.75;
     }
 
-    /* Bluebook dashed divider border */
+    /* Bluebook dashed divider borders */
     .bluebook-dashed-top {
-      background-image: linear-gradient(to right, #94a3b8 50%, rgba(255,255,255,0) 0%);
+      background-image: linear-gradient(to right, #94a3b8 50%, rgba(255, 255, 255, 0) 0%);
       background-position: top;
       background-size: 10px 2px;
       background-repeat: repeat-x;
     }
 
     .bluebook-dashed-bottom {
-      background-image: linear-gradient(to right, #94a3b8 50%, rgba(255,255,255,0) 0%);
+      background-image: linear-gradient(to right, #94a3b8 50%, rgba(255, 255, 255, 0) 0%);
       background-position: bottom;
       background-size: 10px 2px;
       background-repeat: repeat-x;
     }
 
-    /* Highlight span styling */
+    /* Highlighted passage text */
     .sat-highlight {
       background-color: #fef08a;
       border-bottom: 2px solid #eab308;
@@ -58,11 +58,11 @@
       cursor: pointer;
     }
 
-    /* Strikethrough option eliminator */
+    /* Eliminated answer choice styling */
     .eliminated-option {
       opacity: 0.45;
-      position: relative;
     }
+
     .eliminated-option .option-text {
       text-decoration: line-through;
       text-decoration-thickness: 2px;
@@ -74,22 +74,25 @@
       width: 6px;
       height: 6px;
     }
+
     ::-webkit-scrollbar-track {
       background: #f1f5f9;
     }
+
     ::-webkit-scrollbar-thumb {
       background: #cbd5e1;
       border-radius: 9999px;
     }
+
     ::-webkit-scrollbar-thumb:hover {
       background: #94a3b8;
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col select-none sm:select-auto">
+<body class="min-h-screen flex flex-col">
 
   <!-- =====================================================================
-       VIEW 1: LANDING / START SCREEN
+       VIEW 1: LANDING / EXAM MODE SELECTION SCREEN
   ====================================================================== -->
   <div id="landing-view" class="flex-1 flex flex-col">
     <!-- Top Navbar -->
@@ -100,7 +103,9 @@
         </div>
         <div>
           <span class="font-bold text-slate-900 text-lg tracking-tight">Bluebook™ Simulator</span>
-          <span class="hidden sm:inline-block ml-2 text-xs font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200">Digital SAT Edition</span>
+          <span class="hidden sm:inline-block ml-2 text-xs font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
+            Digital SAT Edition
+          </span>
         </div>
       </div>
       <div class="text-xs sm:text-sm text-slate-500 font-medium">
@@ -108,7 +113,7 @@
       </div>
     </header>
 
-    <!-- Main Hero & Configuration -->
+    <!-- Main Hero & Mode Cards -->
     <main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-8 py-8 sm:py-12">
       <div class="text-center max-w-3xl mx-auto mb-10">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-800 text-xs font-semibold mb-4">
@@ -119,16 +124,16 @@
           Master the Digital SAT Environment
         </h1>
         <p class="text-slate-600 text-base sm:text-lg leading-relaxed">
-          Experience an authentic Bluebook-style testing interface complete with passage highlighting, option eliminators, an interactive graphing calculator, and adaptive Module 2 routing.
+          Practice with a Bluebook-inspired interface featuring passage highlighting, option eliminators, a graphing & scientific calculator, math reference sheet, and adaptive Module 2 routing.
         </p>
       </div>
 
-      <!-- Exam Mode Selection Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+      <!-- Primary Exam Mode Cards -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
         <!-- Card 1: Full Adaptive Simulation -->
         <div class="bg-white rounded-2xl border-2 border-[#1e3a8a] p-6 sm:p-8 shadow-md flex flex-col justify-between relative overflow-hidden">
           <div class="absolute top-0 right-0 bg-[#1e3a8a] text-white text-xs font-bold px-3 py-1 rounded-bl-xl">
-            RECOMMENDED
+            FULL EXAM
           </div>
           <div>
             <div class="w-12 h-12 rounded-xl bg-blue-50 text-[#1e3a8a] flex items-center justify-center mb-5">
@@ -136,7 +141,7 @@
             </div>
             <h2 class="text-2xl font-bold text-slate-900 mb-2">Full Adaptive Simulation</h2>
             <p class="text-slate-600 text-sm mb-6">
-              Complete 4-module adaptive exam spanning Reading & Writing and Math. Your performance in Module 1 dynamically routes you to either the <strong>Standard</strong> or <strong>Higher-Difficulty</strong> Module 2.
+              Complete 4-module adaptive exam covering Reading & Writing and Math, with an optional 10-minute break between sections and adaptive Module 2 routing.
             </p>
             <ul class="space-y-2.5 text-sm text-slate-700 mb-8">
               <li class="flex items-center gap-2.5">
@@ -149,11 +154,7 @@
               </li>
               <li class="flex items-center gap-2.5">
                 <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 shrink-0"></i>
-                <span><strong>24 Original Questions</strong> across all 8 official College Board domains</span>
-              </li>
-              <li class="flex items-center gap-2.5">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 shrink-0"></i>
-                <span>Full 400–1600 Scaled Score & Domain Analytics Report</span>
+                <span>Includes optional 10-minute inter-section break & full 400–1600 score report</span>
               </li>
             </ul>
           </div>
@@ -163,32 +164,37 @@
           </button>
         </div>
 
-        <!-- Card 2: Quick Section Practice -->
+        <!-- Card 2: Dedicated Math Only Test + Focused Practice Modes -->
         <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm flex flex-col justify-between">
           <div>
-            <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center mb-5">
+        <!-- Card 2: Quick Focused Practice -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mb-5">
               <i data-lucide="zap" class="w-6 h-6"></i>
             </div>
             <h2 class="text-2xl font-bold text-slate-900 mb-2">Quick Focused Practice</h2>
-            <p class="text-slate-600 text-sm mb-6">
+            <p class="text-slate-600 text-sm mb-5">
               Short on time? Take a targeted single-section adaptive sprint or a mixed diagnostic drill with instant access to all Bluebook testing tools.
             </p>
-            
-            <div class="space-y-3 mb-8">
+
+            <div class="space-y-3 mb-6">
+              <!-- Reading & Writing Sprint -->
               <button onclick="startExam('rw_only')" class="w-full p-3.5 rounded-xl border border-slate-200 hover:border-blue-400 hover:bg-blue-50/50 transition text-left flex items-center justify-between group cursor-pointer">
                 <div>
-                  <div class="font-semibold text-slate-900 group-hover:text-blue-900">Reading & Writing Sprint</div>
-                  <div class="text-xs text-slate-500">12 Questions • Adaptive Module 1 & 2 • 16 Mins</div>
+                  <div class="font-semibold text-slate-900 group-hover:text-blue-900">Reading &amp; Writing Sprint</div>
+                  <div class="text-xs text-slate-500">12 Questions • Adaptive Module 1 &amp; 2 • 16 Mins</div>
                 </div>
-                <i data-lucide="chevron-right" class="w-5 h-5 text-slate-400 group-hover:text-blue-700"></i>
+                <i data-lucide="chevron-right" class="w-5 h-5 text-slate-400 group-hover:text-blue-700 shrink-0"></i>
               </button>
 
+              <!-- Math Sprint (MC + Grid-In) -->
               <button onclick="startExam('math_only')" class="w-full p-3.5 rounded-xl border border-slate-200 hover:border-blue-400 hover:bg-blue-50/50 transition text-left flex items-center justify-between group cursor-pointer">
                 <div>
                   <div class="font-semibold text-slate-900 group-hover:text-blue-900">Math Sprint (MC + Grid-In)</div>
-                  <div class="text-xs text-slate-500">12 Questions • Adaptive Module 1 & 2 • 18 Mins</div>
+                  <div class="text-xs text-slate-500">12 Questions • Adaptive Module 1 &amp; 2 • 18 Mins</div>
                 </div>
-                <i data-lucide="chevron-right" class="w-5 h-5 text-slate-400 group-hover:text-blue-700"></i>
+                <i data-lucide="chevron-right" class="w-5 h-5 text-slate-400 group-hover:text-blue-700 shrink-0"></i>
               </button>
             </div>
           </div>
@@ -200,7 +206,7 @@
         </div>
       </div>
 
-      <!-- Digital SAT Structure Breakdown -->
+      <!-- Digital SAT Structure Overview -->
       <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
         <h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
           <i data-lucide="layout-grid" class="w-5 h-5 text-blue-700"></i>
@@ -210,22 +216,22 @@
           <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
             <div class="text-xs font-bold uppercase tracking-wider text-blue-700 mb-1">Section 1 • RW</div>
             <div class="font-bold text-slate-900 text-base mb-1">Reading & Writing</div>
-            <p class="text-xs text-slate-600">Short 25–150 word passages with 1 discrete question each across 4 content domains.</p>
+            <p class="text-xs text-slate-600">Concise passages with discrete questions across Craft & Structure, Information & Ideas, Conventions, and Expression of Ideas.</p>
           </div>
           <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
             <div class="text-xs font-bold uppercase tracking-wider text-indigo-700 mb-1">Section 2 • Math</div>
             <div class="font-bold text-slate-900 text-base mb-1">Quantitative Reasoning</div>
-            <p class="text-xs text-slate-600">~75% Multiple Choice and ~25% Student-Produced Response (SPR) numeric grid-ins.</p>
+            <p class="text-xs text-slate-600">Multiple-choice and Student-Produced Response (SPR) numeric grid-ins across Algebra, Advanced Math, Data Analysis, and Geometry.</p>
           </div>
           <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
             <div class="text-xs font-bold uppercase tracking-wider text-amber-700 mb-1">MST Routing</div>
             <div class="font-bold text-slate-900 text-base mb-1">Multistage Adaptive</div>
-            <p class="text-xs text-slate-600">Scoring ≥60% on Module 1 unlocks the Harder Module 2, raising your maximum possible score ceiling.</p>
+            <p class="text-xs text-slate-600">Meeting the Module 1 accuracy threshold routes you to the Higher-Difficulty Module 2, unlocking a higher score ceiling.</p>
           </div>
           <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
             <div class="text-xs font-bold uppercase tracking-wider text-emerald-700 mb-1">Scaled Score</div>
             <div class="font-bold text-slate-900 text-base mb-1">400 – 1600 Scale</div>
-            <p class="text-xs text-slate-600">200–800 for Reading & Writing + 200–800 for Math, weighted by item difficulty.</p>
+            <p class="text-xs text-slate-600">200–800 per section, weighted by Module 2 difficulty tier, paired with a domain-by-domain review.</p>
           </div>
         </div>
       </div>
@@ -233,12 +239,12 @@
   </div>
 
   <!-- =====================================================================
-       VIEW 2: INTER-MODULE TRANSITION SCREEN
+       VIEW 2: INTER-MODULE / BREAK TRANSITION SCREEN
   ====================================================================== -->
   <div id="transition-view" class="hidden flex-1 flex items-center justify-center bg-slate-50 p-4">
     <div class="max-w-lg w-full bg-white rounded-2xl border border-slate-200 shadow-lg p-8 text-center">
       <div class="w-14 h-14 rounded-full bg-blue-100 text-[#1e3a8a] flex items-center justify-center mx-auto mb-5">
-        <i data-lucide="cpu" class="w-7 h-7"></i>
+        <i id="transition-icon" data-lucide="cpu" class="w-7 h-7"></i>
       </div>
       <div id="transition-badge" class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-indigo-50 text-indigo-700 border border-indigo-200 mb-3">
         Adaptive Routing Complete
@@ -249,24 +255,37 @@
       <p id="transition-desc" class="text-slate-600 text-sm leading-relaxed mb-6">
         Based on your Module 1 performance, the adaptive engine has selected your next module.
       </p>
-      
+
+      <!-- Optional Break Countdown Banner (shown between RW and Math in Full Simulation) -->
+      <div id="break-timer-box" class="hidden mb-6 p-4 rounded-xl bg-amber-50 border border-amber-200">
+        <div class="text-xs font-bold uppercase tracking-wider text-amber-800 mb-1">
+          Optional Break Countdown
+        </div>
+        <div id="break-timer-display" class="font-mono text-2xl font-extrabold text-amber-900">
+          10:00
+        </div>
+        <p class="text-xs text-amber-700 mt-1">
+          Stretch, hydrate, or skip the break whenever you are ready to start Math.
+        </p>
+      </div>
+
       <div class="bg-slate-50 rounded-xl border border-slate-200 p-4 mb-6 text-left text-sm space-y-2">
         <div class="flex justify-between">
           <span class="text-slate-500">Next Stage:</span>
-          <span id="transition-next-module" class="font-bold text-slate-900">Reading & Writing • Module 2</span>
+          <span id="transition-next-module" class="font-bold text-slate-900">Math • Module 1</span>
         </div>
         <div class="flex justify-between">
-          <span class="text-slate-500">Adaptive Difficulty Tier:</span>
-          <span id="transition-tier" class="font-bold text-indigo-700">Higher Difficulty (Upper Tier)</span>
+          <span class="text-slate-500">Difficulty / Stage:</span>
+          <span id="transition-tier" class="font-bold text-indigo-700">Baseline Routing</span>
         </div>
         <div class="flex justify-between">
           <span class="text-slate-500">Time Allotted:</span>
-          <span id="transition-time" class="font-bold text-slate-900">8 Minutes</span>
+          <span id="transition-time" class="font-bold text-slate-900">35 Minutes</span>
         </div>
       </div>
 
       <button onclick="proceedFromTransition()" class="w-full py-3.5 px-6 rounded-xl bg-[#1e3a8a] hover:bg-blue-900 text-white font-semibold transition flex items-center justify-center gap-2 cursor-pointer">
-        <span>Begin Next Module</span>
+        <span id="transition-btn-label">Begin Next Module</span>
         <i data-lucide="arrow-right" class="w-4 h-4"></i>
       </button>
     </div>
@@ -276,17 +295,16 @@
        VIEW 3: BLUEBOOK TESTING INTERFACE
   ====================================================================== -->
   <div id="exam-view" class="hidden flex-1 flex flex-col h-screen overflow-hidden bg-white">
-    
     <!-- Top Bluebook Header -->
     <header class="bg-[#f1f5f9] border-b border-slate-300 px-3 sm:px-6 py-2.5 flex items-center justify-between shrink-0 z-20">
       <!-- Left: Section & Module Info -->
       <div class="flex flex-col">
         <div class="flex items-center gap-2">
           <span id="header-section-title" class="font-bold text-slate-900 text-sm sm:text-base">
-            Section 1, Module 1: Reading and Writing
+            Section 2, Module 1: Math
           </span>
           <span id="header-adaptive-pill" class="hidden sm:inline-block text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-200 text-slate-700">
-            Baseline
+            Module 1
           </span>
         </div>
         <button onclick="toggleDirectionsModal()" class="text-xs text-blue-700 hover:underline font-medium flex items-center gap-1 w-fit mt-0.5 cursor-pointer">
@@ -298,7 +316,7 @@
       <!-- Center: Hideable Countdown Timer -->
       <div class="flex flex-col items-center">
         <div id="timer-display" class="font-mono font-bold text-lg sm:text-xl text-slate-900 tracking-tight">
-          08:00
+          09:00
         </div>
         <button onclick="toggleTimerVisibility()" id="timer-toggle-btn" class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full border border-slate-300 bg-white hover:bg-slate-100 text-slate-700 transition cursor-pointer">
           Hide
@@ -308,7 +326,7 @@
       <!-- Right: Bluebook Tools -->
       <div class="flex items-center gap-1.5 sm:gap-2.5">
         <!-- Highlighter Tool (Visible on RW) -->
-        <button id="btn-highlighter" onclick="highlightSelectedText()" title="Select text in the passage, then click Highlight" class="flex flex-col sm:flex-row items-center gap-1 px-2.5 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-yellow-50 text-slate-700 text-xs font-semibold transition cursor-pointer">
+        <button id="btn-highlighter" onclick="highlightSelectedText()" title="Select text in the passage, then click Highlight" class="hidden flex-col sm:flex-row items-center gap-1 px-2.5 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-yellow-50 text-slate-700 text-xs font-semibold transition cursor-pointer">
           <i data-lucide="highlighter" class="w-4 h-4 text-amber-600"></i>
           <span class="hidden md:inline">Highlight</span>
         </button>
@@ -319,18 +337,18 @@
         </button>
 
         <!-- Calculator Button (Visible on Math) -->
-        <button id="btn-calculator" onclick="toggleModal('calculator-modal')" class="hidden flex-col sm:flex-row items-center gap-1 px-2.5 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-blue-50 text-slate-800 text-xs font-semibold transition cursor-pointer">
+        <button id="btn-calculator" onclick="toggleModal('calculator-modal')" class="flex-col sm:flex-row items-center gap-1 px-2.5 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-blue-50 text-slate-800 text-xs font-semibold transition cursor-pointer">
           <i data-lucide="calculator" class="w-4 h-4 text-blue-700"></i>
           <span class="hidden md:inline">Calculator</span>
         </button>
 
         <!-- Math Reference Sheet Button (Visible on Math) -->
-        <button id="btn-reference" onclick="toggleModal('reference-modal')" class="hidden flex-col sm:flex-row items-center gap-1 px-2.5 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-blue-50 text-slate-800 text-xs font-semibold transition cursor-pointer">
+        <button id="btn-reference" onclick="toggleModal('reference-modal')" class="flex-col sm:flex-row items-center gap-1 px-2.5 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-blue-50 text-slate-800 text-xs font-semibold transition cursor-pointer">
           <i data-lucide="ruler" class="w-4 h-4 text-indigo-700"></i>
           <span class="hidden md:inline">Reference</span>
         </button>
 
-        <!-- Exit / End Early -->
+        <!-- Finish / Submit Module -->
         <button onclick="openEndModuleConfirm()" class="px-2.5 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-rose-50 hover:text-rose-700 hover:border-rose-300 text-slate-700 text-xs font-semibold transition cursor-pointer">
           <span class="hidden sm:inline">Finish Module</span>
           <i data-lucide="log-out" class="w-4 h-4 sm:hidden"></i>
@@ -338,33 +356,29 @@
       </div>
     </header>
 
-    <!-- Bluebook Dashed Top Border Accent -->
+    <!-- Bluebook Dashed Top Border -->
     <div class="h-1 w-full bluebook-dashed-top shrink-0"></div>
 
     <!-- Main Question Workspace -->
     <main id="workspace-container" class="flex-1 overflow-y-auto">
-      <!-- Split-Screen for RW / Centered for Math injected dynamically -->
       <div id="question-stage" class="h-full max-w-7xl mx-auto"></div>
     </main>
 
-    <!-- Bluebook Dashed Bottom Border Accent -->
+    <!-- Bluebook Dashed Bottom Border -->
     <div class="h-1 w-full bluebook-dashed-bottom shrink-0"></div>
 
     <!-- Bottom Navigation Footer -->
     <footer class="bg-[#f1f5f9] border-t border-slate-300 px-3 sm:px-6 py-2.5 flex items-center justify-between shrink-0 z-20">
-      <!-- Left: User / Domain Tag -->
       <div class="hidden sm:flex items-center gap-2 text-xs font-semibold text-slate-600">
         <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-        <span id="footer-domain-label">Craft & Structure</span>
+        <span id="footer-domain-label">Algebra</span>
       </div>
 
-      <!-- Center: Question Navigator Drawer Trigger -->
       <button onclick="toggleNavigatorDrawer()" class="mx-auto sm:mx-0 px-4 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-xs sm:text-sm font-bold flex items-center gap-2 shadow-sm transition cursor-pointer">
         <span id="nav-drawer-label">Question 1 of 6</span>
         <i data-lucide="chevron-up" class="w-4 h-4"></i>
       </button>
 
-      <!-- Right: Back & Next Buttons -->
       <div class="flex items-center gap-2">
         <button id="btn-prev-q" onclick="navigateQuestion(-1)" class="px-4 py-2 rounded-full border border-[#1e3a8a] text-[#1e3a8a] hover:bg-blue-50 disabled:opacity-40 disabled:pointer-events-none font-bold text-xs sm:text-sm transition cursor-pointer">
           Back
@@ -377,23 +391,22 @@
   </div>
 
   <!-- =====================================================================
-       QUESTION NAVIGATOR POPOVER DRAWER
+       QUESTION NAVIGATOR DRAWER
   ====================================================================== -->
-  <div id="navigator-drawer" class="hidden fixed inset-0 z-40 flex items-end justify-center bg-slate-900/40 backdrop-blur-[1px]" onclick="if(event.target === this) toggleNavigatorDrawer()">
-    <div class="bg-white w-full max-w-xl rounded-t-2xl sm:rounded-2xl sm:mb-16 border border-slate-200 shadow-2xl p-6 animate-fade-in">
+  <div id="navigator-drawer" class="hidden fixed inset-0 z-40 flex items-end justify-center bg-slate-900/40 backdrop-blur-[1px]" onclick="if (event.target === this) toggleNavigatorDrawer()">
+    <div class="bg-white w-full max-w-xl rounded-t-2xl sm:rounded-2xl sm:mb-16 border border-slate-200 shadow-2xl p-6">
       <div class="flex items-center justify-between pb-3 border-b border-slate-200 mb-4">
         <h3 id="drawer-module-title" class="font-bold text-slate-900 text-base">
-          Section 1, Module 1 Questions
+          Module Questions
         </h3>
         <button onclick="toggleNavigatorDrawer()" class="p-1 rounded-lg hover:bg-slate-100 text-slate-500 cursor-pointer">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
 
-      <!-- Legend -->
       <div class="flex flex-wrap items-center justify-center gap-4 text-xs text-slate-600 mb-5 bg-slate-50 py-2 px-3 rounded-lg border border-slate-200">
         <div class="flex items-center gap-1.5">
-          <span class="w-3.5 h-3.5 rounded border-2 border-dashed border-slate-400 inline-block"></span>
+          <span class="w-3.5 h-3.5 rounded ring-2 ring-slate-900 inline-block"></span>
           <span>Current</span>
         </div>
         <div class="flex items-center gap-1.5">
@@ -410,10 +423,7 @@
         </div>
       </div>
 
-      <!-- Question Grid -->
-      <div id="navigator-grid" class="grid grid-cols-6 gap-2.5 mb-6">
-        <!-- Populated dynamically -->
-      </div>
+      <div id="navigator-grid" class="grid grid-cols-6 gap-2.5 mb-6"></div>
 
       <div class="flex justify-between items-center pt-3 border-t border-slate-200">
         <span id="drawer-summary-text" class="text-xs font-medium text-slate-500">0 of 6 Answered</span>
@@ -425,7 +435,7 @@
   </div>
 
   <!-- =====================================================================
-       MODAL: END MODULE / TIME WARNING CONFIRMATION
+       MODAL: END MODULE CONFIRMATION
   ====================================================================== -->
   <div id="confirm-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 p-4">
     <div class="bg-white max-w-md w-full rounded-2xl border border-slate-200 shadow-2xl p-6">
@@ -452,7 +462,7 @@
   <!-- =====================================================================
        MODAL: DIRECTIONS
   ====================================================================== -->
-  <div id="directions-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 p-4" onclick="if(event.target === this) toggleDirectionsModal()">
+  <div id="directions-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 p-4" onclick="if (event.target === this) toggleDirectionsModal()">
     <div class="bg-white max-w-xl w-full rounded-2xl border border-slate-200 shadow-2xl p-6">
       <div class="flex items-center justify-between pb-3 border-b border-slate-200 mb-4">
         <h3 id="directions-title" class="font-bold text-slate-900 text-lg">Section Directions</h3>
@@ -460,9 +470,7 @@
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
-      <div id="directions-body" class="text-sm text-slate-700 space-y-3 leading-relaxed mb-6">
-        <!-- Injected per section -->
-      </div>
+      <div id="directions-body" class="text-sm text-slate-700 space-y-3 leading-relaxed mb-6"></div>
       <div class="flex justify-end">
         <button onclick="toggleDirectionsModal()" class="px-5 py-2 rounded-xl bg-[#1e3a8a] text-white font-semibold text-sm cursor-pointer">
           Close Directions
@@ -472,7 +480,7 @@
   </div>
 
   <!-- =====================================================================
-       MODAL: INTERACTIVE GRAPHING & SCIENTIFIC CALCULATOR (DESMOS STYLE)
+       MODAL: GRAPHING & SCIENTIFIC CALCULATOR
   ====================================================================== -->
   <div id="calculator-modal" class="hidden fixed bottom-16 right-4 sm:right-8 z-40 w-[92vw] sm:w-[420px] bg-white rounded-2xl border border-slate-300 shadow-2xl overflow-hidden flex flex-col">
     <div class="bg-slate-900 text-white px-4 py-2.5 flex items-center justify-between">
@@ -485,7 +493,6 @@
       </button>
     </div>
 
-    <!-- Calculator Mode Tabs -->
     <div class="flex border-b border-slate-200 bg-slate-50 text-xs font-bold">
       <button id="calc-tab-sci" onclick="switchCalcTab('sci')" class="flex-1 py-2 text-blue-700 border-b-2 border-blue-700 bg-white cursor-pointer">
         Scientific
@@ -495,56 +502,56 @@
       </button>
     </div>
 
-    <!-- Scientific Calculator Pane -->
+    <!-- Scientific Pane -->
     <div id="calc-pane-sci" class="p-3.5">
       <div class="bg-slate-100 border border-slate-300 rounded-xl p-2.5 mb-3 text-right">
-        <input id="calc-input" type="text" placeholder="e.g. (3^2 + 4^2)^(0.5)" class="w-full bg-transparent text-right font-mono text-sm text-slate-700 focus:outline-none mb-1" onkeydown="if(event.key==='Enter') evaluateCalc()" />
+        <input id="calc-input" type="text" placeholder="e.g. (3^2 + 4^2)^(0.5)" class="w-full bg-transparent text-right font-mono text-sm text-slate-700 focus:outline-none mb-1" onkeydown="if (event.key === 'Enter') evaluateCalc()" />
         <div id="calc-output" class="font-mono font-bold text-xl text-slate-900 h-7 overflow-x-auto">0</div>
       </div>
 
       <div class="grid grid-cols-5 gap-1.5 text-xs font-semibold">
-        <button onclick="appendCalc('sin(')" class="p-2 rounded bg-slate-100 hover:bg-slate-200">sin</button>
-        <button onclick="appendCalc('cos(')" class="p-2 rounded bg-slate-100 hover:bg-slate-200">cos</button>
-        <button onclick="appendCalc('tan(')" class="p-2 rounded bg-slate-100 hover:bg-slate-200">tan</button>
-        <button onclick="appendCalc('Math.PI')" class="p-2 rounded bg-slate-100 hover:bg-slate-200">π</button>
-        <button onclick="clearCalc()" class="p-2 rounded bg-rose-100 text-rose-700 hover:bg-rose-200 font-bold">AC</button>
+        <button onclick="appendCalc('sin(')" class="p-2 rounded bg-slate-100 hover:bg-slate-200 cursor-pointer">sin</button>
+        <button onclick="appendCalc('cos(')" class="p-2 rounded bg-slate-100 hover:bg-slate-200 cursor-pointer">cos</button>
+        <button onclick="appendCalc('tan(')" class="p-2 rounded bg-slate-100 hover:bg-slate-200 cursor-pointer">tan</button>
+        <button onclick="appendCalc('Math.PI')" class="p-2 rounded bg-slate-100 hover:bg-slate-200 cursor-pointer">π</button>
+        <button onclick="clearCalc()" class="p-2 rounded bg-rose-100 text-rose-700 hover:bg-rose-200 font-bold cursor-pointer">AC</button>
 
-        <button onclick="appendCalc('Math.sqrt(')" class="p-2 rounded bg-slate-100 hover:bg-slate-200">√</button>
-        <button onclick="appendCalc('**')" class="p-2 rounded bg-slate-100 hover:bg-slate-200">xʸ</button>
-        <button onclick="appendCalc('(')" class="p-2 rounded bg-slate-100 hover:bg-slate-200">(</button>
-        <button onclick="appendCalc(')')" class="p-2 rounded bg-slate-100 hover:bg-slate-200">)</button>
-        <button onclick="appendCalc('/')" class="p-2 rounded bg-blue-50 text-blue-800 hover:bg-blue-100 font-bold">÷</button>
+        <button onclick="appendCalc('Math.sqrt(')" class="p-2 rounded bg-slate-100 hover:bg-slate-200 cursor-pointer">√</button>
+        <button onclick="appendCalc('**')" class="p-2 rounded bg-slate-100 hover:bg-slate-200 cursor-pointer">xʸ</button>
+        <button onclick="appendCalc('(')" class="p-2 rounded bg-slate-100 hover:bg-slate-200 cursor-pointer">(</button>
+        <button onclick="appendCalc(')')" class="p-2 rounded bg-slate-100 hover:bg-slate-200 cursor-pointer">)</button>
+        <button onclick="appendCalc('/')" class="p-2 rounded bg-blue-50 text-blue-800 hover:bg-blue-100 font-bold cursor-pointer">÷</button>
 
-        <button onclick="appendCalc('7')" class="p-2.5 rounded bg-white border border-slate-200 hover:bg-slate-50 text-sm">7</button>
-        <button onclick="appendCalc('8')" class="p-2.5 rounded bg-white border border-slate-200 hover:bg-slate-50 text-sm">8</button>
-        <button onclick="appendCalc('9')" class="p-2.5 rounded bg-white border border-slate-200 hover:bg-slate-50 text-sm">9</button>
-        <button onclick="backspaceCalc()" class="p-2 rounded bg-slate-100 hover:bg-slate-200">⌫</button>
-        <button onclick="appendCalc('*')" class="p-2 rounded bg-blue-50 text-blue-800 hover:bg-blue-100 font-bold">×</button>
+        <button onclick="appendCalc('7')" class="p-2.5 rounded bg-white border border-slate-200 hover:bg-slate-50 text-sm cursor-pointer">7</button>
+        <button onclick="appendCalc('8')" class="p-2.5 rounded bg-white border border-slate-200 hover:bg-slate-50 text-sm cursor-pointer">8</button>
+        <button onclick="appendCalc('9')" class="p-2.5 rounded bg-white border border-slate-200 hover:bg-slate-50 text-sm cursor-pointer">9</button>
+        <button onclick="backspaceCalc()" class="p-2 rounded bg-slate-100 hover:bg-slate-200 cursor-pointer">⌫</button>
+        <button onclick="appendCalc('*')" class="p-2 rounded bg-blue-50 text-blue-800 hover:bg-blue-100 font-bold cursor-pointer">×</button>
 
-        <button onclick="appendCalc('4')" class="p-2.5 rounded bg-white border border-slate-200 hover:bg-slate-50 text-sm">4</button>
-        <button onclick="appendCalc('5')" class="p-2.5 rounded bg-white border border-slate-200 hover:bg-slate-50 text-sm">5</button>
-        <button onclick="appendCalc('6')" class="p-2.5 rounded bg-white border border-slate-200 hover:bg-slate-50 text-sm">6</button>
-        <button onclick="appendCalc('Math.log10(')" class="p-2 rounded bg-slate-100 hover:bg-slate-200">log</button>
-        <button onclick="appendCalc('-')" class="p-2 rounded bg-blue-50 text-blue-800 hover:bg-blue-100 font-bold">−</button>
+        <button onclick="appendCalc('4')" class="p-2.5 rounded bg-white border border-slate-200 hover:bg-slate-50 text-sm cursor-pointer">4</button>
+        <button onclick="appendCalc('5')" class="p-2.5 rounded bg-white border border-slate-200 hover:bg-slate-50 text-sm cursor-pointer">5</button>
+        <button onclick="appendCalc('6')" class="p-2.5 rounded bg-white border border-slate-200 hover:bg-slate-50 text-sm cursor-pointer">6</button>
+        <button onclick="appendCalc('Math.log10(')" class="p-2 rounded bg-slate-100 hover:bg-slate-200 cursor-pointer">log</button>
+        <button onclick="appendCalc('-')" class="p-2 rounded bg-blue-50 text-blue-800 hover:bg-blue-100 font-bold cursor-pointer">−</button>
 
-        <button onclick="appendCalc('1')" class="p-2.5 rounded bg-white border border-slate-200 hover:bg-slate-50 text-sm">1</button>
-        <button onclick="appendCalc('2')" class="p-2.5 rounded bg-white border border-slate-200 hover:bg-slate-50 text-sm">2</button>
-        <button onclick="appendCalc('3')" class="p-2.5 rounded bg-white border border-slate-200 hover:bg-slate-50 text-sm">3</button>
-        <button onclick="appendCalc('Math.abs(')" class="p-2 rounded bg-slate-100 hover:bg-slate-200">|x|</button>
-        <button onclick="appendCalc('+')" class="p-2 rounded bg-blue-50 text-blue-800 hover:bg-blue-100 font-bold">+</button>
+        <button onclick="appendCalc('1')" class="p-2.5 rounded bg-white border border-slate-200 hover:bg-slate-50 text-sm cursor-pointer">1</button>
+        <button onclick="appendCalc('2')" class="p-2.5 rounded bg-white border border-slate-200 hover:bg-slate-50 text-sm cursor-pointer">2</button>
+        <button onclick="appendCalc('3')" class="p-2.5 rounded bg-white border border-slate-200 hover:bg-slate-50 text-sm cursor-pointer">3</button>
+        <button onclick="appendCalc('Math.abs(')" class="p-2 rounded bg-slate-100 hover:bg-slate-200 cursor-pointer">|x|</button>
+        <button onclick="appendCalc('+')" class="p-2 rounded bg-blue-50 text-blue-800 hover:bg-blue-100 font-bold cursor-pointer">+</button>
 
-        <button onclick="appendCalc('0')" class="col-span-2 p-2.5 rounded bg-white border border-slate-200 hover:bg-slate-50 text-sm">0</button>
-        <button onclick="appendCalc('.')" class="p-2.5 rounded bg-white border border-slate-200 hover:bg-slate-50 text-sm">.</button>
-        <button onclick="evaluateCalc()" class="col-span-2 p-2.5 rounded bg-[#1e3a8a] text-white hover:bg-blue-900 font-bold text-sm">=</button>
+        <button onclick="appendCalc('0')" class="col-span-2 p-2.5 rounded bg-white border border-slate-200 hover:bg-slate-50 text-sm cursor-pointer">0</button>
+        <button onclick="appendCalc('.')" class="p-2.5 rounded bg-white border border-slate-200 hover:bg-slate-50 text-sm cursor-pointer">.</button>
+        <button onclick="evaluateCalc()" class="col-span-2 p-2.5 rounded bg-[#1e3a8a] text-white hover:bg-blue-900 font-bold text-sm cursor-pointer">=</button>
       </div>
     </div>
 
-    <!-- Graphing Calculator Pane -->
+    <!-- Graphing Pane -->
     <div id="calc-pane-graph" class="hidden p-3.5">
       <div class="flex gap-2 mb-2.5">
         <div class="flex-1 flex items-center border border-slate-300 rounded-lg px-2.5 bg-slate-50">
           <span class="font-mono text-xs font-bold text-blue-700 mr-1.5">f(x) =</span>
-          <input id="graph-fn-input" type="text" value="x^2 - 4" placeholder="e.g. 2*x + 1 or x^2 - 4" class="w-full py-1.5 bg-transparent font-mono text-xs focus:outline-none" onkeydown="if(event.key==='Enter') plotGraph()" />
+          <input id="graph-fn-input" type="text" value="x^2 - 4" placeholder="e.g. 2*x + 1 or x^2 - 4" class="w-full py-1.5 bg-transparent font-mono text-xs focus:outline-none" onkeydown="if (event.key === 'Enter') plotGraph()" />
         </div>
         <button onclick="plotGraph()" class="px-3 py-1.5 rounded-lg bg-[#1e3a8a] text-white text-xs font-bold hover:bg-blue-900 cursor-pointer">
           Plot
@@ -554,7 +561,7 @@
         <canvas id="graph-canvas" width="380" height="220" class="w-full h-[220px] block"></canvas>
       </div>
       <p class="text-[11px] text-slate-500 mt-2">
-        Supports <code class="bg-slate-100 px-1 rounded">x^2</code>, <code class="bg-slate-100 px-1 rounded">sin(x)</code>, <code class="bg-slate-100 px-1 rounded">sqrt(x)</code>, <code class="bg-slate-100 px-1 rounded">abs(x)</code>. Grid: −10 to 10.
+        Supports <code class="bg-slate-100 px-1 rounded">x^2</code>, <code class="bg-slate-100 px-1 rounded">sin(x)</code>, <code class="bg-slate-100 px-1 rounded">sqrt(x)</code>, <code class="bg-slate-100 px-1 rounded">abs(x)</code>. Grid: −10 to 10 on x.
       </p>
     </div>
   </div>
@@ -562,7 +569,7 @@
   <!-- =====================================================================
        MODAL: MATH REFERENCE SHEET
   ====================================================================== -->
-  <div id="reference-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 p-4" onclick="if(event.target === this) toggleModal('reference-modal')">
+  <div id="reference-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 p-4" onclick="if (event.target === this) toggleModal('reference-modal')">
     <div class="bg-white max-w-2xl w-full rounded-2xl border border-slate-200 shadow-2xl p-6 max-h-[85vh] overflow-y-auto">
       <div class="flex items-center justify-between pb-3 border-b border-slate-200 mb-4">
         <h3 class="font-bold text-slate-900 text-lg flex items-center gap-2">
@@ -611,7 +618,6 @@
        VIEW 4: POST-TEST SCORE REPORT DASHBOARD
   ====================================================================== -->
   <div id="report-view" class="hidden flex-1 flex flex-col bg-slate-50">
-    <!-- Top Header -->
     <header class="bg-white border-b border-slate-200 px-4 sm:px-8 py-4 flex items-center justify-between sticky top-0 z-20">
       <div class="flex items-center gap-3">
         <div class="w-9 h-9 rounded-lg bg-[#1e3a8a] text-white flex items-center justify-center font-extrabold text-lg">
@@ -629,23 +635,24 @@
     </header>
 
     <main class="max-w-6xl w-full mx-auto px-4 sm:px-8 py-8 space-y-8">
-      
       <!-- Top Score Summary Cards -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <!-- Total Score Card -->
+        <!-- Primary / Composite Score Card -->
         <div class="bg-gradient-to-br from-[#1e3a8a] to-indigo-900 text-white rounded-2xl p-6 sm:p-8 shadow-lg flex flex-col justify-between">
           <div>
-            <div class="text-xs font-bold uppercase tracking-wider text-blue-200 mb-1">Total Scaled Score</div>
+            <div id="score-primary-label" class="text-xs font-bold uppercase tracking-wider text-blue-200 mb-1">
+              Total Scaled Score
+            </div>
             <div class="flex items-baseline gap-2">
               <span id="score-total" class="text-5xl sm:text-6xl font-extrabold tracking-tight">1420</span>
-              <span class="text-blue-200 font-medium text-lg">/ 1600</span>
+              <span id="score-total-denom" class="text-blue-200 font-medium text-lg">/ 1600</span>
             </div>
             <p id="score-percentile-text" class="text-sm text-blue-100 mt-3">
-              95th National Representative Percentile • Strong College Readiness
+              Adaptive MST Score Calculation
             </p>
           </div>
           <div class="mt-6 pt-4 border-t border-white/15 flex items-center justify-between text-xs text-blue-100">
-            <span>Raw Accuracy: <strong id="score-raw-acc">19/24 (79%)</strong></span>
+            <span>Raw Accuracy: <strong id="score-raw-acc">0/0 (0%)</strong></span>
             <span id="score-mode-badge" class="px-2.5 py-0.5 rounded-full bg-white/15 font-semibold">Full Simulation</span>
           </div>
         </div>
@@ -660,15 +667,15 @@
               </span>
             </div>
             <div class="flex items-baseline gap-2 mb-3">
-              <span id="score-rw" class="text-4xl font-extrabold text-slate-900">710</span>
+              <span id="score-rw" class="text-4xl font-extrabold text-slate-900">—</span>
               <span class="text-slate-400 font-medium">/ 800</span>
             </div>
             <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden mb-3">
-              <div id="bar-rw" class="bg-blue-600 h-full rounded-full" style="width: 85%"></div>
+              <div id="bar-rw" class="bg-blue-600 h-full rounded-full" style="width: 0%"></div>
             </div>
           </div>
           <div class="text-xs text-slate-500 flex justify-between pt-3 border-t border-slate-100">
-            <span>Correct: <strong id="rw-correct-count" class="text-slate-800">10/12</strong></span>
+            <span>Correct: <strong id="rw-correct-count" class="text-slate-800">Not Taken</strong></span>
             <span>Scale Range: 200–800</span>
           </div>
         </div>
@@ -683,27 +690,25 @@
               </span>
             </div>
             <div class="flex items-baseline gap-2 mb-3">
-              <span id="score-math" class="text-4xl font-extrabold text-slate-900">710</span>
+              <span id="score-math" class="text-4xl font-extrabold text-slate-900">—</span>
               <span class="text-slate-400 font-medium">/ 800</span>
             </div>
             <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden mb-3">
-              <div id="bar-math" class="bg-emerald-600 h-full rounded-full" style="width: 85%"></div>
+              <div id="bar-math" class="bg-emerald-600 h-full rounded-full" style="width: 0%"></div>
             </div>
           </div>
           <div class="text-xs text-slate-500 flex justify-between pt-3 border-t border-slate-100">
-            <span>Correct: <strong id="math-correct-count" class="text-slate-800">9/12</strong></span>
+            <span>Correct: <strong id="math-correct-count" class="text-slate-800">Not Taken</strong></span>
             <span>Scale Range: 200–800</span>
           </div>
         </div>
       </div>
 
-      <!-- Domain Performance Breakdown -->
+      <!-- Domain Breakdown -->
       <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
         <h3 class="text-lg font-bold text-slate-900 mb-1">Knowledge & Skills Domain Breakdown</h3>
-        <p class="text-xs text-slate-500 mb-6">Identify your highest-leverage areas for targeted SAT improvement.</p>
-        <div id="domain-bars-container" class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5">
-          <!-- Populated dynamically -->
-        </div>
+        <p class="text-xs text-slate-500 mb-6">Review accuracy across each tested domain to target future practice.</p>
+        <div id="domain-bars-container" class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5"></div>
       </div>
 
       <!-- Detailed Question-by-Question Review -->
@@ -711,7 +716,7 @@
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-slate-200 mb-6">
           <div>
             <h3 class="text-lg font-bold text-slate-900">Question-by-Question Review & Explanations</h3>
-            <p class="text-xs text-slate-500">Review every question, your selected answer, and step-by-step solutions.</p>
+            <p class="text-xs text-slate-500">Filter by incorrect or flagged questions and read step-by-step solutions.</p>
           </div>
           <div class="flex flex-wrap gap-2">
             <button onclick="filterReview('all')" id="filter-all" class="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-[#1e3a8a] text-white cursor-pointer">
@@ -726,27 +731,36 @@
           </div>
         </div>
 
-        <div id="review-list-container" class="space-y-6">
-          <!-- Populated dynamically -->
-        </div>
+        <div id="review-list-container" class="space-y-6"></div>
       </div>
-
     </main>
   </div>
 
   <!-- =====================================================================
-       APPLICATION LOGIC & COMPREHENSIVE DIGITAL SAT QUESTION BANK
+       CONFIGURATION, QUESTION BANK & APPLICATION LOGIC
   ====================================================================== -->
   <script>
     /**
-     * COMPREHENSIVE ORIGINAL DIGITAL SAT QUESTION BANK (36 Questions)
-     * Structured across:
-     * - RW Module 1 (Baseline: 6 questions)
-     * - RW Module 2 Easy (6 questions)
-     * - RW Module 2 Hard (6 questions)
-     * - Math Module 1 (Baseline: 6 questions - MC & SPR)
-     * - Math Module 2 Easy (6 questions - MC & SPR)
-     * - Math Module 2 Hard (6 questions - MC & SPR)
+     * EASY-TO-EDIT TEST CONFIGURATION CONSTANTS
+     * Adjust module durations (in seconds), low-time warning threshold,
+     * break duration, and Module 1 -> Module 2 adaptive accuracy threshold here.
+     */
+    const EXAM_CONFIG = {
+      timers: {
+        rwModuleSeconds: 1920,         // 32 minutes (32 * 60)
+        mathModuleSeconds: 2100,       // 35 minutes (35 * 60)
+        breakSeconds: 600              // 10-minute optional break (10 * 60)
+      },
+      lowTimeWarningSeconds: 300,      // Timer turns red at or below 5 minutes (300s)
+      adaptiveThreshold: 0.6           // 60% accuracy on Module 1 routes to Harder Module 2
+    };
+
+    /**
+     * QUESTION BANK
+     * - rw_m1, rw_m2_easy, rw_m2_hard: 6 questions each
+     * - math_m1 (Ch 19: Angles - 7 exercises)
+     * - math_m2_easy (Ch 20: Triangles - 7 exercises)
+     * - math_m2_hard (Ch 21: Circles - 7 exercises)
      */
     const QUESTION_BANK = {
       rw_m1: [
@@ -758,14 +772,9 @@
           type: "mc",
           passage: "During the late nineteenth century, marine biologists assumed that the abyssal zone of the ocean—depths below 4,000 meters—was largely devoid of complex life due to crushing pressure and perpetual darkness. However, deep-sea submersibles in the 1970s revealed thriving hydrothermal vent ecosystems, thereby ______ the long-standing consensus among oceanographers.",
           prompt: "Which choice completes the text with the most logical and precise word or phrase?",
-          choices: [
-            "corroborating",
-            "upending",
-            "ameliorating",
-            "circumventing"
-          ],
+          choices: ["corroborating", "upending", "ameliorating", "circumventing"],
           correctAnswer: 1,
-          explanation: "The passage contrasts the scientists' initial assumption ('largely devoid of complex life') with the later discovery of 'thriving hydrothermal vent ecosystems.' Thus, the discovery overturned or 'upended' the consensus. 'Corroborating' (confirming) is the opposite of what happened."
+          explanation: "Discovering thriving ecosystems in a zone thought lifeless overturned ('upended') the prior scientific consensus."
         },
         {
           id: "RW-M1-2",
@@ -782,7 +791,7 @@
             "Mason bees rely on colony cooperation to pollinate scattered wildflowers."
           ],
           correctAnswer: 2,
-          explanation: "The text explicitly states that mason bees 'do not form colonies or recruit other bees' and that each female 'independently forages,' contrasting directly with honeybees that communicate flower locations to nestmates."
+          explanation: "The passage contrasts solitary mason bees foraging independently with honeybees that recruit nestmates and communicate flower locations."
         },
         {
           id: "RW-M1-3",
@@ -792,14 +801,9 @@
           type: "mc",
           passage: "In 1928, Scottish bacteriologist Alexander Fleming noticed that a mold contaminating one of his Petri dishes had inhibited the growth of surrounding bacteria. This accidental observation led to the isolation of ______ the world's first broadly effective antibiotic.",
           prompt: "Which choice completes the text so that it conforms to the conventions of Standard English?",
-          choices: [
-            "penicillin;",
-            "penicillin:",
-            "penicillin,",
-            "penicillin"
-          ],
+          choices: ["penicillin;", "penicillin:", "penicillin,", "penicillin"],
           correctAnswer: 2,
-          explanation: "A comma is needed after 'penicillin' to set off the nonrestrictive appositive phrase ('the world's first broadly effective antibiotic') that renames penicillin."
+          explanation: "A comma after 'penicillin' sets off the nonrestrictive appositive phrase renaming penicillin."
         },
         {
           id: "RW-M1-4",
@@ -809,14 +813,9 @@
           type: "mc",
           passage: "The intricate acoustic properties of the ancient theater at Epidaurus, constructed in the fourth century BCE, ______ puzzled architectural historians for decades until researchers discovered that the stepped limestone seating acts as a natural low-frequency sound filter.",
           prompt: "Which choice completes the text so that it conforms to the conventions of Standard English?",
-          choices: [
-            "has",
-            "have",
-            "was",
-            "is"
-          ],
+          choices: ["has", "have", "was", "is"],
           correctAnswer: 1,
-          explanation: "The subject of the sentence is the plural noun 'properties' ('The intricate acoustic properties...'). Therefore, the plural auxiliary verb 'have' is required to match the plural subject."
+          explanation: "The subject 'properties' is plural, requiring the plural auxiliary verb 'have'."
         },
         {
           id: "RW-M1-5",
@@ -826,14 +825,9 @@
           type: "mc",
           passage: "Urban green roofs—rooftops covered with vegetation—reduce building cooling costs by absorbing solar radiation and insulating interior spaces. ______ they capture up to 70% of rainwater during heavy storms, easing strain on municipal drainage systems.",
           prompt: "Which choice completes the text with the most logical transition?",
-          choices: [
-            "Nevertheless,",
-            "Consequently,",
-            "Furthermore,",
-            "Conversely,"
-          ],
+          choices: ["Nevertheless,", "Consequently,", "Furthermore,", "Conversely,"],
           correctAnswer: 2,
-          explanation: "The first sentence introduces one environmental benefit of green roofs (reducing cooling costs), and the second sentence adds an additional, complementary benefit (capturing rainwater). 'Furthermore,' properly signals this addition."
+          explanation: "'Furthermore,' adds a second environmental benefit of green roofs to the cooling benefit already stated."
         },
         {
           id: "RW-M1-6",
@@ -841,8 +835,8 @@
           domain: "Expression of Ideas",
           skill: "Rhetorical Synthesis",
           type: "mc",
-          passage: "While researching bioluminescent fungi, a student took the following notes:<br>• Over 100 species of fungi emit a greenish glow known as foxfire.<br>• The glow is produced by a chemical reaction between the enzyme luciferase and a compound called luciferin.<br>• Botanist Dennis Desjardin hypothesized that this light attracts nocturnal insects.<br>• When insects land on the glowing mushrooms, fungal spores stick to their bodies and are dispersed across the forest.",
-          prompt: "The student wants to explain the ecological purpose of bioluminescence in fungi according to Dennis Desjardin. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+          passage: "While researching bioluminescent fungi, a student took the following notes:<br>• Over 100 species of fungi emit a greenish glow known as foxfire.<br>• The glow is produced by a chemical reaction between luciferase and luciferin.<br>• Botanist Dennis Desjardin hypothesized that this light attracts nocturnal insects.<br>• When insects land on the glowing mushrooms, fungal spores stick to their bodies and are dispersed across the forest.",
+          prompt: "The student wants to explain the ecological purpose of bioluminescence in fungi according to Dennis Desjardin. Which choice most effectively uses relevant information from the notes?",
           choices: [
             "Bioluminescent fungi emit a greenish glow called foxfire through a reaction involving luciferase and luciferin.",
             "According to Dennis Desjardin, fungi glow at night to attract nocturnal insects that help spread their spores through the forest.",
@@ -850,7 +844,7 @@
             "Nocturnal insects frequently land on mushrooms in forests, where chemical reactions produce greenish light."
           ],
           correctAnswer: 1,
-          explanation: "Choice B directly answers the prompt by connecting Dennis Desjardin's hypothesis with the ecological function of the glow: attracting nocturnal insects to disperse fungal spores."
+          explanation: "Choice B links Dennis Desjardin's hypothesis with the ecological function of attracting insects to disperse spores."
         }
       ],
 
@@ -863,31 +857,26 @@
           type: "mc",
           passage: "Although the novelist's early short stories received lukewarm reviews from literary critics, her 2019 historical epic was met with ______ acclaim, winning three major international book awards within six months of publication.",
           prompt: "Which choice completes the text with the most logical and precise word or phrase?",
-          choices: [
-            "tepid",
-            "resounding",
-            "ambiguous",
-            "negligible"
-          ],
+          choices: ["tepid", "resounding", "ambiguous", "negligible"],
           correctAnswer: 1,
-          explanation: "The word 'Although' sets up a contrast between 'lukewarm reviews' and the reception of her 2019 novel, which won three major awards. 'Resounding' (unmistakable, emphatic) fits this strong positive contrast."
+          explanation: "'Although' contrasts 'lukewarm reviews' with winning three international awards, making 'resounding' the precise fit."
         },
         {
           id: "RW-M2E-2",
           section: "rw",
           domain: "Information & Ideas",
-          skill: "Command of Evidence (Textual)",
+          skill: "Command of Evidence",
           type: "mc",
-          passage: "Archaeologists studying Neolithic settlements in Anatolia hypothesized that early farmers domesticated wild barley primarily to bake bread. However, residue analysis of stone vessels from the site revealed high concentrations of fermented grain starches, leading researchers to conclude that brewing beverages may have preceded breadmaking as the primary driver of grain cultivation.",
+          passage: "Archaeologists studying Neolithic settlements in Anatolia hypothesized that early farmers domesticated wild barley primarily to bake bread. However, residue analysis of stone vessels revealed high concentrations of fermented grain starches, leading researchers to conclude that brewing may have preceded breadmaking.",
           prompt: "Which finding, if true, would most directly support the researchers' conclusion?",
           choices: [
-            "Stone vessels used for fermentation at the site date back 2,000 years earlier than any known baking ovens in the region.",
-            "Modern varieties of barley contain higher protein levels than wild Anatolian barley.",
+            "Fermentation vessels at the site date back 2,000 years earlier than any known baking ovens in the region.",
+            "Modern barley varieties contain higher protein levels than wild Anatolian barley.",
             "Neolithic farmers in Anatolia also domesticated sheep and goats during the same period.",
-            "Bread made from wild barley spoils much faster than bread made from domesticated wheat."
+            "Bread made from wild barley spoils faster than bread made from domesticated wheat."
           ],
           correctAnswer: 0,
-          explanation: "If fermentation vessels predate baking ovens by 2,000 years at the site, that provides chronological evidence supporting the conclusion that brewing preceded breadmaking."
+          explanation: "Fermentation vessels predating baking ovens by 2,000 years directly supports brewing coming before breadmaking."
         },
         {
           id: "RW-M2E-3",
@@ -897,14 +886,9 @@
           type: "mc",
           passage: "Marine ecologist Dr. Sylvia Earle has spent over seven decades exploring Earth's ______ she has led more than a hundred oceanographic expeditions and logged over 7,500 hours underwater.",
           prompt: "Which choice completes the text so that it conforms to the conventions of Standard English?",
-          choices: [
-            "oceans,",
-            "oceans",
-            "oceans;",
-            "oceans and"
-          ],
+          choices: ["oceans,", "oceans", "oceans;", "oceans and"],
           correctAnswer: 2,
-          explanation: "Both parts of the sentence are independent clauses that could stand alone as complete sentences. A semicolon ('oceans;') properly joins two closely related independent clauses without creating a comma splice."
+          explanation: "A semicolon joins two related independent clauses without creating a comma splice."
         },
         {
           id: "RW-M2E-4",
@@ -914,14 +898,9 @@
           type: "mc",
           passage: "Before launching the James Webb Space Telescope in December 2021, NASA engineers ______ its eighteen gold-plated beryllium mirror segments through months of cryogenic vacuum testing.",
           prompt: "Which choice completes the text so that it conforms to the conventions of Standard English?",
-          choices: [
-            "putting",
-            "put",
-            "have put",
-            "will put"
-          ],
+          choices: ["putting", "put", "have put", "will put"],
           correctAnswer: 1,
-          explanation: "The action occurred in the past ('Before launching... in December 2021'), so the simple past tense verb 'put' is required."
+          explanation: "The simple past tense 'put' matches the past-time context of the December 2021 launch."
         },
         {
           id: "RW-M2E-5",
@@ -929,16 +908,11 @@
           domain: "Expression of Ideas",
           skill: "Transitions",
           type: "mc",
-          passage: "Classical pianists traditionally memorize entire concertos before performing them with an orchestra. ______ chamber musicians almost always perform with sheet music on stage to ensure seamless coordination among ensemble members.",
+          passage: "Classical pianists traditionally memorize entire concertos before performing them with an orchestra. ______ chamber musicians almost always perform with sheet music on stage to coordinate ensemble entries.",
           prompt: "Which choice completes the text with the most logical transition?",
-          choices: [
-            "In contrast,",
-            "Similarly,",
-            "Therefore,",
-            "For instance,"
-          ],
+          choices: ["In contrast,", "Similarly,", "Therefore,", "For instance,"],
           correctAnswer: 0,
-          explanation: "The passage contrasts solo concerto pianists (who memorize music) with chamber musicians (who use sheet music). 'In contrast,' accurately signals this opposition."
+          explanation: "'In contrast,' signals the difference between soloists memorizing concertos and chamber players using sheet music."
         },
         {
           id: "RW-M2E-6",
@@ -946,16 +920,16 @@
           domain: "Expression of Ideas",
           skill: "Rhetorical Synthesis",
           type: "mc",
-          passage: "While researching renewable energy storage, a student took the following notes:<br>• Pumped-storage hydropower accounts for over 90% of utility-scale energy storage worldwide.<br>• Excess electricity is used to pump water uphill into an elevated reservoir.<br>• When electricity demand peaks, water is released downhill through turbines to generate power.<br>• Unlike lithium-ion batteries, pumped-storage facilities can operate for more than 50 years without capacity degradation.",
-          prompt: "The student wants to highlight an advantage of pumped-storage hydropower over lithium-ion batteries. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+          passage: "While researching energy storage, a student took the following notes:<br>• Pumped-storage hydropower accounts for over 90% of utility-scale storage worldwide.<br>• Excess electricity pumps water uphill into an elevated reservoir.<br>• Releasing water downhill through turbines generates power during peak demand.<br>• Unlike lithium-ion batteries, pumped-storage facilities can operate for over 50 years without capacity degradation.",
+          prompt: "The student wants to highlight an advantage of pumped-storage hydropower over lithium-ion batteries. Which choice best accomplishes this?",
           choices: [
             "Pumped-storage hydropower generates electricity by releasing water downhill through turbines during peak demand.",
             "Accounting for over 90% of utility-scale storage, pumped-storage hydropower relies on elevated water reservoirs.",
             "Unlike lithium-ion batteries, pumped-storage hydropower facilities can operate for over five decades without losing storage capacity.",
-            "Both pumped-storage hydropower and lithium-ion batteries are used to store excess electricity."
+            "Both pumped-storage hydropower and lithium-ion batteries store excess electricity."
           ],
           correctAnswer: 2,
-          explanation: "Choice C directly compares pumped-storage hydropower to lithium-ion batteries and emphasizes its specific longevity advantage ('operate for over five decades without losing storage capacity')."
+          explanation: "Choice C directly compares the two technologies and states the longevity advantage of pumped-storage hydropower."
         }
       ],
 
@@ -966,16 +940,11 @@
           domain: "Craft & Structure",
           skill: "Words in Context",
           type: "mc",
-          passage: "Philosopher Martha Nussbaum contends that public policy frameworks focused exclusively on gross domestic product offer an ______ measure of human flourishing, as aggregate economic output fails to capture disparities in healthcare access, educational quality, and political agency.",
+          passage: "Philosopher Martha Nussbaum contends that public policy frameworks focused exclusively on gross domestic product offer an ______ measure of human flourishing, as aggregate economic output fails to capture disparities in healthcare, education, and political agency.",
           prompt: "Which choice completes the text with the most logical and precise word or phrase?",
-          choices: [
-            "infallible",
-            "impoverished",
-            "ostentatious",
-            "unequivocal"
-          ],
+          choices: ["infallible", "impoverished", "ostentatious", "unequivocal"],
           correctAnswer: 1,
-          explanation: "Here, 'impoverished' is used in its figurative, academic sense meaning 'deficient, narrow, or lacking in depth.' Because GDP ignores critical dimensions of well-being, Nussbaum argues it is an impoverished measure."
+          explanation: "'Impoverished' here means deficient or lacking completeness because GDP omits key dimensions of human well-being."
         },
         {
           id: "RW-M2H-2",
@@ -983,16 +952,16 @@
           domain: "Craft & Structure",
           skill: "Cross-Text Connections",
           type: "mc",
-          passage: "<strong>Text 1:</strong> Cognitive linguist Lera Boroditsky argues that grammatical structures subtly shape habitual thought. In languages like Kuuk Thaayorre, which use cardinal directions (north, south, east, west) rather than egocentric terms (left, right), speakers maintain an extraordinary internal compass even in unfamiliar indoor spaces.<br><br><strong>Text 2:</strong> Psycholinguist John McWhorter acknowledges that vocabulary and spatial terms correlate with cultural habits, yet he cautions against overstating linguistic determinism: speakers of English can readily learn cardinal orientation without altering their grammar, suggesting environment rather than syntax drives spatial awareness.",
-          prompt: "Based on the texts, how would McWhorter (Text 2) most likely respond to Boroditsky's claim in Text 1?",
+          passage: "<strong>Text 1:</strong> Linguist Lera Boroditsky argues that grammatical structures subtly shape habitual thought, noting that speakers of languages using cardinal directions maintain strong internal compasses even indoors.<br><br><strong>Text 2:</strong> Psycholinguist John McWhorter cautions against overstating grammatical determinism, observing that English speakers can learn cardinal orientation readily without grammar shifts, pointing to environment rather than syntax.",
+          prompt: "How would McWhorter (Text 2) most likely respond to Boroditsky's claim in Text 1?",
           choices: [
-            "By arguing that Kuuk Thaayorre speakers actually rely on egocentric terms when indoors.",
-            "By suggesting that the spatial awareness observed in Kuuk Thaayorre speakers stems primarily from environmental practice rather than grammatical structure.",
-            "By asserting that English grammar prevents speakers from ever developing strong cardinal orientation.",
-            "By agreeing that grammatical categories are the sole determinant of human spatial cognition."
+            "By arguing that speakers who use cardinal directions actually rely on egocentric cues indoors.",
+            "By suggesting that spatial orientation stems primarily from environmental practice rather than grammatical structure.",
+            "By asserting that English grammar prevents speakers from developing strong cardinal orientation.",
+            "By agreeing that grammatical categories are the sole driver of spatial cognition."
           ],
           correctAnswer: 1,
-          explanation: "In Text 2, McWhorter explicitly argues that 'environment rather than syntax drives spatial awareness,' directly tempering Boroditsky's claim that grammatical structures shape habitual thought."
+          explanation: "Text 2 attributes spatial orientation to environment rather than syntax, directly qualifying Text 1's grammar-focused claim."
         },
         {
           id: "RW-M2H-3",
@@ -1000,16 +969,16 @@
           domain: "Information & Ideas",
           skill: "Inferences",
           type: "mc",
-          passage: "In coastal salt marshes, cordgrass (<em>Spartina alterniflora</em>) secretes excess salt through specialized glands on its leaves. When researchers excluded fiddler crabs from experimental marsh plots, soil salinity spiked by 40% and cordgrass biomass fell by half—even though fiddler crabs do not consume cordgrass directly. Soil core samples revealed that crab burrows oxygenate subsurface sediment and flush trapped salts during tidal cycles. Consequently, the researchers inferred that ______",
+          passage: "In salt marshes, cordgrass secretes excess salt through leaf glands. When researchers excluded fiddler crabs from marsh plots, soil salinity rose 40% and cordgrass biomass fell by half—even though the crabs do not eat cordgrass. Core samples showed crab burrows aerate sediment and flush salts during tides. Thus, researchers inferred that ______",
           prompt: "Which choice most logically completes the text?",
           choices: [
-            "cordgrass relies on fiddler crabs to pollinate its flowers during low tide.",
-            "fiddler crabs indirectly sustain cordgrass productivity by modifying soil chemistry through burrowing.",
-            "soil salinity in salt marshes increases only when cordgrass stops secreting salt through its leaves.",
-            "fiddler crabs prefer to burrow in areas with the highest possible soil salinity."
+            "cordgrass depends on fiddler crabs to pollinate flowers at low tide.",
+            "fiddler crabs indirectly support cordgrass growth by modifying soil conditions through burrowing.",
+            "soil salinity rises only when cordgrass stops secreting salt.",
+            "fiddler crabs prefer areas with the highest possible salinity."
           ],
           correctAnswer: 1,
-          explanation: "Removing fiddler crabs increased salinity and reduced cordgrass growth because their burrows oxygenate sediment and flush salts. Thus, fiddler crabs indirectly support cordgrass health via soil modification."
+          explanation: "Crab burrowing flushes salts and aerates sediment, indirectly benefiting cordgrass health."
         },
         {
           id: "RW-M2H-4",
@@ -1019,14 +988,9 @@
           type: "mc",
           passage: "Published in 1962, marine biologist Rachel Carson's <em>Silent Spring</em> documented the ecological hazards of indiscriminate pesticide ______ galvanized the modern environmental movement and prompted federal restrictions on DDT.",
           prompt: "Which choice completes the text so that it conforms to the conventions of Standard English?",
-          choices: [
-            "use, and",
-            "use; it",
-            "use,",
-            "use it"
-          ],
+          choices: ["use, and", "use; it", "use,", "use it"],
           correctAnswer: 1,
-          explanation: "The first clause ('Published in 1962... pesticide use') is a complete independent clause, and 'galvanized... DDT' needs a subject ('it') to form a second independent clause joined by a semicolon ('use; it'). Note that 'use, and' would create a comma before a compound predicate without a second subject, which is nonstandard."
+          explanation: "A semicolon followed by the subject pronoun 'it' properly joins two independent clauses."
         },
         {
           id: "RW-M2H-5",
@@ -1034,16 +998,11 @@
           domain: "Standard English Conventions",
           skill: "Form, Structure, and Sense",
           type: "mc",
-          passage: "Among the artifacts recovered from the twelfth-century shipwreck off the coast of Java ______ a collection of finely glazed celadon ceramics whose chemical composition traced them to kilns in southern China.",
+          passage: "Among the artifacts recovered from the twelfth-century shipwreck off Java ______ a collection of glazed celadon ceramics whose chemical composition traced them to kilns in southern China.",
           prompt: "Which choice completes the text so that it conforms to the conventions of Standard English?",
-          choices: [
-            "were",
-            "was",
-            "have been",
-            "are"
-          ],
+          choices: ["were", "was", "have been", "are"],
           correctAnswer: 1,
-          explanation: "This is an inverted sentence structure. The true grammatical subject follows the verb: 'a collection [singular] of finely glazed celadon ceramics.' Because 'collection' is singular and the context is past tense ('recovered', 'traced'), 'was' is correct."
+          explanation: "The singular subject 'a collection' follows the verb in this inverted sentence, requiring past-tense singular 'was'."
         },
         {
           id: "RW-M2H-6",
@@ -1051,297 +1010,576 @@
           domain: "Expression of Ideas",
           skill: "Transitions",
           type: "mc",
-          passage: "Theoretical physicists predicted the existence of the Higgs boson in 1964 to explain how elementary particles acquire mass. ______ confirming the particle experimentally required nearly five decades and the construction of the 27-kilometer Large Hadron Collider.",
+          passage: "Physicists predicted the Higgs boson in 1964 to explain how particles acquire mass. ______ confirming the particle experimentally required nearly five decades and the 27-kilometer Large Hadron Collider.",
           prompt: "Which choice completes the text with the most logical transition?",
-          choices: [
-            "Accordingly,",
-            "Yet,",
-            "In other words,",
-            "Likewise,"
-          ],
+          choices: ["Accordingly,", "Yet,", "In other words,", "Likewise,"],
           correctAnswer: 1,
-          explanation: "There is a sharp contrast between the theoretical prediction in 1964 and the immense 50-year technological struggle required to experimentally confirm it. 'Yet,' effectively signals this contrast."
+          explanation: "'Yet,' highlights the contrast between the early theoretical prediction and decades of experimental effort."
         }
       ],
 
+      /**
+       * MATH MODULE 1: CHAPTER 19 — ANGLES (7 EXERCISES)
+       */
       math_m1: [
         {
-          id: "MATH-M1-1",
-          section: "math",
-          domain: "Algebra",
-          skill: "Linear Equations in One Variable",
-          type: "mc",
-          prompt: "If \\(4(2x - 3) + 5 = 3x + 13\\), what is the value of \\(2x\\)?",
-          choices: [
-            "\\(4\\)",
-            "\\(8\\)",
-            "\\(12\\)",
-            "\\(16\\)"
-          ],
-          correctAnswer: 1,
-          explanation: "Expand the left side: \\(8x - 12 + 5 = 3x + 13\\), which simplifies to \\(8x - 7 = 3x + 13\\). Subtract \\(3x\\) and add \\(7\\) to both sides: \\(5x = 20 \\implies x = 4\\). Watch the question prompt carefully—it asks for \\(2x\\), which is \\(2(4) = 8\\)."
-        },
-        {
-          id: "MATH-M1-2",
-          section: "math",
-          domain: "Algebra",
-          skill: "Systems of Two Linear Equations",
-          type: "mc",
-          prompt: "A coffee roaster sells a House Blend for \\(\\$12\\) per pound and a Single-Origin Blend for \\(\\$18\\) per pound. Yesterday, the roaster sold a total of \\(30\\) pounds of coffee and collected \\(\\$432\\) in revenue. How many pounds of Single-Origin Blend were sold?",
-          choices: [
-            "\\(10\\)",
-            "\\(12\\)",
-            "\\(18\\)",
-            "\\(20\\)"
-          ],
-          correctAnswer: 1,
-          explanation: "Let \\(h\\) = House Blend pounds and \\(s\\) = Single-Origin pounds. We have \\(h + s = 30\\) and \\(12h + 18s = 432\\). Substitute \\(h = 30 - s\\) into the revenue equation: \\(12(30 - s) + 18s = 432 \\implies 360 - 12s + 18s = 432 \\implies 6s = 72 \\implies s = 12\\)."
-        },
-        {
-          id: "MATH-M1-3",
-          section: "math",
-          domain: "Advanced Math",
-          skill: "Nonlinear Functions",
-          type: "mc",
-          prompt: "The function \\(f\\) is defined by \\(f(x) = 3(x - 4)^2 - 11\\). What is the minimum value of \\(f(x)\\)?",
-          choices: [
-            "\\(-11\\)",
-            "\\(-4\\)",
-            "\\(3\\)",
-            "\\(4\\)"
-          ],
-          correctAnswer: 0,
-          explanation: "The quadratic function is written in vertex form \\(f(x) = a(x - h)^2 + k\\), where the vertex is \\((h, k) = (4, -11)\\). Since \\(a = 3 > 0\\), the parabola opens upward and attains its minimum value of \\(k = -11\\) when \\(x = 4\\)."
-        },
-        {
-          id: "MATH-M1-4",
-          section: "math",
-          domain: "Problem-Solving & Data Analysis",
-          skill: "Percentages & Ratios",
-          type: "spr",
-          prompt: "After a \\(20\\%\\) discount is applied to the original price of a laptop, the sale price is \\(\\$680\\). What was the original price of the laptop, in dollars?",
-          correctAnswer: ["850", "$850", "850.00"],
-          explanation: "A \\(20\\%\\) discount means the sale price represents \\(80\\%\\) (or \\(0.80\\)) of the original price \\(P\\). Set up the equation: \\(0.80P = 680\\). Dividing both sides by \\(0.80\\) gives \\(P = \\frac{680}{0.80} = 850\\)."
-        },
-        {
-          id: "MATH-M1-5",
+          id: "CH19-Q1",
           section: "math",
           domain: "Geometry & Trigonometry",
-          skill: "Right Triangles & Trigonometry",
+          skill: "Exterior Angle Theorem",
           type: "mc",
-          prompt: "In right triangle \\(ABC\\), angle \\(C\\) is a right angle and \\(\\sin(A) = \\frac{5}{13}\\). What is the value of \\(\\cos(B)\\)?",
-          choices: [
-            "\\(\\frac{5}{13}\\)",
-            "\\(\\frac{12}{13}\\)",
-            "\\(\\frac{5}{12}\\)",
-            "\\(\\frac{12}{5}\\)"
-          ],
-          correctAnswer: 0,
-          explanation: "In a right triangle where \\(\\angle C = 90^\\circ\\), angles \\(A\\) and \\(B\\) are complementary (\\(A + B = 90^\\circ\\)). By the cofunction identity, \\(\\sin(A) = \\cos(90^\\circ - A) = \\cos(B)\\). Therefore, \\(\\cos(B) = \\frac{5}{13}\\)."
+          prompt: `
+            <div class="mb-4 flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-4">
+              <svg viewBox="0 0 320 155" class="w-full max-w-[300px] h-auto">
+                <line x1="25" y1="125" x2="290" y2="125" stroke="#0f172a" stroke-width="2.2"/>
+                <polygon points="120,125 225,30 275,125" fill="rgba(30,58,138,0.06)" stroke="#0f172a" stroke-width="2.2"/>
+                <path d="M 94 125 A 26 26 0 0 1 139 107" fill="none" stroke="#1e3a8a" stroke-width="1.8"/>
+                <text x="84" y="110" font-size="14" font-weight="bold" fill="#1e3a8a">k°</text>
+                <text x="212" y="58" font-size="14" font-weight="bold" fill="#0f172a">i°</text>
+                <text x="242" y="116" font-size="14" font-weight="bold" fill="#0f172a">j°</text>
+              </svg>
+              <span class="text-xs italic text-slate-500 mt-1">Note: Figure not drawn to scale.</span>
+            </div>
+            <p>In the figure above, \\(i = 50\\) and \\(k = 140\\). What is the value of \\(j\\)?</p>
+          `,
+          choices: ["\\(60\\)", "\\(70\\)", "\\(80\\)", "\\(90\\)"],
+          correctAnswer: 3,
+          explanation: "By the Exterior Angle Theorem, the exterior angle \\(k^\\circ\\) equals the sum of the two remote interior angles: \\(k = i + j\\). Substituting \\(140 = 50 + j\\) gives \\(j = 90\\)."
         },
         {
-          id: "MATH-M1-6",
+          id: "CH19-Q3",
           section: "math",
-          domain: "Problem-Solving & Data Analysis",
-          skill: "One-Variable Data: Distributions",
-          type: "spr",
-          prompt: "The mean of five numbers is \\(18\\). When a sixth number is added to the list, the mean of all six numbers becomes \\(21\\). What is the value of the sixth number?",
-          correctAnswer: ["36"],
-          explanation: "The sum of the first five numbers is \\(5 \\times 18 = 90\\). The sum of all six numbers is \\(6 \\times 21 = 126\\). Therefore, the sixth number is \\(126 - 90 = 36\\)."
+          domain: "Geometry & Trigonometry",
+          skill: "Parallel Lines & Transversals",
+          type: "mc",
+          prompt: `
+            <div class="mb-4 flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-4">
+              <svg viewBox="0 0 320 170" class="w-full max-w-[300px] h-auto">
+                <line x1="20" y1="55" x2="300" y2="55" stroke="#0f172a" stroke-width="2.2"/>
+                <line x1="20" y1="120" x2="300" y2="120" stroke="#0f172a" stroke-width="2.2"/>
+                <text x="285" y="47" font-size="13" font-style="italic" font-weight="bold" fill="#0f172a">l</text>
+                <text x="285" y="112" font-size="13" font-style="italic" font-weight="bold" fill="#0f172a">m</text>
+                <line x1="75" y1="155" x2="145" y2="20" stroke="#0f172a" stroke-width="2.2"/>
+                <line x1="250" y1="155" x2="180" y2="20" stroke="#0f172a" stroke-width="2.2"/>
+                <text x="98" y="45" font-size="14" font-weight="bold" fill="#1e3a8a">a°</text>
+                <text x="210" y="45" font-size="14" font-weight="bold" fill="#1e3a8a">b°</text>
+                <text x="242" y="142" font-size="14" font-weight="bold" fill="#1e3a8a">c°</text>
+                <text x="64" y="142" font-size="14" font-weight="bold" fill="#1e3a8a">d°</text>
+              </svg>
+            </div>
+            <p>In the figure above, lines \\(l\\) and \\(m\\) are parallel. What is the value of \\(a + b + c + d\\)?</p>
+          `,
+          choices: [
+            "\\(270\\)",
+            "\\(360\\)",
+            "\\(720\\)",
+            "It cannot be determined from the information given."
+          ],
+          correctAnswer: 1,
+          explanation: "Angles \\(a^\\circ\\) and \\(d^\\circ\\) are same-side exterior angles on parallel lines \\(l\\) and \\(m\\), so \\(a + d = 180\\). Similarly, \\(b + c = 180\\). Adding both pairs yields \\(a + b + c + d = 180 + 180 = 360\\)."
+        },
+        {
+          id: "CH19-Q5",
+          section: "math",
+          domain: "Geometry & Trigonometry",
+          skill: "Parallel Lines & Auxiliary Lines",
+          type: "mc",
+          prompt: `
+            <div class="mb-4 flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-4">
+              <svg viewBox="0 0 320 175" class="w-full max-w-[300px] h-auto">
+                <line x1="25" y1="35" x2="295" y2="35" stroke="#0f172a" stroke-width="2.2"/>
+                <line x1="25" y1="145" x2="295" y2="145" stroke="#0f172a" stroke-width="2.2"/>
+                <text x="282" y="27" font-size="13" font-style="italic" font-weight="bold" fill="#0f172a">l</text>
+                <text x="282" y="137" font-size="13" font-style="italic" font-weight="bold" fill="#0f172a">m</text>
+                <polyline points="90,35 190,90 105,145" fill="none" stroke="#0f172a" stroke-width="2.2"/>
+                <text x="128" y="52" font-size="14" font-weight="bold" fill="#1e3a8a">b°</text>
+                <text x="150" y="95" font-size="14" font-weight="bold" fill="#0f172a">x°</text>
+                <text x="142" y="137" font-size="14" font-weight="bold" fill="#1e3a8a">a°</text>
+              </svg>
+            </div>
+            <p>In the figure above, lines \\(l\\) and \\(m\\) are parallel. What is \\(x\\) in terms of \\(a\\) and \\(b\\)?</p>
+          `,
+          choices: [
+            "\\(a + b\\)",
+            "\\(a - b\\)",
+            "\\(b - a\\)",
+            "\\(180 - a - b\\)"
+          ],
+          correctAnswer: 0,
+          explanation: "Draw an auxiliary line through the vertex of \\(x^\\circ\\) parallel to \\(l\\) and \\(m\\). By alternate interior angles, the upper portion of \\(x\\) equals \\(b\\) and the lower portion equals \\(a\\), so \\(x = a + b\\)."
+        },
+        {
+          id: "CH19-Q8",
+          section: "math",
+          domain: "Geometry & Trigonometry",
+          skill: "Triangle Angle Sum & Vertical Angles",
+          type: "mc",
+          prompt: `
+            <div class="mb-4 flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-4">
+              <svg viewBox="0 0 320 185" class="w-full max-w-[300px] h-auto">
+                <polygon points="85,25 225,25 155,95" fill="rgba(30,58,138,0.06)" stroke="#0f172a" stroke-width="2.2"/>
+                <polygon points="155,95 95,165 245,165" fill="rgba(30,58,138,0.06)" stroke="#0f172a" stroke-width="2.2"/>
+                <text x="108" y="45" font-size="13" font-weight="bold" fill="#0f172a">45°</text>
+                <text x="190" y="45" font-size="13" font-weight="bold" fill="#1e3a8a">z°</text>
+                <text x="115" y="157" font-size="13" font-weight="bold" fill="#0f172a">40°</text>
+                <text x="202" y="157" font-size="13" font-weight="bold" fill="#0f172a">60°</text>
+              </svg>
+              <span class="text-xs italic text-slate-500 mt-1">Note: Figure not drawn to scale.</span>
+            </div>
+            <p>In the figure above, what is the value of \\(z\\)?</p>
+          `,
+          choices: ["\\(35\\)", "\\(45\\)", "\\(55\\)", "\\(80\\)"],
+          correctAnswer: 2,
+          explanation: "In the bottom triangle, the third angle at the intersection is \\(180^\\circ - 40^\\circ - 60^\\circ = 80^\\circ\\). By vertical angles, the top triangle also has an \\(80^\\circ\\) angle, so \\(z = 180 - 45 - 80 = 55\\)."
+        },
+        {
+          id: "CH19-Q12",
+          section: "math",
+          domain: "Geometry & Trigonometry",
+          skill: "Interior Angles of Regular Polygons",
+          type: "mc",
+          prompt: `
+            <div class="mb-4 flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-4">
+              <svg viewBox="0 0 280 185" class="w-full max-w-[260px] h-auto">
+                <polygon points="95,25 185,25 230,95 185,165 95,165 50,95" fill="rgba(30,58,138,0.06)" stroke="#0f172a" stroke-width="2.2"/>
+                <line x1="185" y1="25" x2="185" y2="165" stroke="#0f172a" stroke-width="2" stroke-dasharray="4 3"/>
+                <polyline points="173,165 173,153 185,153" fill="none" stroke="#0f172a" stroke-width="1.8"/>
+                <text x="191" y="143" font-size="14" font-weight="bold" fill="#1e3a8a">x°</text>
+              </svg>
+            </div>
+            <p>A regular hexagon is shown in the figure above. What is the value of \\(x\\)?</p>
+          `,
+          choices: ["\\(15\\)", "\\(20\\)", "\\(25\\)", "\\(30\\)"],
+          correctAnswer: 3,
+          explanation: "Each interior angle of a regular hexagon is \\(\\frac{180(6 - 2)}{6} = 120^\\circ\\). At the bottom-right vertex, the \\(120^\\circ\\) interior angle is split into a \\(90^\\circ\\) angle and \\(x^\\circ\\), so \\(x = 120 - 90 = 30\\)."
+        },
+        {
+          id: "CH19-Q14",
+          section: "math",
+          domain: "Geometry & Trigonometry",
+          skill: "Nested Triangle Angle Sums",
+          type: "mc",
+          prompt: `
+            <div class="mb-4 flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-4">
+              <svg viewBox="0 0 320 185" class="w-full max-w-[300px] h-auto">
+                <polygon points="160,20 55,165 265,165" fill="rgba(30,58,138,0.05)" stroke="#0f172a" stroke-width="2.2"/>
+                <polyline points="55,165 160,92 265,165" fill="rgba(30,58,138,0.07)" stroke="#0f172a" stroke-width="2"/>
+                <text x="148" y="54" font-size="13" font-weight="bold" fill="#0f172a">70°</text>
+                <text x="145" y="118" font-size="13" font-weight="bold" fill="#0f172a">100°</text>
+                <text x="86" y="142" font-size="13" font-weight="bold" fill="#1e3a8a">x°</text>
+                <text x="220" y="142" font-size="13" font-weight="bold" fill="#1e3a8a">y°</text>
+              </svg>
+              <span class="text-xs italic text-slate-500 mt-1">Note: Figure not drawn to scale.</span>
+            </div>
+            <p>In the figure above, what is the value of \\(x + y\\)?</p>
+          `,
+          choices: ["\\(10\\)", "\\(20\\)", "\\(30\\)", "\\(50\\)"],
+          correctAnswer: 2,
+          explanation: "In the inner triangle, the two base angles sum to \\(180^\\circ - 100^\\circ = 80^\\circ\\). In the outer triangle, \\(70^\\circ + (x + y) + 80^\\circ = 180^\\circ\\), so \\(x + y = 30\\)."
+        },
+        {
+          id: "CH19-Q15",
+          section: "math",
+          domain: "Geometry & Trigonometry",
+          skill: "Parallel Lines & Supplementary Pairs",
+          type: "grid",
+          prompt: `
+            <div class="mb-4 flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-4">
+              <svg viewBox="0 0 330 185" class="w-full max-w-[310px] h-auto">
+                <line x1="20" y1="40" x2="310" y2="40" stroke="#0f172a" stroke-width="2.2"/>
+                <line x1="20" y1="95" x2="310" y2="95" stroke="#0f172a" stroke-width="2.2"/>
+                <line x1="20" y1="150" x2="310" y2="150" stroke="#0f172a" stroke-width="2.2"/>
+                <text x="296" y="32" font-size="13" font-style="italic" font-weight="bold" fill="#0f172a">l</text>
+                <text x="296" y="87" font-size="13" font-style="italic" font-weight="bold" fill="#0f172a">m</text>
+                <text x="296" y="142" font-size="13" font-style="italic" font-weight="bold" fill="#0f172a">n</text>
+                <line x1="70" y1="175" x2="175" y2="15" stroke="#0f172a" stroke-width="2.2"/>
+                <line x1="255" y1="175" x2="150" y2="15" stroke="#0f172a" stroke-width="2.2"/>
+                <text x="122" y="56" font-size="13" font-weight="bold" fill="#0f172a">40°</text>
+                <text x="218" y="88" font-size="13" font-weight="bold" fill="#0f172a">60°</text>
+                <text x="188" y="88" font-size="14" font-weight="bold" fill="#1e3a8a">b°</text>
+                <text x="195" y="143" font-size="14" font-weight="bold" fill="#1e3a8a">a°</text>
+              </svg>
+              <span class="text-xs italic text-slate-500 mt-1">Note: Figure not drawn to scale.</span>
+            </div>
+            <p>In the figure above, lines \\(l\\), \\(m\\), and \\(n\\) are parallel. What is the value of \\(a + b\\)?</p>
+          `,
+          correctAnswer: ["260"],
+          explanation: "Using corresponding angles on parallel lines, \\(a^\\circ\\) is supplementary to \\(60^\\circ\\) (\\(a = 180 - 60 = 120\\)), and \\(b^\\circ\\) is supplementary to \\(40^\\circ\\) (\\(b = 180 - 40 = 140\\)). Thus, \\(a + b = 120 + 140 = 260\\)."
         }
       ],
 
+      /**
+       * MATH MODULE 2 (STANDARD): CHAPTER 20 — TRIANGLES (7 EXERCISES)
+       */
       math_m2_easy: [
         {
-          id: "MATH-M2E-1",
-          section: "math",
-          domain: "Algebra",
-          skill: "Linear Functions & Slope",
-          type: "mc",
-          prompt: "Line \\(k\\) passes through the points \\((2, 5)\\) and \\((6, 17)\\) in the \\(xy\\)-plane. What is the slope of line \\(k\\)?",
-          choices: [
-            "\\(\\frac{1}{3}\\)",
-            "\\(2\\)",
-            "\\(3\\)",
-            "\\(4\\)"
-          ],
-          correctAnswer: 2,
-          explanation: "Use the slope formula \\(m = \\frac{y_2 - y_1}{x_2 - x_1} = \\frac{17 - 5}{6 - 2} = \\frac{12}{4} = 3\\)."
-        },
-        {
-          id: "MATH-M2E-2",
-          section: "math",
-          domain: "Algebra",
-          skill: "Linear Inequalities",
-          type: "mc",
-          prompt: "Which value of \\(x\\) is a solution to the inequality \\(3x - 7 > 11\\)?",
-          choices: [
-            "\\(4\\)",
-            "\\(5\\)",
-            "\\(6\\)",
-            "\\(7\\)"
-          ],
-          correctAnswer: 3,
-          explanation: "Add \\(7\\) to both sides: \\(3x > 18\\). Divide by \\(3\\): \\(x > 6\\). Among the choices, only \\(7\\) is strictly greater than \\(6\\)."
-        },
-        {
-          id: "MATH-M2E-3",
-          section: "math",
-          domain: "Advanced Math",
-          skill: "Equivalent Expressions",
-          type: "mc",
-          prompt: "Which expression is equivalent to \\((3x^2 + 5x - 2) - (x^2 - 2x + 4)\\)?",
-          choices: [
-            "\\(2x^2 + 3x + 2\\)",
-            "\\(2x^2 + 7x - 6\\)",
-            "\\(4x^2 + 3x - 6\\)",
-            "\\(2x^2 + 7x + 2\\)"
-          ],
-          correctAnswer: 1,
-          explanation: "Distribute the negative sign across the second polynomial: \\(3x^2 + 5x - 2 - x^2 + 2x - 4\\). Combine like terms: \\((3x^2 - x^2) + (5x + 2x) + (-2 - 4) = 2x^2 + 7x - 6\\)."
-        },
-        {
-          id: "MATH-M2E-4",
-          section: "math",
-          domain: "Problem-Solving & Data Analysis",
-          skill: "Ratios, Rates, and Proportions",
-          type: "spr",
-          prompt: "A high-speed printer prints \\(45\\) pages every \\(3\\) minutes. At this constant rate, how many pages will it print in \\(14\\) minutes?",
-          correctAnswer: ["210"],
-          explanation: "Find the unit rate: \\(\\frac{45 \\text{ pages}}{3 \\text{ minutes}} = 15\\) pages per minute. In \\(14\\) minutes, it prints \\(15 \\times 14 = 210\\) pages."
-        },
-        {
-          id: "MATH-M2E-5",
+          id: "CH20-Q1",
           section: "math",
           domain: "Geometry & Trigonometry",
-          skill: "Area and Volume",
+          skill: "Pythagorean Theorem",
           type: "mc",
-          prompt: "A circle has a circumference of \\(16\\pi\\) centimeters. What is the area of the circle, in square centimeters?",
+          prompt: "<p>The lengths of the sides of a right triangle are \\(x\\), \\(x - 2\\), and \\(x + 5\\). Which of the following equations could be used to find \\(x\\)?</p>",
           choices: [
-            "\\(8\\pi\\)",
-            "\\(16\\pi\\)",
-            "\\(64\\pi\\)",
-            "\\(256\\pi\\)"
+            "\\(x + x - 2 = x + 5\\)",
+            "\\(x^2 + (x + 5)^2 = (x - 2)^2\\)",
+            "\\(x^2 + (x - 2)^2 = (x + 5)^2\\)",
+            "\\((x - 2)^2 + (x + 5)^2 = x^2\\)"
           ],
           correctAnswer: 2,
-          explanation: "Since \\(C = 2\\pi r = 16\\pi\\), the radius is \\(r = 8\\). The area is \\(A = \\pi r^2 = \\pi (8)^2 = 64\\pi\\)."
+          explanation: "In a right triangle, the hypotenuse is the longest side, which is \\(x + 5\\). Applying the Pythagorean theorem \\(a^2 + b^2 = c^2\\) gives \\(x^2 + (x - 2)^2 = (x + 5)^2\\)."
         },
         {
-          id: "MATH-M2E-6",
+          id: "CH20-Q3",
           section: "math",
           domain: "Geometry & Trigonometry",
-          skill: "Lines, Angles, and Triangles",
-          type: "spr",
-          prompt: "In triangle \\(PQR\\), the measure of angle \\(P\\) is \\(42^\\circ\\) and the measure of angle \\(Q\\) is \\(73^\\circ\\). What is the measure, in degrees, of angle \\(R\\)?",
-          correctAnswer: ["65"],
-          explanation: "The sum of interior angles in a triangle is \\(180^\\circ\\). Thus, \\(\\angle R = 180^\\circ - (42^\\circ + 73^\\circ) = 180^\\circ - 115^\\circ = 65^\\circ\\)."
+          skill: "Special Right Triangles (45°-45°-90°)",
+          type: "mc",
+          prompt: `
+            <div class="mb-4 flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-4">
+              <svg viewBox="0 0 220 175" class="w-full max-w-[200px] h-auto">
+                <rect x="45" y="25" width="120" height="120" fill="rgba(30,58,138,0.06)" stroke="#0f172a" stroke-width="2.2"/>
+                <line x1="45" y1="145" x2="165" y2="25" stroke="#1e3a8a" stroke-width="2.2"/>
+                <text x="174" y="90" font-size="14" font-weight="bold" fill="#0f172a">6</text>
+                <text x="95" y="80" font-size="15" font-weight="bold" fill="#1e3a8a">x</text>
+              </svg>
+            </div>
+            <p>A square of side length \\(6\\) is shown in the figure above. What is the value of \\(x\\)?</p>
+          `,
+          choices: ["\\(3\\sqrt{2}\\)", "\\(6\\)", "\\(6\\sqrt{2}\\)", "\\(6\\sqrt{3}\\)"],
+          correctAnswer: 2,
+          explanation: "The diagonal of a square divides it into two \\(45^\\circ\\text{-}45^\\circ\\text{-}90^\\circ\\) right triangles with legs of length \\(6\\). The hypotenuse is \\(6\\sqrt{2}\\)."
+        },
+        {
+          id: "CH20-Q5",
+          section: "math",
+          domain: "Geometry & Trigonometry",
+          skill: "Triangle Inequality Theorem",
+          type: "grid",
+          prompt: "<p>The lengths of two sides of a triangle are \\(3\\) and \\(13\\). What is one possible length of the third side?</p>",
+          correctAnswer: ["12", "11", "13", "14", "15"],
+          validateGrid: (val) => {
+            const num = parseFloat(val);
+            if (!Number.isFinite(num) && val.includes("/")) {
+              const parts = val.split("/");
+              if (parts.length === 2) {
+                const f = parseFloat(parts[0]) / parseFloat(parts[1]);
+                return f > 10 && f < 16;
+              }
+            }
+            return Number.isFinite(num) && num > 10 && num < 16;
+          },
+          explanation: "By the Triangle Inequality Theorem, the third side \\(x\\) must lie strictly between the difference and sum of the other two sides: \\(13 - 3 < x < 13 + 3\\), so \\(10 < x < 16\\) (for example, \\(12\\))."
+        },
+        {
+          id: "CH20-Q8",
+          section: "math",
+          domain: "Geometry & Trigonometry",
+          skill: "Isosceles Triangles & Area",
+          type: "grid",
+          prompt: `
+            <div class="mb-4 flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-4">
+              <svg viewBox="0 0 280 165" class="w-full max-w-[260px] h-auto">
+                <polygon points="140,35 45,135 235,135" fill="rgba(30,58,138,0.06)" stroke="#0f172a" stroke-width="2.2"/>
+                <text x="135" y="25" font-size="14" font-weight="bold" fill="#0f172a">N</text>
+                <text x="28" y="142" font-size="14" font-weight="bold" fill="#0f172a">M</text>
+                <text x="242" y="142" font-size="14" font-weight="bold" fill="#0f172a">O</text>
+                <text x="78" y="80" font-size="14" font-weight="bold" fill="#1e3a8a">5</text>
+                <text x="194" y="80" font-size="14" font-weight="bold" fill="#1e3a8a">5</text>
+                <text x="136" y="153" font-size="14" font-weight="bold" fill="#0f172a">8</text>
+              </svg>
+            </div>
+            <p>What is the area of isosceles triangle \\(MNO\\) above?</p>
+          `,
+          correctAnswer: ["12"],
+          explanation: "Dropping an altitude from \\(N\\) to base \\(MO\\) bisects the base into two segments of length \\(4\\). Each half forms a \\(3\\text{-}4\\text{-}5\\) right triangle with height \\(h = 3\\). Thus, \\(\\text{Area} = \\frac{1}{2}(8)(3) = 12\\)."
+        },
+        {
+          id: "CH20-Q9",
+          section: "math",
+          domain: "Geometry & Trigonometry",
+          skill: "Equilateral Triangles & Special Right Triangles",
+          type: "mc",
+          prompt: `
+            <div class="mb-4 flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-4">
+              <svg viewBox="0 0 220 215" class="w-full max-w-[190px] h-auto">
+                <polygon points="110,16 60,102 160,102" fill="rgba(30,58,138,0.12)" stroke="#0f172a" stroke-width="2.2"/>
+                <rect x="60" y="102" width="100" height="100" fill="rgba(30,58,138,0.04)" stroke="#0f172a" stroke-width="2.2"/>
+              </svg>
+            </div>
+            <p>In the figure above, an equilateral triangle sits on top of a square. If the square has an area of \\(4\\), what is the area of the equilateral triangle?</p>
+          `,
+          choices: ["\\(\\sqrt{3}\\)", "\\(\\frac{\\sqrt{3}}{2}\\)", "\\(\\frac{3}{4}\\)", "\\(1\\)"],
+          correctAnswer: 0,
+          explanation: "Since the square has area \\(4\\), its side length is \\(s = 2\\), which is also the side length of the equilateral triangle. Its area is \\(\\frac{s^2\\sqrt{3}}{4} = \\frac{2^2\\sqrt{3}}{4} = \\sqrt{3}\\)."
+        },
+        {
+          id: "CH20-Q12",
+          section: "math",
+          domain: "Geometry & Trigonometry",
+          skill: "Similar Triangles & Proportions",
+          type: "grid",
+          prompt: `
+            <div class="mb-4 flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-4">
+              <svg viewBox="0 0 320 195" class="w-full max-w-[300px] h-auto">
+                <polygon points="65,25 45,165 285,165" fill="rgba(30,58,138,0.05)" stroke="#0f172a" stroke-width="2.2"/>
+                <line x1="57" y1="82" x2="180" y2="165" stroke="#0f172a" stroke-width="2"/>
+                <line x1="152" y1="84" x2="132" y2="165" stroke="#0f172a" stroke-width="2"/>
+                <text x="58" y="18" font-size="13" font-weight="bold">A</text>
+                <text x="30" y="172" font-size="13" font-weight="bold">B</text>
+                <text x="290" y="172" font-size="13" font-weight="bold">C</text>
+                <text x="41" y="85" font-size="13" font-weight="bold">D</text>
+                <text x="156" y="82" font-size="13" font-weight="bold">G</text>
+                <text x="128" y="180" font-size="13" font-weight="bold">H</text>
+                <text x="178" y="180" font-size="13" font-weight="bold">F</text>
+                <text x="127" y="114" font-size="12" font-weight="bold" fill="#1e3a8a">E</text>
+                <text x="95" y="102" font-size="12" font-weight="bold" fill="#1e3a8a">1</text>
+                <text x="148" y="104" font-size="12" font-weight="bold" fill="#1e3a8a">2</text>
+                <text x="146" y="142" font-size="12" font-weight="bold" fill="#1e3a8a">3</text>
+                <text x="205" y="158" font-size="12" font-weight="bold" fill="#1e3a8a">10</text>
+              </svg>
+              <span class="text-xs italic text-slate-500 mt-1">Note: Figure not drawn to scale.</span>
+            </div>
+            <p>In the figure above, \\(AB\\) is parallel to \\(GH\\) and \\(DF\\) is parallel to \\(BC\\). If \\(DE = 1\\), \\(EH = 3\\), \\(EG = 2\\), and \\(HC = 10\\), what is the length of \\(AD\\)?</p>
+          `,
+          correctAnswer: ["2.5", "5/2"],
+          explanation: "Because \\(DF \\parallel BC\\) and \\(GH \\parallel AB\\), quadrilateral \\(DBHE\\) is a parallelogram, so \\(BH = DE = 1\\) and \\(DB = EH = 3\\). Then \\(BC = 1 + 10 = 11\\) and \\(GH = 2 + 3 = 5\\). Since \\(\\triangle GHC \\sim \\triangle ABC\\), \\(\\frac{5}{AB} = \\frac{10}{11} \\implies AB = 5.5\\). Therefore, \\(AD = AB - DB = 5.5 - 3 = 2.5\\)."
+        },
+        {
+          id: "CH20-Q13",
+          section: "math",
+          domain: "Geometry & Trigonometry",
+          skill: "Degrees to Radians",
+          type: "mc",
+          prompt: "<p>How many radians are in \\(225^\\circ\\)?</p>",
+          choices: [
+            "\\(\\frac{3\\pi}{4}\\)",
+            "\\(\\frac{7\\pi}{6}\\)",
+            "\\(\\frac{5\\pi}{4}\\)",
+            "\\(\\frac{3\\pi}{2}\\)"
+          ],
+          correctAnswer: 2,
+          explanation: "Multiply degrees by \\(\\frac{\\pi}{180^\\circ}\\): \\(225^\\circ \\times \\frac{\\pi}{180^\\circ} = \\frac{225\\pi}{180} = \\frac{5\\pi}{4}\\)."
         }
       ],
 
+      /**
+       * MATH MODULE 2 (HARDER): CHAPTER 21 — CIRCLES (7 EXERCISES)
+       */
       math_m2_hard: [
         {
-          id: "MATH-M2H-1",
+          id: "CH21-Q1",
           section: "math",
-          domain: "Algebra",
-          skill: "Systems with No Solution",
-          type: "spr",
-          prompt: "In the system of equations below, \\(k\\) is a constant. If the system has no solution, what is the value of \\(k\\)?<br><br>\\(\\frac{2}{3}x - \\frac{1}{4}y = 7\\)<br>\\(kx - 3y = 19\\)",
-          correctAnswer: ["8"],
-          explanation: "For a system of two linear equations to have no solution, the lines must be parallel (identical left-hand side ratios) with different y-intercepts. Multiply the first equation by \\(12\\) so the \\(y\\)-coefficients match: \\(12(\\frac{2}{3}x - \\frac{1}{4}y) = 12(7) \\implies 8x - 3y = 84\\). Comparing this to \\(kx - 3y = 19\\), we must have \\(k = 8\\)."
-        },
-        {
-          id: "MATH-M2H-2",
-          section: "math",
-          domain: "Advanced Math",
-          skill: "Quadratic Equations & Discriminant",
+          domain: "Geometry & Trigonometry",
+          skill: "Arc Length & Inscribed Polygons",
           type: "mc",
-          prompt: "The quadratic equation \\(2x^2 - 12x + c = 0\\), where \\(c\\) is a constant, has exactly one real solution. What is the value of \\(c\\)?",
+          prompt: `
+            <div class="mb-4 flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-4">
+              <svg viewBox="0 0 220 205" class="w-full max-w-[190px] h-auto">
+                <circle cx="110" cy="102" r="76" fill="rgba(30,58,138,0.04)" stroke="#0f172a" stroke-width="2.2"/>
+                <rect x="56.3" y="48.3" width="107.4" height="107.4" fill="none" stroke="#0f172a" stroke-width="2"/>
+                <circle cx="34" cy="102" r="3" fill="#1e3a8a"/>
+                <text x="41" y="45" font-size="13" font-weight="bold">A</text>
+                <text x="169" y="45" font-size="13" font-weight="bold">B</text>
+                <text x="169" y="168" font-size="13" font-weight="bold">C</text>
+                <text x="41" y="168" font-size="13" font-weight="bold">D</text>
+                <text x="18" y="106" font-size="13" font-weight="bold" fill="#1e3a8a">P</text>
+              </svg>
+            </div>
+            <p>In the figure above, the square \\(ABCD\\) is inscribed in a circle. If the radius of the circle is \\(r\\), what is the length of arc \\(APD\\) in terms of \\(r\\)?</p>
+          `,
           choices: [
-            "\\(9\\)",
-            "\\(18\\)",
-            "\\(36\\)",
-            "\\(72\\)"
+            "\\(\\frac{\\pi r}{4}\\)",
+            "\\(\\frac{\\pi r}{2}\\)",
+            "\\(\\pi r\\)",
+            "\\(\\frac{\\pi r^2}{4}\\)"
           ],
           correctAnswer: 1,
-          explanation: "A quadratic equation \\(ax^2 + bx + c = 0\\) has exactly one real solution when its discriminant equals zero: \\(b^2 - 4ac = 0\\). Substitute \\(a = 2\\) and \\(b = -12\\): \\((-12)^2 - 4(2)(c) = 0 \\implies 144 - 8c = 0 \\implies 8c = 144 \\implies c = 18\\)."
+          explanation: "An inscribed square divides the circle into \\(4\\) congruent arcs, each measuring \\(\\frac{360^\\circ}{4} = 90^\\circ\\). Arc \\(APD\\) is one-fourth of the circumference: \\(\\frac{1}{4}(2\\pi r) = \\frac{\\pi r}{2}\\)."
         },
         {
-          id: "MATH-M2H-3",
+          id: "CH21-Q3",
           section: "math",
-          domain: "Advanced Math",
-          skill: "Exponential Growth & Decay",
+          domain: "Geometry & Trigonometry",
+          skill: "Sector Perimeter & Circle Area",
           type: "mc",
-          prompt: "The population \\(P(t)\\) of a bacterial culture \\(t\\) hours after observation begins is modeled by \\(P(t) = 450(1.08)^{\\frac{t}{3}}\\). Which interpretation of \\(1.08\\) is best in this context?",
+          prompt: `
+            <div class="mb-4 flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-4">
+              <svg viewBox="0 0 210 200" class="w-full max-w-[180px] h-auto">
+                <circle cx="105" cy="100" r="76" fill="rgba(30,58,138,0.05)" stroke="#0f172a" stroke-width="2.2"/>
+                <line x1="29" y1="100" x2="181" y2="100" stroke="#0f172a" stroke-width="1.6"/>
+                <line x1="105" y1="24" x2="105" y2="176" stroke="#0f172a" stroke-width="1.6"/>
+                <line x1="51.3" y1="46.3" x2="158.7" y2="153.7" stroke="#0f172a" stroke-width="1.6"/>
+                <line x1="158.7" y1="46.3" x2="51.3" y2="153.7" stroke="#0f172a" stroke-width="1.6"/>
+              </svg>
+            </div>
+            <p>The circle above has area \\(36\\pi\\) and is divided into \\(8\\) congruent regions. What is the perimeter of one of these regions?</p>
+          `,
           choices: [
-            "The population increases by \\(8\\%\\) every hour.",
-            "The population increases by \\(8\\%\\) every \\(3\\) hours.",
-            "The population increases by \\(1.08\\%\\) every \\(3\\) hours.",
-            "The initial population of the culture is \\(1,080\\)."
+            "\\(6 + 1.5\\pi\\)",
+            "\\(6 + 2\\pi\\)",
+            "\\(12 + 1.5\\pi\\)",
+            "\\(12 + 2\\pi\\)"
           ],
-          correctAnswer: 1,
-          explanation: "The exponent is \\(\\frac{t}{3}\\), which equals \\(1\\) when \\(t = 3\\) hours. Each time \\(t\\) increases by \\(3\\), the population is multiplied by \\(1.08\\), representing an \\(8\\%\\) increase every \\(3\\) hours."
+          correctAnswer: 2,
+          explanation: "From \\(\\pi r^2 = 36\\pi\\), the radius is \\(r = 6\\). Each of the \\(8\\) congruent sectors has central angle \\(45^\\circ\\) and arc length \\(\\frac{45}{360}(2\\pi \\cdot 6) = 1.5\\pi\\). Including the two straight radii (\\(6 + 6 = 12\\)), the perimeter is \\(12 + 1.5\\pi\\)."
         },
         {
-          id: "MATH-M2H-4",
+          id: "CH21-Q5",
+          section: "math",
+          domain: "Geometry & Trigonometry",
+          skill: "Inscribed Angles",
+          type: "mc",
+          prompt: `
+            <div class="mb-4 flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-4">
+              <svg viewBox="0 0 220 205" class="w-full max-w-[190px] h-auto">
+                <circle cx="110" cy="102" r="76" fill="rgba(30,58,138,0.04)" stroke="#0f172a" stroke-width="2.2"/>
+                <polyline points="175,64 42,102 175,140" fill="none" stroke="#0f172a" stroke-width="2.2"/>
+                <text x="181" y="65" font-size="13" font-weight="bold">A</text>
+                <text x="181" y="146" font-size="13" font-weight="bold">B</text>
+                <text x="26" y="106" font-size="13" font-weight="bold">C</text>
+                <text x="64" y="106" font-size="13" font-weight="bold" fill="#1e3a8a">30°</text>
+              </svg>
+              <span class="text-xs italic text-slate-500 mt-1">Note: Figure not drawn to scale.</span>
+            </div>
+            <p>In the figure above, \\(\\angle ACB\\) is inscribed in a circle. The length of minor arc \\(AB\\) is what fraction of the circumference of the circle?</p>
+          `,
+          choices: [
+            "\\(\\frac{1}{3}\\)",
+            "\\(\\frac{1}{4}\\)",
+            "\\(\\frac{1}{6}\\)",
+            "\\(\\frac{1}{12}\\)"
+          ],
+          correctAnswer: 2,
+          explanation: "An inscribed angle is half its intercepted arc, so minor arc \\(AB = 2 \\times 30^\\circ = 60^\\circ\\). As a fraction of the full circle, \\(\\frac{60^\\circ}{360^\\circ} = \\frac{1}{6}\\)."
+        },
+        {
+          id: "CH21-Q6",
+          section: "math",
+          domain: "Geometry & Trigonometry",
+          skill: "Angles Inscribed in a Semicircle",
+          type: "grid",
+          prompt: `
+            <div class="mb-4 flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-4">
+              <svg viewBox="0 0 220 205" class="w-full max-w-[190px] h-auto">
+                <circle cx="110" cy="102" r="76" fill="rgba(30,58,138,0.04)" stroke="#0f172a" stroke-width="2.2"/>
+                <polygon points="34,102 148,36 186,102" fill="rgba(30,58,138,0.08)" stroke="#0f172a" stroke-width="2.2"/>
+                <text x="20" y="106" font-size="13" font-weight="bold">A</text>
+                <text x="148" y="28" font-size="13" font-weight="bold">B</text>
+                <text x="191" y="106" font-size="13" font-weight="bold">C</text>
+              </svg>
+            </div>
+            <p>In the figure above, \\(AC\\) is a diameter of the circle and the length of \\(AB\\) is \\(1\\). If the radius of the circle is \\(1\\), what is the measure, in degrees, of \\(\\angle BAC\\)?</p>
+          `,
+          correctAnswer: ["60"],
+          explanation: "Because \\(AC\\) is a diameter, \\(\\angle ABC = 90^\\circ\\). With radius \\(1\\), hypotenuse \\(AC = 2\\) and leg \\(AB = 1\\). This is a \\(30^\\circ\\text{-}60^\\circ\\text{-}90^\\circ\\) triangle where \\(\\cos(\\angle BAC) = \\frac{1}{2}\\), so \\(\\angle BAC = 60^\\circ\\)."
+        },
+        {
+          id: "CH21-Q8",
+          section: "math",
+          domain: "Geometry & Trigonometry",
+          skill: "Sector Area in Radians",
+          type: "mc",
+          prompt: `
+            <div class="mb-4 flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-4">
+              <svg viewBox="0 0 220 205" class="w-full max-w-[190px] h-auto">
+                <circle cx="110" cy="102" r="76" fill="white" stroke="#0f172a" stroke-width="2.2"/>
+                <path d="M 110 102 L 186 102 A 76 76 0 0 0 97 27 Z" fill="rgba(30,58,138,0.22)" stroke="#0f172a" stroke-width="2.2"/>
+                <text x="95" y="114" font-size="13" font-weight="bold">C</text>
+                <text x="191" y="106" font-size="13" font-weight="bold">B</text>
+                <text x="89" y="21" font-size="13" font-weight="bold">A</text>
+                <text x="145" y="116" font-size="13" font-weight="bold" fill="#1e3a8a">6</text>
+              </svg>
+            </div>
+            <p>In the figure above, circle \\(C\\) has a radius of \\(6\\). If the area of the shaded sector is \\(10\\pi\\), what is the measure, in radians, of angle \\(ACB\\)?</p>
+          `,
+          choices: [
+            "\\(\\frac{2\\pi}{5}\\)",
+            "\\(\\frac{4\\pi}{9}\\)",
+            "\\(\\frac{5\\pi}{9}\\)",
+            "\\(\\frac{5\\pi}{8}\\)"
+          ],
+          correctAnswer: 2,
+          explanation: "Using the radian sector area formula \\(A = \\frac{1}{2}r^2\\theta\\): \\(10\\pi = \\frac{1}{2}(6^2)\\theta = 18\\theta \\implies \\theta = \\frac{10\\pi}{18} = \\frac{5\\pi}{9}\\)."
+        },
+        {
+          id: "CH21-Q11",
+          section: "math",
+          domain: "Geometry & Trigonometry",
+          skill: "Cylinder Surface Area",
+          type: "mc",
+          prompt: `
+            <div class="mb-4 flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-4">
+              <svg viewBox="0 0 220 190" class="w-full max-w-[180px] h-auto">
+                <ellipse cx="110" cy="40" rx="52" ry="16" fill="rgba(30,58,138,0.1)" stroke="#0f172a" stroke-width="2.2"/>
+                <path d="M 58 40 L 58 145 A 52 16 0 0 0 162 145 L 162 40" fill="rgba(30,58,138,0.05)" stroke="#0f172a" stroke-width="2.2"/>
+                <ellipse cx="110" cy="145" rx="52" ry="16" fill="none" stroke="#0f172a" stroke-width="1.5" stroke-dasharray="4 3"/>
+                <line x1="110" y1="40" x2="162" y2="40" stroke="#1e3a8a" stroke-width="2"/>
+                <text x="131" y="35" font-size="13" font-weight="bold" fill="#1e3a8a">4</text>
+                <text x="170" y="98" font-size="13" font-weight="bold" fill="#0f172a">5</text>
+              </svg>
+            </div>
+            <p>The base of a right circular cylinder shown above has a radius of \\(4\\). The height is \\(5\\). What is the surface area of the cylinder?</p>
+          `,
+          choices: [
+            "\\(40\\pi\\)",
+            "\\(60\\pi\\)",
+            "\\(72\\pi\\)",
+            "\\(81\\pi\\)"
+          ],
+          correctAnswer: 2,
+          explanation: "Total surface area = two circular bases + lateral side: \\(2\\pi r^2 + 2\\pi rh = 2\\pi(4^2) + 2\\pi(4)(5) = 32\\pi + 40\\pi = 72\\pi\\)."
+        },
+        {
+          id: "CH21-Q15",
           section: "math",
           domain: "Geometry & Trigonometry",
           skill: "Circle Equations in the xy-Plane",
           type: "mc",
-          prompt: "A circle in the \\(xy\\)-plane has equation \\(x^2 + 6x + y^2 - 10y = 15\\). What is the radius of the circle?",
+          prompt: `
+            <p class="font-mono text-center text-base sm:text-lg font-bold bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 mb-4">
+              \\((x + 2)^2 + (y + 4)^2 = 4\\)
+            </p>
+            <p class="mb-3">The equation of a circle in the \\(xy\\)-plane is given above. Which of the following must be true?</p>
+            <div class="space-y-1.5 pl-4 text-sm sm:text-base">
+              <div><strong>I.</strong> The center of the circle is at \\((2, 4)\\).</div>
+              <div><strong>II.</strong> The circle is tangent to the \\(x\\)-axis.</div>
+              <div><strong>III.</strong> The circle is tangent to the \\(y\\)-axis.</div>
+            </div>
+          `,
           choices: [
-            "\\(\\sqrt{15}\\)",
-            "\\(7\\)",
-            "\\(34\\)",
-            "\\(49\\)"
+            "II only",
+            "III only",
+            "I and II only",
+            "I, II, and III"
           ],
           correctAnswer: 1,
-          explanation: "Complete the square for both \\(x\\) and \\(y\\): \\((x^2 + 6x + 9) + (y^2 - 10y + 25) = 15 + 9 + 25\\). This simplifies to \\((x + 3)^2 + (y - 5)^2 = 49\\). Since \\(r^2 = 49\\), the radius is \\(r = \\sqrt{49} = 7\\)."
-        },
-        {
-          id: "MATH-M2H-5",
-          section: "math",
-          domain: "Problem-Solving & Data Analysis",
-          skill: "Two-Way Tables & Conditional Probability",
-          type: "spr",
-          prompt: "In a survey of \\(200\\) college juniors, \\(120\\) are enrolled in a statistics course, \\(95\\) are enrolled in an economics course, and \\(40\\) are enrolled in neither course. If a student is selected at random from those enrolled in statistics, what is the probability (expressed as a decimal) that the student is also enrolled in economics?",
-          correctAnswer: ["0.458", ".458", "11/24", "0.46"],
-          explanation: "Total enrolled in at least one course = \\(200 - 40 = 160\\). Using inclusion-exclusion: \\(|S \\cup E| = |S| + |E| - |S \\cap E| \\implies 160 = 120 + 95 - |S \\cap E| \\implies |S \\cap E| = 55\\). Given the student is in statistics (\\(120\\) students), the probability they are also in economics is \\(\\frac{55}{120} = \\frac{11}{24} \\approx 0.458\\)."
-        },
-        {
-          id: "MATH-M2H-6",
-          section: "math",
-          domain: "Geometry & Trigonometry",
-          skill: "3D Geometry & Scaling",
-          type: "spr",
-          prompt: "Right circular cylinder A has a volume of \\(54\\pi\\) cubic centimeters. Right circular cylinder B has a radius that is twice the radius of cylinder A and a height that is one-third the height of cylinder A. What is the volume, in cubic centimeters, of cylinder B divided by \\(\\pi\\)?",
-          correctAnswer: ["72"],
-          explanation: "Let cylinder A have radius \\(r\\) and height \\(h\\), so \\(V_A = \\pi r^2 h = 54\\pi\\). Cylinder B has radius \\(2r\\) and height \\(\\frac{1}{3}h\\). Thus, \\(V_B = \\pi (2r)^2 (\\frac{1}{3}h) = \\frac{4}{3} \\pi r^2 h = \\frac{4}{3}(54\\pi) = 72\\pi\\). Dividing by \\(\\pi\\) gives \\(72\\)."
+          explanation: "From \\((x - (-2))^2 + (y - (-4))^2 = 2^2\\), the center is \\((-2, -4)\\) and radius is \\(r = 2\\). Statement I is false. Distance from center to the \\(x\\)-axis is \\(|-4| = 4 \\neq 2\\) (II is false). Distance from center to the \\(y\\)-axis is \\(|-2| = 2 = r\\), so it is tangent to the \\(y\\)-axis (III only)."
         }
       ]
     };
 
     /**
-     * GLOBAL EXAM STATE
+     * EXAM STATE
      */
     let examState = {
-      mode: 'full', // 'full' | 'rw_only' | 'math_only'
-      stages: [], // Sequence of modules to run
+      mode: "full", // "full" | "math_only" | "rw_only"
+      stages: [],
       currentStageIdx: 0,
       currentQuestionIdx: 0,
-      questions: [], // Active module questions
-      userAnswers: {}, // { questionId: number | string }
-      eliminatedChoices: {}, // { questionId: Set<number> }
-      flaggedQuestions: {}, // { questionId: boolean }
-      passageHTMLCache: {}, // { questionId: string } to preserve user highlights
-      completedHistory: [], // Stores completed modules & questions for final score report
-      routingPaths: { rw: null, math: null }, // 'Easy' or 'Hard'
+      questions: [],
+      userAnswers: {},
+      eliminatedChoices: {},
+      flaggedQuestions: {},
+      passageHTMLCache: {},
+      completedHistory: [],
+      routingPaths: { rw: null, math: null },
       timerSeconds: 0,
       timerInterval: null,
+      breakInterval: null,
       timerHidden: false
     };
 
-    // Initialize Lucide icons on page load
-    window.addEventListener('DOMContentLoaded', () => {
+    window.addEventListener("DOMContentLoaded", () => {
       lucide.createIcons();
       renderMathInDOM(document.body);
     });
@@ -1359,9 +1597,14 @@
     }
 
     /**
-     * START EXAM WORKFLOW
+     * START EXAM BY MODE
+     * - "full": RW M1 -> RW M2 (adaptive) -> Optional Break -> Math M1 -> Math M2 (adaptive)
+     * - "math_only": Math M1 -> Math M2 (adaptive) directly
+     * - "rw_only": RW M1 -> RW M2 (adaptive) directly
      */
     function startExam(mode) {
+      clearAllTimers();
+
       examState = {
         mode,
         stages: [],
@@ -1376,107 +1619,107 @@
         routingPaths: { rw: null, math: null },
         timerSeconds: 0,
         timerInterval: null,
+        breakInterval: null,
         timerHidden: false
       };
 
-      if (mode === 'full') {
+      if (mode === "full") {
         examState.stages = [
-          { section: 'rw', moduleNum: 1, title: 'Section 1, Module 1: Reading and Writing', duration: 8 * 60 },
-          { section: 'rw', moduleNum: 2, title: 'Section 1, Module 2: Reading and Writing', duration: 8 * 60 },
-          { section: 'math', moduleNum: 1, title: 'Section 2, Module 1: Math', duration: 9 * 60 },
-          { section: 'math', moduleNum: 2, title: 'Section 2, Module 2: Math', duration: 9 * 60 }
+          { section: "rw", moduleNum: 1, title: "Section 1, Module 1: Reading and Writing", duration: EXAM_CONFIG.timers.rwModuleSeconds },
+          { section: "rw", moduleNum: 2, title: "Section 1, Module 2: Reading and Writing", duration: EXAM_CONFIG.timers.rwModuleSeconds },
+          { section: "math", moduleNum: 1, title: "Section 2, Module 1: Math", duration: EXAM_CONFIG.timers.mathModuleSeconds, hasBreakBefore: true },
+          { section: "math", moduleNum: 2, title: "Section 2, Module 2: Math", duration: EXAM_CONFIG.timers.mathModuleSeconds }
         ];
-      } else if (mode === 'rw_only') {
+      } else if (mode === "math_only") {
         examState.stages = [
-          { section: 'rw', moduleNum: 1, title: 'Section 1, Module 1: Reading and Writing', duration: 8 * 60 },
-          { section: 'rw', moduleNum: 2, title: 'Section 1, Module 2: Reading and Writing', duration: 8 * 60 }
+          { section: "math", moduleNum: 1, title: "Math Only Test • Module 1", duration: EXAM_CONFIG.timers.mathModuleSeconds },
+          { section: "math", moduleNum: 2, title: "Math Only Test • Module 2", duration: EXAM_CONFIG.timers.mathModuleSeconds }
         ];
-      } else if (mode === 'math_only') {
+      } else if (mode === "rw_only") {
         examState.stages = [
-          { section: 'math', moduleNum: 1, title: 'Section 2, Module 1: Math', duration: 9 * 60 },
-          { section: 'math', moduleNum: 2, title: 'Section 2, Module 2: Math', duration: 9 * 60 }
+          { section: "rw", moduleNum: 1, title: "Reading & Writing • Module 1", duration: EXAM_CONFIG.timers.rwModuleSeconds },
+          { section: "rw", moduleNum: 2, title: "Reading & Writing • Module 2", duration: EXAM_CONFIG.timers.rwModuleSeconds }
         ];
       }
 
-      document.getElementById('landing-view').classList.add('hidden');
-      document.getElementById('report-view').classList.add('hidden');
+      document.getElementById("landing-view").classList.add("hidden");
+      document.getElementById("report-view").classList.add("hidden");
       loadStage(0);
     }
 
+    function clearAllTimers() {
+      if (examState.timerInterval) clearInterval(examState.timerInterval);
+      if (examState.breakInterval) clearInterval(examState.breakInterval);
+      examState.timerInterval = null;
+      examState.breakInterval = null;
+    }
+
     function loadStage(stageIdx) {
+      clearAllTimers();
       examState.currentStageIdx = stageIdx;
       examState.currentQuestionIdx = 0;
       const stage = examState.stages[stageIdx];
 
-      // Determine questions for this stage (MST adaptive routing for Module 2)
-      if (stage.section === 'rw' && stage.moduleNum === 1) {
+      if (stage.section === "rw" && stage.moduleNum === 1) {
         examState.questions = QUESTION_BANK.rw_m1;
-      } else if (stage.section === 'rw' && stage.moduleNum === 2) {
-        const tier = examState.routingPaths.rw || 'Hard';
-        examState.questions = tier === 'Hard' ? QUESTION_BANK.rw_m2_hard : QUESTION_BANK.rw_m2_easy;
-      } else if (stage.section === 'math' && stage.moduleNum === 1) {
+      } else if (stage.section === "rw" && stage.moduleNum === 2) {
+        examState.questions = examState.routingPaths.rw === "Hard" ? QUESTION_BANK.rw_m2_hard : QUESTION_BANK.rw_m2_easy;
+      } else if (stage.section === "math" && stage.moduleNum === 1) {
         examState.questions = QUESTION_BANK.math_m1;
-      } else if (stage.section === 'math' && stage.moduleNum === 2) {
-        const tier = examState.routingPaths.math || 'Hard';
-        examState.questions = tier === 'Hard' ? QUESTION_BANK.math_m2_hard : QUESTION_BANK.math_m2_easy;
+      } else if (stage.section === "math" && stage.moduleNum === 2) {
+        examState.questions = examState.routingPaths.math === "Hard" ? QUESTION_BANK.math_m2_hard : QUESTION_BANK.math_m2_easy;
       }
 
-      // Configure Header UI
-      document.getElementById('header-section-title').textContent = stage.title;
-      const pill = document.getElementById('header-adaptive-pill');
+      document.getElementById("header-section-title").textContent = stage.title;
+      const pill = document.getElementById("header-adaptive-pill");
       if (stage.moduleNum === 1) {
-        pill.textContent = 'Module 1 (Routing)';
-        pill.className = 'hidden sm:inline-block text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-200 text-slate-700';
+        pill.textContent = "Module 1 (Baseline)";
+        pill.className = "hidden sm:inline-block text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-200 text-slate-700";
       } else {
-        const tier = stage.section === 'rw' ? examState.routingPaths.rw : examState.routingPaths.math;
-        pill.textContent = tier === 'Hard' ? 'Module 2 • Upper Tier' : 'Module 2 • Standard Tier';
-        pill.className = tier === 'Hard'
-          ? 'hidden sm:inline-block text-[11px] font-semibold px-2 py-0.5 rounded bg-indigo-100 text-indigo-800'
-          : 'hidden sm:inline-block text-[11px] font-semibold px-2 py-0.5 rounded bg-amber-100 text-amber-800';
+        const tier = stage.section === "rw" ? examState.routingPaths.rw : examState.routingPaths.math;
+        pill.textContent = tier === "Hard" ? "Module 2 • Harder Tier" : "Module 2 • Standard Tier";
+        pill.className = tier === "Hard"
+          ? "hidden sm:inline-block text-[11px] font-semibold px-2 py-0.5 rounded bg-indigo-100 text-indigo-800"
+          : "hidden sm:inline-block text-[11px] font-semibold px-2 py-0.5 rounded bg-amber-100 text-amber-800";
       }
 
-      // Toggle Section-Specific Tools (Highlighter vs Calculator/Reference)
-      const isRW = stage.section === 'rw';
-      document.getElementById('btn-highlighter').classList.toggle('hidden', !isRW);
-      document.getElementById('btn-clear-highlights').classList.toggle('hidden', !isRW);
-      document.getElementById('btn-calculator').classList.toggle('hidden', isRW);
-      document.getElementById('btn-reference').classList.toggle('hidden', isRW);
+      // Show RW tools vs Math tools
+      const isRW = stage.section === "rw";
+      document.getElementById("btn-highlighter").classList.toggle("hidden", !isRW);
+      document.getElementById("btn-clear-highlights").classList.toggle("hidden", !isRW);
+      document.getElementById("btn-calculator").classList.toggle("hidden", isRW);
+      document.getElementById("btn-reference").classList.toggle("hidden", isRW);
       if (isRW) {
-        document.getElementById('calculator-modal').classList.add('hidden');
+        document.getElementById("calculator-modal").classList.add("hidden");
       }
 
-      // Populate Directions Modal
-      const dirTitle = document.getElementById('directions-title');
-      const dirBody = document.getElementById('directions-body');
+      const dirTitle = document.getElementById("directions-title");
+      const dirBody = document.getElementById("directions-body");
       if (isRW) {
         dirTitle.textContent = "Reading and Writing Directions";
         dirBody.innerHTML = `
-          <p>The questions in this section address a number of important reading and writing skills. Each question includes one or more passages, which may include a table or graph.</p>
-          <p>Read each passage and question carefully, and then choose the best answer to the question based on the passage(s).</p>
-          <p>All questions in this section are multiple-choice with four answer choices. Each question has a single best answer.</p>
+          <p>Each question includes a short passage and one discrete multiple-choice question with four answer choices.</p>
+          <p>Select text in the passage and click <strong>Highlight</strong> to annotate key details, or use the strikethrough button beside any choice to eliminate it.</p>
         `;
       } else {
         dirTitle.textContent = "Math Section Directions";
         dirBody.innerHTML = `
-          <p>The questions in this section address a number of important math skills. Use of a calculator is permitted for all questions.</p>
-          <p>Unless otherwise indicated: all variables and expressions represent real numbers, figures provided are drawn to scale, and all figures lie in a plane.</p>
-          <p>For <strong>Student-Produced Response (SPR)</strong> questions, enter your numeric answer in the box provided (integers, decimals, or fractions like <code>11/24</code>).</p>
+          <p>Use of the built-in Graphing & Scientific Calculator and Reference Sheet is permitted on all Math questions.</p>
+          <p>For <strong>Student-Produced Response (SPR)</strong> questions, enter an integer, decimal, or fraction (such as <code>11/24</code>). Do not enter mixed numbers.</p>
         `;
       }
 
-      // Show Exam View and start timer
-      document.getElementById('transition-view').classList.add('hidden');
-      document.getElementById('exam-view').classList.remove('hidden');
+      document.getElementById("transition-view").classList.add("hidden");
+      document.getElementById("exam-view").classList.remove("hidden");
 
       startModuleTimer(stage.duration);
       renderCurrentQuestion();
     }
 
     /**
-     * TIMER MANAGEMENT
+     * MODULE TIMER
      */
     function startModuleTimer(seconds) {
-      if (examState.timerInterval) clearInterval(examState.timerInterval);
       examState.timerSeconds = seconds;
       updateTimerDisplay();
 
@@ -1491,35 +1734,35 @@
     }
 
     function updateTimerDisplay() {
-      const display = document.getElementById('timer-display');
+      const display = document.getElementById("timer-display");
       if (examState.timerHidden) {
         display.innerHTML = `<i data-lucide="clock" class="w-5 h-5 text-slate-500 my-1"></i>`;
         lucide.createIcons();
         return;
       }
 
-      const mins = Math.floor(Math.max(0, examState.timerSeconds) / 60);
-      const secs = Math.max(0, examState.timerSeconds) % 60;
-      display.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+      const safeSecs = Math.max(0, examState.timerSeconds);
+      const mins = Math.floor(safeSecs / 60);
+      const secs = safeSecs % 60;
+      display.textContent = `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
 
-      // Turn red under 5 minutes (300 seconds) per Bluebook behavior
-      if (examState.timerSeconds <= 300) {
-        display.classList.remove('text-slate-900');
-        display.classList.add('text-rose-600');
+      if (safeSecs <= EXAM_CONFIG.lowTimeWarningSeconds) {
+        display.classList.remove("text-slate-900");
+        display.classList.add("text-rose-600");
       } else {
-        display.classList.remove('text-rose-600');
-        display.classList.add('text-slate-900');
+        display.classList.remove("text-rose-600");
+        display.classList.add("text-slate-900");
       }
     }
 
     function toggleTimerVisibility() {
       examState.timerHidden = !examState.timerHidden;
-      document.getElementById('timer-toggle-btn').textContent = examState.timerHidden ? 'Show' : 'Hide';
+      document.getElementById("timer-toggle-btn").textContent = examState.timerHidden ? "Show" : "Hide";
       updateTimerDisplay();
     }
 
     /**
-     * RENDER ACTIVE QUESTION (BLUEBOOK SPLIT-SCREEN OR CENTERED MATH)
+     * QUESTION RENDERING
      */
     function renderCurrentQuestion() {
       const q = examState.questions[examState.currentQuestionIdx];
@@ -1529,93 +1772,85 @@
       const userAnswer = examState.userAnswers[q.id];
       const eliminated = examState.eliminatedChoices[q.id] || new Set();
 
-      // Update Footer Labels & Buttons
-      document.getElementById('footer-domain-label').textContent = `${q.domain} • ${q.skill}`;
-      document.getElementById('nav-drawer-label').textContent = `Question ${qNum} of ${totalQ}`;
-      document.getElementById('btn-prev-q').disabled = examState.currentQuestionIdx === 0;
-      document.getElementById('btn-next-q').textContent = examState.currentQuestionIdx === totalQ - 1 ? 'Review / Finish' : 'Next';
+      document.getElementById("footer-domain-label").textContent = `${q.domain} • ${q.skill}`;
+      document.getElementById("nav-drawer-label").textContent = `Question ${qNum} of ${totalQ}`;
+      document.getElementById("btn-prev-q").disabled = examState.currentQuestionIdx === 0;
+      document.getElementById("btn-next-q").textContent = examState.currentQuestionIdx === totalQ - 1 ? "Review / Finish" : "Next";
 
-      const stageContainer = document.getElementById('question-stage');
+      const stageContainer = document.getElementById("question-stage");
 
-      // Build Question Header Bar (Number badge + Mark for Review flag)
       const questionTopBar = `
         <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-200">
           <div class="flex items-center gap-2.5">
             <span class="w-7 h-7 rounded bg-slate-900 text-white font-bold text-sm flex items-center justify-center">
               ${qNum}
             </span>
-            <button onclick="toggleFlagQuestion('${q.id}')" class="flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-md border transition cursor-pointer ${isFlagged ? 'bg-rose-50 border-rose-300 text-rose-700' : 'bg-white border-slate-300 text-slate-600 hover:bg-slate-50'}">
-              <i data-lucide="bookmark" class="w-3.5 h-3.5 ${isFlagged ? 'fill-rose-600 text-rose-600' : ''}"></i>
-              <span>${isFlagged ? 'Marked for Review' : 'Mark for Review'}</span>
+            <button onclick="toggleFlagQuestion('${q.id}')" class="flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-md border transition cursor-pointer ${isFlagged ? "bg-rose-50 border-rose-300 text-rose-700" : "bg-white border-slate-300 text-slate-600 hover:bg-slate-50"}">
+              <i data-lucide="bookmark" class="w-3.5 h-3.5 ${isFlagged ? "fill-rose-600 text-rose-600" : ""}"></i>
+              <span>${isFlagged ? "Marked for Review" : "Mark for Review"}</span>
             </button>
           </div>
           <span class="text-[11px] font-mono text-slate-400">${q.id}</span>
         </div>
       `;
 
-      // Build Answer Choices or SPR Grid-In Input
-      let answerAreaHTML = '';
-      if (q.type === 'mc') {
-        const letters = ['A', 'B', 'C', 'D'];
+      let answerAreaHTML = "";
+      if (q.type === "mc") {
+        const letters = ["A", "B", "C", "D"];
         answerAreaHTML = `<div class="space-y-3 mt-5">`;
         q.choices.forEach((choiceText, idx) => {
           const isSelected = userAnswer === idx;
           const isEliminated = eliminated.has(idx);
           answerAreaHTML += `
-            <div class="flex items-center gap-2 group ${isEliminated ? 'eliminated-option' : ''}">
-              <button onclick="selectChoice('${q.id}', ${idx})" class="flex-1 text-left p-3.5 rounded-xl border-2 transition flex items-start gap-3.5 cursor-pointer ${isSelected ? 'border-[#1e3a8a] bg-blue-50/70 shadow-xs' : 'border-slate-300 bg-white hover:border-slate-400'}">
-                <span class="w-7 h-7 rounded-full border-2 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5 transition ${isSelected ? 'border-[#1e3a8a] bg-[#1e3a8a] text-white' : 'border-slate-500 text-slate-700'}">
+            <div class="flex items-center gap-2 ${isEliminated ? "eliminated-option" : ""}">
+              <button onclick="selectChoice('${q.id}', ${idx})" class="flex-1 text-left p-3.5 rounded-xl border-2 transition flex items-start gap-3.5 cursor-pointer ${isSelected ? "border-[#1e3a8a] bg-blue-50/70" : "border-slate-300 bg-white hover:border-slate-400"}">
+                <span class="w-7 h-7 rounded-full border-2 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5 transition ${isSelected ? "border-[#1e3a8a] bg-[#1e3a8a] text-white" : "border-slate-500 text-slate-700"}">
                   ${letters[idx]}
                 </span>
                 <span class="option-text text-sm sm:text-base text-slate-800 leading-snug pt-0.5">${choiceText}</span>
               </button>
-              <button onclick="toggleEliminateChoice('${q.id}', ${idx})" title="${isEliminated ? 'Restore choice' : 'Eliminate choice'}" class="w-8 h-8 rounded-full border border-slate-300 hover:bg-slate-100 text-slate-500 flex items-center justify-center text-xs font-bold shrink-0 transition cursor-pointer">
-                ${isEliminated ? 'Undo' : `<span class="line-through">${letters[idx]}</span>`}
+              <button onclick="toggleEliminateChoice('${q.id}', ${idx})" title="${isEliminated ? "Restore choice" : "Eliminate choice"}" class="w-8 h-8 rounded-full border border-slate-300 hover:bg-slate-100 text-slate-500 flex items-center justify-center text-xs font-bold shrink-0 transition cursor-pointer">
+                ${isEliminated ? "Undo" : `<span class="line-through">${letters[idx]}</span>`}
               </button>
             </div>
           `;
         });
         answerAreaHTML += `</div>`;
       } else {
-        // Student-Produced Response (SPR) Grid-In Input
-        const val = userAnswer !== undefined ? userAnswer : '';
+        const val = userAnswer !== undefined ? userAnswer : "";
         answerAreaHTML = `
           <div class="mt-6 p-5 rounded-2xl bg-slate-50 border border-slate-200">
             <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
               Student-Produced Response (Enter Numeric Answer)
             </label>
-            <input 
-              type="text" 
-              id="spr-input-${q.id}" 
-              value="${val}" 
+            <input
+              type="text"
+              id="spr-input-${q.id}"
+              value="${val}"
               oninput="handleSPRInput('${q.id}', this.value)"
               placeholder="e.g. 42, 3.5, or 11/24"
               class="w-full sm:w-64 px-4 py-3 rounded-xl border-2 border-slate-300 focus:border-[#1e3a8a] focus:outline-none font-mono text-lg font-bold text-slate-900 bg-white"
             />
             <p class="text-xs text-slate-500 mt-2.5">
-              Accepted formats: positive or negative integers, decimals, or simplified fractions (e.g., <code class="bg-slate-200 px-1 rounded">7/2</code>). Do not enter mixed numbers.
+              Accepted formats: integers, decimals, or simplified fractions (e.g., <code class="bg-slate-200 px-1 rounded">11/24</code>).
             </p>
           </div>
         `;
       }
 
-      if (q.section === 'rw') {
-        // SPLIT-SCREEN LAYOUT FOR READING & WRITING
+      if (q.section === "rw") {
         const cachedPassage = examState.passageHTMLCache[q.id] || q.passage;
         stageContainer.innerHTML = `
           <div class="grid grid-cols-1 lg:grid-cols-2 h-full divide-y lg:divide-y-0 lg:divide-x divide-slate-300">
-            <!-- Left Pane: Passage -->
             <div class="p-5 sm:p-8 lg:overflow-y-auto bg-white">
               <div class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-3 flex items-center justify-between">
                 <span>Passage</span>
-                <span class="text-slate-400 font-normal">Tip: Select text & click Highlight above</span>
+                <span class="text-slate-400 font-normal">Select text & click Highlight</span>
               </div>
               <div id="passage-text-box" class="passage-font text-base sm:text-[17px] text-slate-900 space-y-4">
                 ${cachedPassage}
               </div>
             </div>
-
-            <!-- Right Pane: Question & Choices -->
             <div class="p-5 sm:p-8 lg:overflow-y-auto bg-slate-50/40">
               ${questionTopBar}
               <div class="text-sm sm:text-base font-medium text-slate-900 leading-relaxed">
@@ -1626,7 +1861,6 @@
           </div>
         `;
       } else {
-        // CENTERED BLUEBOOK LAYOUT FOR MATH
         stageContainer.innerHTML = `
           <div class="max-w-3xl mx-auto p-5 sm:p-10">
             ${questionTopBar}
@@ -1643,10 +1877,9 @@
     }
 
     /**
-     * INTERACTIVE TESTING TOOLS: SELECTION, ELIMINATION, FLAGGING, HIGHLIGHTING
+     * USER INTERACTIONS & TOOLS
      */
     function selectChoice(qId, choiceIdx) {
-      // Un-eliminate automatically if user explicitly selects it
       if (examState.eliminatedChoices[qId]) {
         examState.eliminatedChoices[qId].delete(choiceIdx);
       }
@@ -1656,7 +1889,7 @@
 
     function handleSPRInput(qId, value) {
       const trimmed = value.trim();
-      if (trimmed === '') {
+      if (trimmed === "") {
         delete examState.userAnswers[qId];
       } else {
         examState.userAnswers[qId] = trimmed;
@@ -1684,7 +1917,7 @@
     }
 
     function highlightSelectedText() {
-      const passageBox = document.getElementById('passage-text-box');
+      const passageBox = document.getElementById("passage-text-box");
       if (!passageBox) return;
 
       const selection = window.getSelection();
@@ -1694,10 +1927,10 @@
       if (!passageBox.contains(range.commonAncestorContainer)) return;
 
       try {
-        const mark = document.createElement('mark');
-        mark.className = 'sat-highlight';
-        mark.title = 'Click to remove highlight';
-        mark.onclick = function() {
+        const mark = document.createElement("mark");
+        mark.className = "sat-highlight";
+        mark.title = "Click to remove highlight";
+        mark.onclick = function () {
           const parent = this.parentNode;
           while (this.firstChild) parent.insertBefore(this.firstChild, this);
           parent.removeChild(this);
@@ -1710,7 +1943,6 @@
         const q = examState.questions[examState.currentQuestionIdx];
         examState.passageHTMLCache[q.id] = passageBox.innerHTML;
       } catch (e) {
-        // Handles partial multi-node selections gracefully
         selection.removeAllRanges();
       }
     }
@@ -1738,78 +1970,77 @@
     }
 
     /**
-     * QUESTION NAVIGATOR DRAWER
+     * NAVIGATOR & END-MODULE CONFIRMATION
      */
     function toggleNavigatorDrawer() {
-      const drawer = document.getElementById('navigator-drawer');
-      const isHidden = drawer.classList.contains('hidden');
+      const drawer = document.getElementById("navigator-drawer");
+      const isHidden = drawer.classList.contains("hidden");
       if (!isHidden) {
-        drawer.classList.add('hidden');
+        drawer.classList.add("hidden");
         return;
       }
 
       const stage = examState.stages[examState.currentStageIdx];
-      document.getElementById('drawer-module-title').textContent = stage.title;
+      document.getElementById("drawer-module-title").textContent = stage.title;
 
-      const grid = document.getElementById('navigator-grid');
-      grid.innerHTML = '';
+      const grid = document.getElementById("navigator-grid");
+      grid.innerHTML = "";
       let answeredCount = 0;
 
       examState.questions.forEach((q, idx) => {
         const isCurrent = idx === examState.currentQuestionIdx;
-        const isAnswered = examState.userAnswers[q.id] !== undefined && examState.userAnswers[q.id] !== '';
+        const isAnswered = examState.userAnswers[q.id] !== undefined && examState.userAnswers[q.id] !== "";
         const isFlagged = !!examState.flaggedQuestions[q.id];
         if (isAnswered) answeredCount++;
 
-        let btnClasses = 'relative h-11 rounded-lg font-bold text-sm flex items-center justify-center transition cursor-pointer ';
-        if (isAnswered) {
-          btnClasses += 'bg-[#1e3a8a] text-white ';
-        } else {
-          btnClasses += 'bg-white border border-slate-300 text-slate-800 hover:bg-slate-50 ';
-        }
+        let btnClasses = "relative h-11 rounded-lg font-bold text-sm flex items-center justify-center transition cursor-pointer ";
+        btnClasses += isAnswered ? "bg-[#1e3a8a] text-white " : "bg-white border border-slate-300 text-slate-800 hover:bg-slate-50 ";
         if (isCurrent) {
-          btnClasses += 'ring-2 ring-offset-2 ring-slate-900 ';
+          btnClasses += "ring-2 ring-offset-2 ring-slate-900 ";
         }
 
         grid.innerHTML += `
           <button onclick="jumpToQuestion(${idx})" class="${btnClasses}">
             ${idx + 1}
-            ${isFlagged ? `<span class="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-rose-600 text-white flex items-center justify-center shadow"><i data-lucide="bookmark" class="w-2.5 h-2.5 fill-white"></i></span>` : ''}
+            ${isFlagged ? `<span class="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-rose-600 text-white flex items-center justify-center shadow"><i data-lucide="bookmark" class="w-2.5 h-2.5 fill-white"></i></span>` : ""}
           </button>
         `;
       });
 
-      document.getElementById('drawer-summary-text').textContent = `${answeredCount} of ${examState.questions.length} Answered`;
-      drawer.classList.remove('hidden');
+      document.getElementById("drawer-summary-text").textContent = `${answeredCount} of ${examState.questions.length} Answered`;
+      drawer.classList.remove("hidden");
       lucide.createIcons();
     }
 
     function openEndModuleConfirm() {
-      const unanswered = examState.questions.filter(q => examState.userAnswers[q.id] === undefined || examState.userAnswers[q.id] === '').length;
-      const msg = unanswered > 0
-        ? `You have ${unanswered} unanswered question(s) in this module. Once you submit, you cannot return to this module.`
-        : `All questions in this module are answered. Ready to submit and proceed?`;
-      document.getElementById('confirm-modal-text').textContent = msg;
-      toggleModal('confirm-modal');
+      const unanswered = examState.questions.filter(
+        q => examState.userAnswers[q.id] === undefined || examState.userAnswers[q.id] === ""
+      ).length;
+
+      document.getElementById("confirm-modal-text").textContent =
+        unanswered > 0
+          ? `You have ${unanswered} unanswered question(s) in this module. Once submitted, you cannot return to this module.`
+          : "All questions in this module are answered. Submit and continue?";
+      toggleModal("confirm-modal");
     }
 
     /**
-     * MULTISTAGE ADAPTIVE TESTING (MST) EVALUATION & TRANSITION
+     * ADAPTIVE ROUTING & MODULE COMPLETION
      */
     function isQuestionCorrect(q, userAns) {
-      if (userAns === undefined || userAns === null || userAns === '') return false;
-      if (q.type === 'mc') {
+      if (userAns === undefined || userAns === null || userAns === "") return false;
+      if (q.type === "mc") {
         return userAns === q.correctAnswer;
-      } else {
-        // Normalize numeric/fraction SPR strings
-        const normalizedUser = String(userAns).replace(/\s+/g, '').toLowerCase();
-        return q.correctAnswer.some(valid => valid.toLowerCase() === normalizedUser);
       }
+      if (typeof q.validateGrid === "function") {
+        return q.validateGrid(String(userAns).trim());
+      }
+      const normalizedUser = String(userAns).replace(/\s+/g, "").toLowerCase();
+      return q.correctAnswer.some(valid => valid.toLowerCase() === normalizedUser);
     }
 
     function completeCurrentModule() {
-      if (examState.timerInterval) clearInterval(examState.timerInterval);
-
+      clearAllTimers();
       const stage = examState.stages[examState.currentStageIdx];
       let moduleCorrect = 0;
 
@@ -1821,18 +2052,16 @@
         examState.completedHistory.push({
           ...q,
           moduleNum: stage.moduleNum,
-          tier: stage.moduleNum === 1 ? 'Baseline' : (stage.section === 'rw' ? examState.routingPaths.rw : examState.routingPaths.math),
+          tier: stage.moduleNum === 1 ? "Baseline" : (stage.section === "rw" ? examState.routingPaths.rw : examState.routingPaths.math),
           userAnswer: ans,
           isCorrect: correct,
           wasFlagged: !!examState.flaggedQuestions[q.id]
         });
       });
 
-      // If Module 1 just finished, compute adaptive routing for Module 2 (>= 67% -> 4/6 unlocks Harder Module 2)
       if (stage.moduleNum === 1) {
         const accuracy = moduleCorrect / examState.questions.length;
-        const routedTier = accuracy >= 0.65 ? 'Hard' : 'Easy';
-        examState.routingPaths[stage.section] = routedTier;
+        examState.routingPaths[stage.section] = accuracy >= EXAM_CONFIG.adaptiveThreshold ? "Hard" : "Easy";
       }
 
       const nextStageIdx = examState.currentStageIdx + 1;
@@ -1845,40 +2074,65 @@
 
     function showTransitionScreen(nextStageIdx, prevCorrect, prevTotal) {
       const nextStage = examState.stages[nextStageIdx];
-      document.getElementById('exam-view').classList.add('hidden');
-      document.getElementById('transition-view').classList.remove('hidden');
+      document.getElementById("exam-view").classList.add("hidden");
+      document.getElementById("transition-view").classList.remove("hidden");
 
-      document.getElementById('transition-next-module').textContent = nextStage.title;
-      document.getElementById('transition-time').textContent = `${Math.floor(nextStage.duration / 60)} Minutes`;
+      document.getElementById("transition-next-module").textContent = nextStage.title;
+      document.getElementById("transition-time").textContent = `${Math.round(nextStage.duration / 60)} Minutes`;
 
-      if (nextStage.moduleNum === 2) {
-        const tier = examState.routingPaths[nextStage.section];
-        document.getElementById('transition-badge').textContent = 'Multistage Adaptive Routing';
-        document.getElementById('transition-title').textContent = `Module 1 Complete (${prevCorrect}/${prevTotal} Correct)`;
-        document.getElementById('transition-tier').textContent = tier === 'Hard'
-          ? 'Higher Difficulty Module 2 (Upper Score Ceiling Unlocked)'
-          : 'Standard Difficulty Module 2 (Core Foundations)';
-        document.getElementById('transition-tier').className = tier === 'Hard'
-          ? 'font-bold text-indigo-700'
-          : 'font-bold text-amber-700';
-        document.getElementById('transition-desc').textContent = tier === 'Hard'
-          ? 'Strong performance on Module 1! The Bluebook adaptive engine has routed you to the higher-difficulty Module 2, unlocking the 600–800 top scoring band.'
-          : 'Based on your Module 1 responses, the adaptive engine has routed you to the standard-difficulty Module 2 to best measure your skill proficiency.';
+      const breakBox = document.getElementById("break-timer-box");
+      const btnLabel = document.getElementById("transition-btn-label");
+      if (nextStage.hasBreakBefore) {
+        breakBox.classList.remove("hidden");
+        btnLabel.textContent = "Skip Break & Start Math";
+        let breakSecs = EXAM_CONFIG.timers.breakSeconds;
+        const updateBreakText = () => {
+          const safe = Math.max(0, breakSecs);
+          const m = Math.floor(safe / 60);
+          const s = safe % 60;
+          document.getElementById("break-timer-display").textContent =
+            `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+        };
+        updateBreakText();
+        examState.breakInterval = setInterval(() => {
+          breakSecs--;
+          updateBreakText();
+          if (breakSecs <= 0) clearInterval(examState.breakInterval);
+        }, 1000);
+
+        document.getElementById("transition-badge").textContent = "Section 1 Complete • Break Available";
+        document.getElementById("transition-title").textContent = "Reading & Writing Complete";
+        document.getElementById("transition-tier").textContent = "Section 2 • Math Module 1";
+        document.getElementById("transition-tier").className = "font-bold text-emerald-700";
+        document.getElementById("transition-desc").textContent =
+          "Take an optional 10-minute break or click Skip Break & Start Math to begin Section 2.";
       } else {
-        document.getElementById('transition-badge').textContent = 'Section 1 Complete';
-        document.getElementById('transition-title').textContent = 'Proceeding to Math Section';
-        document.getElementById('transition-tier').textContent = 'Module 1 (Baseline Routing)';
-        document.getElementById('transition-tier').className = 'font-bold text-slate-900';
-        document.getElementById('transition-desc').textContent = 'You have completed Reading & Writing. Next, you will begin Math Module 1 with access to the built-in Graphing Calculator and Reference Sheet.';
+        breakBox.classList.add("hidden");
+        btnLabel.textContent = "Begin Next Module";
+        const tier = examState.routingPaths[nextStage.section];
+        document.getElementById("transition-badge").textContent = "Multistage Adaptive Routing";
+        document.getElementById("transition-title").textContent = `Module 1 Complete (${prevCorrect}/${prevTotal} Correct)`;
+        document.getElementById("transition-tier").textContent = tier === "Hard"
+          ? "Module 2 • Harder Tier (Higher Ceiling)"
+          : "Module 2 • Standard Tier";
+        document.getElementById("transition-tier").className = tier === "Hard"
+          ? "font-bold text-indigo-700"
+          : "font-bold text-amber-700";
+        document.getElementById("transition-desc").textContent = tier === "Hard"
+          ? "You met the routing threshold and unlocked the Harder Module 2."
+          : "You have been routed to the Standard Module 2 based on Module 1 accuracy.";
       }
+
+      lucide.createIcons();
     }
 
     function proceedFromTransition() {
+      if (examState.breakInterval) clearInterval(examState.breakInterval);
       loadStage(examState.currentStageIdx + 1);
     }
 
     /**
-     * 400-1600 SCALED SCORE REPORT & ANALYTICS ENGINE
+     * SCORING & REPORT ENGINE
      */
     function calculateSectionScaledScore(sectionItems, routeTier) {
       if (sectionItems.length === 0) return null;
@@ -1887,105 +2141,99 @@
 
       const m1Correct = m1Items.filter(i => i.isCorrect).length;
       const m2Correct = m2Items.filter(i => i.isCorrect).length;
+      const m1Ratio = m1Items.length ? m1Correct / m1Items.length : 0;
+      const m2Ratio = m2Items.length ? m2Correct / m2Items.length : 0;
 
-      // Authentic Digital SAT MST Scaling Approximation (200 - 800)
-      let rawScore;
-      if (routeTier === 'Hard') {
-        // Higher ceiling (up to 800)
-        rawScore = 200 + (m1Correct / m1Items.length) * 260 + (m2Correct / m2Items.length) * 340;
-      } else {
-        // Standard Module 2 ceiling capped around 650
-        rawScore = 200 + (m1Correct / m1Items.length) * 230 + (m2Correct / m2Items.length) * 220;
-      }
+      const rawScore = routeTier === "Hard"
+        ? 200 + m1Ratio * 260 + m2Ratio * 340
+        : 200 + m1Ratio * 230 + m2Ratio * 220;
 
-      // Round to nearest 10
       return Math.min(800, Math.max(200, Math.round(rawScore / 10) * 10));
     }
 
     function generateScoreReport() {
-      document.getElementById('exam-view').classList.add('hidden');
-      document.getElementById('transition-view').classList.add('hidden');
-      document.getElementById('report-view').classList.remove('hidden');
+      clearAllTimers();
+      document.getElementById("exam-view").classList.add("hidden");
+      document.getElementById("transition-view").classList.add("hidden");
+      document.getElementById("report-view").classList.remove("hidden");
 
-      document.getElementById('report-date').textContent = new Date().toLocaleDateString('en-US', {
-        month: 'long', day: 'numeric', year: 'numeric'
+      document.getElementById("report-date").textContent = new Date().toLocaleDateString("en-US", {
+        month: "long", day: "numeric", year: "numeric"
       });
 
-      const rwItems = examState.completedHistory.filter(i => i.section === 'rw');
-      const mathItems = examState.completedHistory.filter(i => i.section === 'math');
+      const rwItems = examState.completedHistory.filter(i => i.section === "rw");
+      const mathItems = examState.completedHistory.filter(i => i.section === "math");
 
       const rwScore = calculateSectionScaledScore(rwItems, examState.routingPaths.rw);
       const mathScore = calculateSectionScaledScore(mathItems, examState.routingPaths.math);
 
       const totalCorrect = examState.completedHistory.filter(i => i.isCorrect).length;
       const totalQ = examState.completedHistory.length;
-      const totalPct = Math.round((totalCorrect / totalQ) * 100);
+      const totalPct = totalQ ? Math.round((totalCorrect / totalQ) * 100) : 0;
 
-      document.getElementById('score-raw-acc').textContent = `${totalCorrect}/${totalQ} (${totalPct}%)`;
+      document.getElementById("score-raw-acc").textContent = `${totalCorrect}/${totalQ} (${totalPct}%)`;
 
-      // Handle Full vs Single-Section Sprint display
-      const rwCard = document.getElementById('card-rw-score');
-      const mathCard = document.getElementById('card-math-score');
+      const rwCard = document.getElementById("card-rw-score");
+      const mathCard = document.getElementById("card-math-score");
+      const totalEl = document.getElementById("score-total");
+      const denomEl = document.getElementById("score-total-denom");
+      const labelEl = document.getElementById("score-primary-label");
+      const modeBadgeEl = document.getElementById("score-mode-badge");
 
-      let compositeScore = 0;
       if (rwScore !== null && mathScore !== null) {
-        compositeScore = rwScore + mathScore;
-        document.getElementById('score-total').textContent = compositeScore;
-        document.getElementById('score-mode-badge').textContent = 'Full 1600 Scale';
-        rwCard.classList.remove('opacity-50');
-        mathCard.classList.remove('opacity-50');
-      } else if (rwScore !== null) {
-        compositeScore = rwScore * 2;
-        document.getElementById('score-total').textContent = `${rwScore}`;
-        document.querySelector('#score-total + span').textContent = '/ 800 (RW)';
-        document.getElementById('score-mode-badge').textContent = 'RW Sprint';
-        mathCard.classList.add('opacity-50');
+        labelEl.textContent = "Total Scaled Score";
+        totalEl.textContent = rwScore + mathScore;
+        denomEl.textContent = "/ 1600";
+        modeBadgeEl.textContent = "Full Simulation";
+        rwCard.classList.remove("opacity-50");
+        mathCard.classList.remove("opacity-50");
+      } else if (mathScore !== null) {
+        labelEl.textContent = "Math Scaled Score";
+        totalEl.textContent = mathScore;
+        denomEl.textContent = "/ 800";
+        modeBadgeEl.textContent = "Math Only Test";
+        rwCard.classList.add("opacity-50");
+        mathCard.classList.remove("opacity-50");
       } else {
-        compositeScore = mathScore * 2;
-        document.getElementById('score-total').textContent = `${mathScore}`;
-        document.querySelector('#score-total + span').textContent = '/ 800 (Math)';
-        document.getElementById('score-mode-badge').textContent = 'Math Sprint';
-        rwCard.classList.add('opacity-50');
+        labelEl.textContent = "Reading & Writing Score";
+        totalEl.textContent = rwScore;
+        denomEl.textContent = "/ 800";
+        modeBadgeEl.textContent = "RW Only Test";
+        mathCard.classList.add("opacity-50");
+        rwCard.classList.remove("opacity-50");
       }
 
-      // Percentile estimator
-      let percentile = '50th';
-      if (compositeScore >= 1500) percentile = '99th';
-      else if (compositeScore >= 1400) percentile = '94th';
-      else if (compositeScore >= 1300) percentile = '87th';
-      else if (compositeScore >= 1200) percentile = '76th';
-      else if (compositeScore >= 1050) percentile = '55th';
-      else percentile = '35th';
-      document.getElementById('score-percentile-text').textContent = `${percentile} National Representative Percentile • Adaptive MST Verified`;
+      document.getElementById("score-percentile-text").textContent =
+        `Adaptive Routing: ${examState.routingPaths.math ? `Math → ${examState.routingPaths.math} M2` : `RW → ${examState.routingPaths.rw} M2`}`;
 
-      // Populate RW Card
       if (rwScore !== null) {
         const rwCorrect = rwItems.filter(i => i.isCorrect).length;
-        document.getElementById('score-rw').textContent = rwScore;
-        document.getElementById('rw-correct-count').textContent = `${rwCorrect}/${rwItems.length}`;
-        document.getElementById('bar-rw').style.width = `${((rwScore - 200) / 600) * 100}%`;
-        document.getElementById('rw-route-badge').textContent = `M1 → ${examState.routingPaths.rw === 'Hard' ? 'Harder M2' : 'Standard M2'}`;
+        document.getElementById("score-rw").textContent = rwScore;
+        document.getElementById("rw-correct-count").textContent = `${rwCorrect}/${rwItems.length}`;
+        document.getElementById("bar-rw").style.width = `${((rwScore - 200) / 600) * 100}%`;
+        document.getElementById("rw-route-badge").textContent = `M1 → ${examState.routingPaths.rw === "Hard" ? "Harder M2" : "Standard M2"}`;
       } else {
-        document.getElementById('score-rw').textContent = '—';
-        document.getElementById('rw-correct-count').textContent = 'Not Taken';
-        document.getElementById('bar-rw').style.width = '0%';
+        document.getElementById("score-rw").textContent = "—";
+        document.getElementById("rw-correct-count").textContent = "Not Taken";
+        document.getElementById("bar-rw").style.width = "0%";
+        document.getElementById("rw-route-badge").textContent = "Skipped";
       }
 
-      // Populate Math Card
       if (mathScore !== null) {
         const mathCorrect = mathItems.filter(i => i.isCorrect).length;
-        document.getElementById('score-math').textContent = mathScore;
-        document.getElementById('math-correct-count').textContent = `${mathCorrect}/${mathItems.length}`;
-        document.getElementById('bar-math').style.width = `${((mathScore - 200) / 600) * 100}%`;
-        document.getElementById('math-route-badge').textContent = `M1 → ${examState.routingPaths.math === 'Hard' ? 'Harder M2' : 'Standard M2'}`;
+        document.getElementById("score-math").textContent = mathScore;
+        document.getElementById("math-correct-count").textContent = `${mathCorrect}/${mathItems.length}`;
+        document.getElementById("bar-math").style.width = `${((mathScore - 200) / 600) * 100}%`;
+        document.getElementById("math-route-badge").textContent = `M1 → ${examState.routingPaths.math === "Hard" ? "Harder M2" : "Standard M2"}`;
       } else {
-        document.getElementById('score-math').textContent = '—';
-        document.getElementById('math-correct-count').textContent = 'Not Taken';
-        document.getElementById('bar-math').style.width = '0%';
+        document.getElementById("score-math").textContent = "—";
+        document.getElementById("math-correct-count").textContent = "Not Taken";
+        document.getElementById("bar-math").style.width = "0%";
+        document.getElementById("math-route-badge").textContent = "Skipped";
       }
 
       renderDomainBreakdown();
-      filterReview('all');
+      filterReview("all");
       lucide.createIcons();
     }
 
@@ -1999,18 +2247,18 @@
         if (item.isCorrect) domainStats[item.domain].correct++;
       });
 
-      const container = document.getElementById('domain-bars-container');
-      container.innerHTML = '';
+      const container = document.getElementById("domain-bars-container");
+      container.innerHTML = "";
 
       Object.entries(domainStats).forEach(([domain, stat]) => {
         const pct = Math.round((stat.correct / stat.total) * 100);
-        const barColor = pct >= 80 ? 'bg-emerald-500' : pct >= 50 ? 'bg-blue-600' : 'bg-amber-500';
+        const barColor = pct >= 80 ? "bg-emerald-500" : pct >= 50 ? "bg-blue-600" : "bg-amber-500";
         container.innerHTML += `
           <div>
             <div class="flex justify-between items-center text-sm mb-1.5">
               <div>
                 <span class="font-bold text-slate-800">${domain}</span>
-                <span class="ml-2 text-[11px] uppercase font-semibold text-slate-400">${stat.section === 'rw' ? 'RW' : 'Math'}</span>
+                <span class="ml-2 text-[11px] uppercase font-semibold text-slate-400">${stat.section === "rw" ? "RW" : "Math"}</span>
               </div>
               <span class="font-mono font-bold text-slate-700">${stat.correct}/${stat.total} (${pct}%)</span>
             </div>
@@ -2023,18 +2271,18 @@
     }
 
     function filterReview(filterType) {
-      ['all', 'incorrect', 'flagged'].forEach(t => {
+      ["all", "incorrect", "flagged"].forEach(t => {
         const btn = document.getElementById(`filter-${t}`);
         btn.className = t === filterType
-          ? 'px-3.5 py-1.5 rounded-lg text-xs font-bold bg-[#1e3a8a] text-white cursor-pointer'
-          : 'px-3.5 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 cursor-pointer';
+          ? "px-3.5 py-1.5 rounded-lg text-xs font-bold bg-[#1e3a8a] text-white cursor-pointer"
+          : "px-3.5 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 cursor-pointer";
       });
 
       let filtered = examState.completedHistory;
-      if (filterType === 'incorrect') filtered = filtered.filter(i => !i.isCorrect);
-      if (filterType === 'flagged') filtered = filtered.filter(i => i.wasFlagged);
+      if (filterType === "incorrect") filtered = filtered.filter(i => !i.isCorrect);
+      if (filterType === "flagged") filtered = filtered.filter(i => i.wasFlagged);
 
-      const container = document.getElementById('review-list-container');
+      const container = document.getElementById("review-list-container");
       if (filtered.length === 0) {
         container.innerHTML = `
           <div class="text-center py-10 text-slate-500 text-sm bg-slate-50 rounded-xl border border-slate-200">
@@ -2044,33 +2292,33 @@
         return;
       }
 
-      const letters = ['A', 'B', 'C', 'D'];
-      container.innerHTML = filtered.map((item, idx) => {
+      const letters = ["A", "B", "C", "D"];
+      container.innerHTML = filtered.map(item => {
         const statusBadge = item.isCorrect
           ? `<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800"><i data-lucide="check" class="w-3.5 h-3.5"></i> Correct</span>`
           : `<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-rose-100 text-rose-800"><i data-lucide="x" class="w-3.5 h-3.5"></i> Incorrect</span>`;
 
         const flagBadge = item.wasFlagged
           ? `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800"><i data-lucide="bookmark" class="w-3 h-3 fill-amber-700"></i> Flagged</span>`
-          : '';
+          : "";
 
         let userAnsDisplay = '<span class="italic text-slate-400">Omitted (Unanswered)</span>';
-        let correctAnsDisplay = '';
+        let correctAnsDisplay = "";
 
-        if (item.type === 'mc') {
+        if (item.type === "mc") {
           if (item.userAnswer !== undefined) {
             userAnsDisplay = `<strong>(${letters[item.userAnswer]})</strong> ${item.choices[item.userAnswer]}`;
           }
           correctAnsDisplay = `<strong>(${letters[item.correctAnswer]})</strong> ${item.choices[item.correctAnswer]}`;
         } else {
-          if (item.userAnswer !== undefined && item.userAnswer !== '') {
+          if (item.userAnswer !== undefined && item.userAnswer !== "") {
             userAnsDisplay = `<code class="font-mono font-bold">${item.userAnswer}</code>`;
           }
           correctAnsDisplay = `<code class="font-mono font-bold">${item.correctAnswer[0]}</code>`;
         }
 
         return `
-          <div class="p-5 sm:p-6 rounded-2xl border ${item.isCorrect ? 'border-slate-200 bg-white' : 'border-rose-200 bg-rose-50/20'}">
+          <div class="p-5 sm:p-6 rounded-2xl border ${item.isCorrect ? "border-slate-200 bg-white" : "border-rose-200 bg-rose-50/20"}">
             <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
               <div class="flex items-center gap-2">
                 <span class="font-mono text-xs font-bold px-2 py-0.5 rounded bg-slate-800 text-white">${item.id}</span>
@@ -2080,12 +2328,12 @@
               ${statusBadge}
             </div>
 
-            ${item.passage ? `<div class="passage-font text-sm text-slate-700 bg-slate-50 p-4 rounded-xl border border-slate-200 mb-3">${item.passage}</div>` : ''}
+            ${item.passage ? `<div class="passage-font text-sm text-slate-700 bg-slate-50 p-4 rounded-xl border border-slate-200 mb-3">${item.passage}</div>` : ""}
 
             <div class="text-sm sm:text-base font-semibold text-slate-900 mb-4">${item.prompt}</div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm mb-4">
-              <div class="p-3 rounded-xl border ${item.isCorrect ? 'border-emerald-200 bg-emerald-50/50' : 'border-rose-200 bg-rose-50/60'}">
+              <div class="p-3 rounded-xl border ${item.isCorrect ? "border-emerald-200 bg-emerald-50/50" : "border-rose-200 bg-rose-50/60"}">
                 <div class="text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">Your Response</div>
                 <div class="text-slate-900">${userAnsDisplay}</div>
               </div>
@@ -2101,102 +2349,101 @@
             </div>
           </div>
         `;
-      }).join('');
+      }).join("");
 
       lucide.createIcons();
       renderMathInDOM(container);
     }
 
     function resetToLanding() {
-      if (examState.timerInterval) clearInterval(examState.timerInterval);
-      document.getElementById('report-view').classList.add('hidden');
-      document.getElementById('exam-view').classList.add('hidden');
-      document.getElementById('landing-view').classList.remove('hidden');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      clearAllTimers();
+      document.getElementById("report-view").classList.add("hidden");
+      document.getElementById("exam-view").classList.add("hidden");
+      document.getElementById("transition-view").classList.add("hidden");
+      document.getElementById("landing-view").classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     /**
-     * MODAL & CALCULATOR UTILITIES
+     * MODAL & CALCULATOR HELPERS
      */
     function toggleModal(modalId) {
       const el = document.getElementById(modalId);
-      el.classList.toggle('hidden');
-      if (!el.classList.contains('hidden')) {
+      el.classList.toggle("hidden");
+      if (!el.classList.contains("hidden")) {
         renderMathInDOM(el);
-        if (modalId === 'calculator-modal') {
+        if (modalId === "calculator-modal") {
           plotGraph();
         }
       }
     }
 
     function toggleDirectionsModal() {
-      toggleModal('directions-modal');
+      toggleModal("directions-modal");
     }
 
     function switchCalcTab(tab) {
-      const isSci = tab === 'sci';
-      document.getElementById('calc-pane-sci').classList.toggle('hidden', !isSci);
-      document.getElementById('calc-pane-graph').classList.toggle('hidden', isSci);
+      const isSci = tab === "sci";
+      document.getElementById("calc-pane-sci").classList.toggle("hidden", !isSci);
+      document.getElementById("calc-pane-graph").classList.toggle("hidden", isSci);
 
-      document.getElementById('calc-tab-sci').className = isSci
-        ? 'flex-1 py-2 text-blue-700 border-b-2 border-blue-700 bg-white cursor-pointer'
-        : 'flex-1 py-2 text-slate-500 hover:text-slate-800 cursor-pointer';
-      document.getElementById('calc-tab-graph').className = !isSci
-        ? 'flex-1 py-2 text-blue-700 border-b-2 border-blue-700 bg-white cursor-pointer'
-        : 'flex-1 py-2 text-slate-500 hover:text-slate-800 cursor-pointer';
+      document.getElementById("calc-tab-sci").className = isSci
+        ? "flex-1 py-2 text-blue-700 border-b-2 border-blue-700 bg-white cursor-pointer"
+        : "flex-1 py-2 text-slate-500 hover:text-slate-800 cursor-pointer";
+      document.getElementById("calc-tab-graph").className = !isSci
+        ? "flex-1 py-2 text-blue-700 border-b-2 border-blue-700 bg-white cursor-pointer"
+        : "flex-1 py-2 text-slate-500 hover:text-slate-800 cursor-pointer";
 
       if (!isSci) plotGraph();
     }
 
     function appendCalc(val) {
-      const input = document.getElementById('calc-input');
+      const input = document.getElementById("calc-input");
       input.value += val;
       input.focus();
     }
 
     function clearCalc() {
-      document.getElementById('calc-input').value = '';
-      document.getElementById('calc-output').textContent = '0';
+      document.getElementById("calc-input").value = "";
+      document.getElementById("calc-output").textContent = "0";
     }
 
     function backspaceCalc() {
-      const input = document.getElementById('calc-input');
+      const input = document.getElementById("calc-input");
       input.value = input.value.slice(0, -1);
     }
 
     function evaluateCalc() {
-      const input = document.getElementById('calc-input').value;
-      const out = document.getElementById('calc-output');
+      const input = document.getElementById("calc-input").value;
+      const out = document.getElementById("calc-output");
       try {
-        // Support ^ for exponentiation and degree trig helpers
-        let sanitized = input
-          .replace(/\^/g, '**')
-          .replace(/sin\(/g, 'Math.sin(')
-          .replace(/cos\(/g, 'Math.cos(')
-          .replace(/tan\(/g, 'Math.tan(');
-        const result = Function('"use strict";return (' + sanitized + ')')();
-        out.textContent = Number.isFinite(result) ? Number(result.toPrecision(10)) : 'Error';
+        const sanitized = input
+          .replace(/\^/g, "**")
+          .replace(/sin\(/g, "Math.sin(")
+          .replace(/cos\(/g, "Math.cos(")
+          .replace(/tan\(/g, "Math.tan(");
+        const result = Function('"use strict";return (' + sanitized + ")")();
+        out.textContent = Number.isFinite(result) ? Number(result.toPrecision(10)) : "Error";
       } catch (e) {
-        out.textContent = 'Syntax Error';
+        out.textContent = "Syntax Error";
       }
     }
 
     function plotGraph() {
-      const canvas = document.getElementById('graph-canvas');
+      const canvas = document.getElementById("graph-canvas");
       if (!canvas) return;
-      const ctx = canvas.getContext('2d');
+      const ctx = canvas.getContext("2d");
       const w = canvas.width;
       const h = canvas.height;
 
       ctx.clearRect(0, 0, w, h);
 
-      // Draw coordinate grid (-10 to 10 on x, -6 to 6 on y)
       const xMin = -10, xMax = 10;
       const yMin = -6, yMax = 6;
       const toPxX = x => ((x - xMin) / (xMax - xMin)) * w;
       const toPxY = y => h - ((y - yMin) / (yMax - yMin)) * h;
 
-      ctx.strokeStyle = '#e2e8f0';
+      ctx.strokeStyle = "#e2e8f0";
       ctx.lineWidth = 1;
       for (let gx = Math.ceil(xMin); gx <= xMax; gx++) {
         ctx.beginPath();
@@ -2211,8 +2458,7 @@
         ctx.stroke();
       }
 
-      // Draw X and Y axes
-      ctx.strokeStyle = '#64748b';
+      ctx.strokeStyle = "#64748b";
       ctx.lineWidth = 1.5;
       ctx.beginPath();
       ctx.moveTo(0, toPxY(0));
@@ -2221,19 +2467,18 @@
       ctx.lineTo(toPxX(0), h);
       ctx.stroke();
 
-      // Parse & Plot f(x)
-      const rawExpr = document.getElementById('graph-fn-input').value;
+      const rawExpr = document.getElementById("graph-fn-input").value;
       const expr = rawExpr
-        .replace(/\^/g, '**')
-        .replace(/sin\(/g, 'Math.sin(')
-        .replace(/cos\(/g, 'Math.cos(')
-        .replace(/tan\(/g, 'Math.tan(')
-        .replace(/sqrt\(/g, 'Math.sqrt(')
-        .replace(/abs\(/g, 'Math.abs(');
+        .replace(/\^/g, "**")
+        .replace(/sin\(/g, "Math.sin(")
+        .replace(/cos\(/g, "Math.cos(")
+        .replace(/tan\(/g, "Math.tan(")
+        .replace(/sqrt\(/g, "Math.sqrt(")
+        .replace(/abs\(/g, "Math.abs(");
 
       try {
-        const fn = new Function('x', `return ${expr};`);
-        ctx.strokeStyle = '#1e3a8a';
+        const fn = new Function("x", `return ${expr};`);
+        ctx.strokeStyle = "#1e3a8a";
         ctx.lineWidth = 2.5;
         ctx.beginPath();
         let started = false;
@@ -2255,7 +2500,7 @@
         }
         ctx.stroke();
       } catch (e) {
-        // Ignore invalid intermediate expressions while typing
+        // Ignore invalid expressions while user is typing
       }
     }
   </script>
