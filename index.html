@@ -167,32 +167,32 @@
         <!-- Card 2: Dedicated Math Only Test + Focused Practice Modes -->
         <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm flex flex-col justify-between">
           <div>
-        <!-- Card 2: Quick Focused Practice -->
-        <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mb-5">
-              <i data-lucide="zap" class="w-6 h-6"></i>
+            <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center mb-5">
+              <i data-lucide="calculator" class="w-6 h-6"></i>
             </div>
-            <h2 class="text-2xl font-bold text-slate-900 mb-2">Quick Focused Practice</h2>
+            <h2 class="text-2xl font-bold text-slate-900 mb-2">Math Only Test & Practice Modes</h2>
             <p class="text-slate-600 text-sm mb-5">
-              Short on time? Take a targeted single-section adaptive sprint or a mixed diagnostic drill with instant access to all Bluebook testing tools.
+              Jump straight into a dedicated adaptive Math test or run a targeted section sprint without taking Reading & Writing first.
             </p>
 
             <div class="space-y-3 mb-6">
+              <!-- Dedicated Math Only Test Button -->
+              <button onclick="startExam('math_only')" class="w-full p-4 rounded-xl border-2 border-emerald-600 bg-emerald-50/40 hover:bg-emerald-50 transition text-left flex items-center justify-between group cursor-pointer">
+                <div>
+                  <div class="flex items-center gap-2">
+                    <span class="font-bold text-slate-900 group-hover:text-emerald-900 text-base">Math Only Test (Adaptive)</span>
+                    <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded-full bg-emerald-600 text-white">New</span>
+                  </div>
+                  <div class="text-xs text-slate-600 mt-0.5">Starts at Math Module 1 → Routes to Harder or Standard Module 2 • MC + Grid-In</div>
+                </div>
+                <i data-lucide="chevron-right" class="w-5 h-5 text-emerald-700 shrink-0"></i>
+              </button>
+
               <!-- Reading & Writing Sprint -->
               <button onclick="startExam('rw_only')" class="w-full p-3.5 rounded-xl border border-slate-200 hover:border-blue-400 hover:bg-blue-50/50 transition text-left flex items-center justify-between group cursor-pointer">
                 <div>
-                  <div class="font-semibold text-slate-900 group-hover:text-blue-900">Reading &amp; Writing Sprint</div>
-                  <div class="text-xs text-slate-500">12 Questions • Adaptive Module 1 &amp; 2 • 16 Mins</div>
-                </div>
-                <i data-lucide="chevron-right" class="w-5 h-5 text-slate-400 group-hover:text-blue-700 shrink-0"></i>
-              </button>
-
-              <!-- Math Sprint (MC + Grid-In) -->
-              <button onclick="startExam('math_only')" class="w-full p-3.5 rounded-xl border border-slate-200 hover:border-blue-400 hover:bg-blue-50/50 transition text-left flex items-center justify-between group cursor-pointer">
-                <div>
-                  <div class="font-semibold text-slate-900 group-hover:text-blue-900">Math Sprint (MC + Grid-In)</div>
-                  <div class="text-xs text-slate-500">12 Questions • Adaptive Module 1 &amp; 2 • 18 Mins</div>
+                  <div class="font-semibold text-slate-900 group-hover:text-blue-900">Reading & Writing Only Test</div>
+                  <div class="text-xs text-slate-500">Starts at RW Module 1 → Routes to Harder or Standard Module 2 • Split-Screen</div>
                 </div>
                 <i data-lucide="chevron-right" class="w-5 h-5 text-slate-400 group-hover:text-blue-700 shrink-0"></i>
               </button>
@@ -201,7 +201,7 @@
 
           <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600 flex items-start gap-2.5">
             <i data-lucide="info" class="w-4 h-4 text-blue-600 shrink-0 mt-0.5"></i>
-            <span>Includes live <strong>Desmos-style Graphing Calculator</strong>, <strong>Math Reference Sheet</strong>, <strong>Option Eliminator</strong>, and <strong>Text Highlighter</strong>.</span>
+            <span>Math modes include the built-in <strong>Graphing & Scientific Calculator</strong>, <strong>Math Reference Sheet</strong>, <strong>Option Eliminator</strong>, and <strong>Flag for Review</strong>.</span>
           </div>
         </div>
       </div>
@@ -265,7 +265,7 @@
           10:00
         </div>
         <p class="text-xs text-amber-700 mt-1">
-          Stretch, hydrate, or skip the break whenever you are ready to start Math.
+          Stretch, hydrate, or click "Begin Next Module" whenever you are ready to start Math.
         </p>
       </div>
 
@@ -280,12 +280,12 @@
         </div>
         <div class="flex justify-between">
           <span class="text-slate-500">Time Allotted:</span>
-          <span id="transition-time" class="font-bold text-slate-900">35 Minutes</span>
+          <span id="transition-time" class="font-bold text-slate-900">9 Minutes</span>
         </div>
       </div>
 
       <button onclick="proceedFromTransition()" class="w-full py-3.5 px-6 rounded-xl bg-[#1e3a8a] hover:bg-blue-900 text-white font-semibold transition flex items-center justify-center gap-2 cursor-pointer">
-        <span id="transition-btn-label">Begin Next Module</span>
+        <span>Begin Next Module</span>
         <i data-lucide="arrow-right" class="w-4 h-4"></i>
       </button>
     </div>
@@ -747,20 +747,19 @@
      */
     const EXAM_CONFIG = {
       timers: {
-        rwModuleSeconds: 1920,         // 32 minutes (32 * 60)
-        mathModuleSeconds: 2100,       // 35 minutes (35 * 60)
-        breakSeconds: 600              // 10-minute optional break (10 * 60)
+        rwModuleSeconds: 8 * 60,       // Change to 32 * 60 for official 32-min RW modules
+        mathModuleSeconds: 9 * 60,     // Change to 35 * 60 for official 35-min Math modules
+        breakSeconds: 10 * 60          // Optional 10-minute break between RW and Math in Full mode
       },
-      lowTimeWarningSeconds: 300,      // Timer turns red at or below 5 minutes (300s)
-      adaptiveThreshold: 0.6           // 60% accuracy on Module 1 routes to Harder Module 2
+      lowTimeWarningSeconds: 5 * 60,   // Timer turns red at or below 5 minutes (300s)
+      adaptiveThreshold: 0.65          // 65% (e.g., 4/6) on Module 1 routes to Harder Module 2
     };
 
     /**
      * QUESTION BANK
-     * - rw_m1, rw_m2_easy, rw_m2_hard: 6 questions each
-     * - math_m1 (Ch 19: Angles - 7 exercises)
-     * - math_m2_easy (Ch 20: Triangles - 7 exercises)
-     * - math_m2_hard (Ch 21: Circles - 7 exercises)
+     * Add, edit, or remove questions inside:
+     * - rw_m1, rw_m2_easy, rw_m2_hard
+     * - math_m1, math_m2_easy, math_m2_hard
      */
     const QUESTION_BANK = {
       rw_m1: [
@@ -1018,542 +1017,208 @@
         }
       ],
 
-      /**
-       * MATH MODULE 1: CHAPTER 19 — ANGLES (7 EXERCISES)
-       */
       math_m1: [
         {
-          id: "CH19-Q1",
+          id: "MATH-M1-1",
           section: "math",
-          domain: "Geometry & Trigonometry",
-          skill: "Exterior Angle Theorem",
+          domain: "Algebra",
+          skill: "Linear Equations",
           type: "mc",
-          prompt: `
-            <div class="mb-4 flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-4">
-              <svg viewBox="0 0 320 155" class="w-full max-w-[300px] h-auto">
-                <line x1="25" y1="125" x2="290" y2="125" stroke="#0f172a" stroke-width="2.2"/>
-                <polygon points="120,125 225,30 275,125" fill="rgba(30,58,138,0.06)" stroke="#0f172a" stroke-width="2.2"/>
-                <path d="M 94 125 A 26 26 0 0 1 139 107" fill="none" stroke="#1e3a8a" stroke-width="1.8"/>
-                <text x="84" y="110" font-size="14" font-weight="bold" fill="#1e3a8a">k°</text>
-                <text x="212" y="58" font-size="14" font-weight="bold" fill="#0f172a">i°</text>
-                <text x="242" y="116" font-size="14" font-weight="bold" fill="#0f172a">j°</text>
-              </svg>
-              <span class="text-xs italic text-slate-500 mt-1">Note: Figure not drawn to scale.</span>
-            </div>
-            <p>In the figure above, \\(i = 50\\) and \\(k = 140\\). What is the value of \\(j\\)?</p>
-          `,
-          choices: ["\\(60\\)", "\\(70\\)", "\\(80\\)", "\\(90\\)"],
-          correctAnswer: 3,
-          explanation: "By the Exterior Angle Theorem, the exterior angle \\(k^\\circ\\) equals the sum of the two remote interior angles: \\(k = i + j\\). Substituting \\(140 = 50 + j\\) gives \\(j = 90\\)."
-        },
-        {
-          id: "CH19-Q3",
-          section: "math",
-          domain: "Geometry & Trigonometry",
-          skill: "Parallel Lines & Transversals",
-          type: "mc",
-          prompt: `
-            <div class="mb-4 flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-4">
-              <svg viewBox="0 0 320 170" class="w-full max-w-[300px] h-auto">
-                <line x1="20" y1="55" x2="300" y2="55" stroke="#0f172a" stroke-width="2.2"/>
-                <line x1="20" y1="120" x2="300" y2="120" stroke="#0f172a" stroke-width="2.2"/>
-                <text x="285" y="47" font-size="13" font-style="italic" font-weight="bold" fill="#0f172a">l</text>
-                <text x="285" y="112" font-size="13" font-style="italic" font-weight="bold" fill="#0f172a">m</text>
-                <line x1="75" y1="155" x2="145" y2="20" stroke="#0f172a" stroke-width="2.2"/>
-                <line x1="250" y1="155" x2="180" y2="20" stroke="#0f172a" stroke-width="2.2"/>
-                <text x="98" y="45" font-size="14" font-weight="bold" fill="#1e3a8a">a°</text>
-                <text x="210" y="45" font-size="14" font-weight="bold" fill="#1e3a8a">b°</text>
-                <text x="242" y="142" font-size="14" font-weight="bold" fill="#1e3a8a">c°</text>
-                <text x="64" y="142" font-size="14" font-weight="bold" fill="#1e3a8a">d°</text>
-              </svg>
-            </div>
-            <p>In the figure above, lines \\(l\\) and \\(m\\) are parallel. What is the value of \\(a + b + c + d\\)?</p>
-          `,
-          choices: [
-            "\\(270\\)",
-            "\\(360\\)",
-            "\\(720\\)",
-            "It cannot be determined from the information given."
-          ],
+          prompt: "If \\(4(2x - 3) + 5 = 3x + 13\\), what is the value of \\(2x\\)?",
+          choices: ["\\(4\\)", "\\(8\\)", "\\(12\\)", "\\(16\\)"],
           correctAnswer: 1,
-          explanation: "Angles \\(a^\\circ\\) and \\(d^\\circ\\) are same-side exterior angles on parallel lines \\(l\\) and \\(m\\), so \\(a + d = 180\\). Similarly, \\(b + c = 180\\). Adding both pairs yields \\(a + b + c + d = 180 + 180 = 360\\)."
+          explanation: "Simplify: \\(8x - 7 = 3x + 13 \\implies 5x = 20 \\implies x = 4\\). Therefore, \\(2x = 8\\)."
         },
         {
-          id: "CH19-Q5",
+          id: "MATH-M1-2",
           section: "math",
-          domain: "Geometry & Trigonometry",
-          skill: "Parallel Lines & Auxiliary Lines",
+          domain: "Algebra",
+          skill: "Systems of Equations",
           type: "mc",
-          prompt: `
-            <div class="mb-4 flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-4">
-              <svg viewBox="0 0 320 175" class="w-full max-w-[300px] h-auto">
-                <line x1="25" y1="35" x2="295" y2="35" stroke="#0f172a" stroke-width="2.2"/>
-                <line x1="25" y1="145" x2="295" y2="145" stroke="#0f172a" stroke-width="2.2"/>
-                <text x="282" y="27" font-size="13" font-style="italic" font-weight="bold" fill="#0f172a">l</text>
-                <text x="282" y="137" font-size="13" font-style="italic" font-weight="bold" fill="#0f172a">m</text>
-                <polyline points="90,35 190,90 105,145" fill="none" stroke="#0f172a" stroke-width="2.2"/>
-                <text x="128" y="52" font-size="14" font-weight="bold" fill="#1e3a8a">b°</text>
-                <text x="150" y="95" font-size="14" font-weight="bold" fill="#0f172a">x°</text>
-                <text x="142" y="137" font-size="14" font-weight="bold" fill="#1e3a8a">a°</text>
-              </svg>
-            </div>
-            <p>In the figure above, lines \\(l\\) and \\(m\\) are parallel. What is \\(x\\) in terms of \\(a\\) and \\(b\\)?</p>
-          `,
-          choices: [
-            "\\(a + b\\)",
-            "\\(a - b\\)",
-            "\\(b - a\\)",
-            "\\(180 - a - b\\)"
-          ],
+          prompt: "A coffee roaster sells House Blend for \\(\\$12\\)/lb and Single-Origin Blend for \\(\\$18\\)/lb. Yesterday, \\(30\\) pounds total were sold for \\(\\$432\\). How many pounds of Single-Origin Blend were sold?",
+          choices: ["\\(10\\)", "\\(12\\)", "\\(18\\)", "\\(20\\)"],
+          correctAnswer: 1,
+          explanation: "With \\(h + s = 30\\) and \\(12h + 18s = 432\\), substitute \\(h = 30 - s\\): \\(360 + 6s = 432 \\implies s = 12\\)."
+        },
+        {
+          id: "MATH-M1-3",
+          section: "math",
+          domain: "Advanced Math",
+          skill: "Quadratic Functions",
+          type: "mc",
+          prompt: "The function \\(f\\) is defined by \\(f(x) = 3(x - 4)^2 - 11\\). What is the minimum value of \\(f(x)\\)?",
+          choices: ["\\(-11\\)", "\\(-4\\)", "\\(3\\)", "\\(4\\)"],
           correctAnswer: 0,
-          explanation: "Draw an auxiliary line through the vertex of \\(x^\\circ\\) parallel to \\(l\\) and \\(m\\). By alternate interior angles, the upper portion of \\(x\\) equals \\(b\\) and the lower portion equals \\(a\\), so \\(x = a + b\\)."
+          explanation: "In vertex form \\(a(x - h)^2 + k\\) with \\(a > 0\\), the minimum value is \\(k = -11\\)."
         },
         {
-          id: "CH19-Q8",
+          id: "MATH-M1-4",
+          section: "math",
+          domain: "Problem-Solving & Data Analysis",
+          skill: "Percentages",
+          type: "spr",
+          prompt: "After a \\(20\\%\\) discount on a laptop, the sale price is \\(\\$680\\). What was the original price in dollars?",
+          correctAnswer: ["850", "$850", "850.00"],
+          explanation: "\\(0.80P = 680 \\implies P = 680 / 0.80 = 850\\)."
+        },
+        {
+          id: "MATH-M1-5",
           section: "math",
           domain: "Geometry & Trigonometry",
-          skill: "Triangle Angle Sum & Vertical Angles",
+          skill: "Right Triangle Trig",
           type: "mc",
-          prompt: `
-            <div class="mb-4 flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-4">
-              <svg viewBox="0 0 320 185" class="w-full max-w-[300px] h-auto">
-                <polygon points="85,25 225,25 155,95" fill="rgba(30,58,138,0.06)" stroke="#0f172a" stroke-width="2.2"/>
-                <polygon points="155,95 95,165 245,165" fill="rgba(30,58,138,0.06)" stroke="#0f172a" stroke-width="2.2"/>
-                <text x="108" y="45" font-size="13" font-weight="bold" fill="#0f172a">45°</text>
-                <text x="190" y="45" font-size="13" font-weight="bold" fill="#1e3a8a">z°</text>
-                <text x="115" y="157" font-size="13" font-weight="bold" fill="#0f172a">40°</text>
-                <text x="202" y="157" font-size="13" font-weight="bold" fill="#0f172a">60°</text>
-              </svg>
-              <span class="text-xs italic text-slate-500 mt-1">Note: Figure not drawn to scale.</span>
-            </div>
-            <p>In the figure above, what is the value of \\(z\\)?</p>
-          `,
-          choices: ["\\(35\\)", "\\(45\\)", "\\(55\\)", "\\(80\\)"],
-          correctAnswer: 2,
-          explanation: "In the bottom triangle, the third angle at the intersection is \\(180^\\circ - 40^\\circ - 60^\\circ = 80^\\circ\\). By vertical angles, the top triangle also has an \\(80^\\circ\\) angle, so \\(z = 180 - 45 - 80 = 55\\)."
+          prompt: "In right triangle \\(ABC\\) with right angle \\(C\\), \\(\\sin(A) = \\frac{5}{13}\\). What is \\(\\cos(B)\\)?",
+          choices: ["\\(\\frac{5}{13}\\)", "\\(\\frac{12}{13}\\)", "\\(\\frac{5}{12}\\)", "\\(\\frac{12}{5}\\)"],
+          correctAnswer: 0,
+          explanation: "Since \\(A\\) and \\(B\\) are complementary angles (\\(A + B = 90^\\circ\\)), \\(\\cos(B) = \\sin(A) = \\frac{5}{13}\\)."
         },
         {
-          id: "CH19-Q12",
+          id: "MATH-M1-6",
           section: "math",
-          domain: "Geometry & Trigonometry",
-          skill: "Interior Angles of Regular Polygons",
-          type: "mc",
-          prompt: `
-            <div class="mb-4 flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-4">
-              <svg viewBox="0 0 280 185" class="w-full max-w-[260px] h-auto">
-                <polygon points="95,25 185,25 230,95 185,165 95,165 50,95" fill="rgba(30,58,138,0.06)" stroke="#0f172a" stroke-width="2.2"/>
-                <line x1="185" y1="25" x2="185" y2="165" stroke="#0f172a" stroke-width="2" stroke-dasharray="4 3"/>
-                <polyline points="173,165 173,153 185,153" fill="none" stroke="#0f172a" stroke-width="1.8"/>
-                <text x="191" y="143" font-size="14" font-weight="bold" fill="#1e3a8a">x°</text>
-              </svg>
-            </div>
-            <p>A regular hexagon is shown in the figure above. What is the value of \\(x\\)?</p>
-          `,
-          choices: ["\\(15\\)", "\\(20\\)", "\\(25\\)", "\\(30\\)"],
-          correctAnswer: 3,
-          explanation: "Each interior angle of a regular hexagon is \\(\\frac{180(6 - 2)}{6} = 120^\\circ\\). At the bottom-right vertex, the \\(120^\\circ\\) interior angle is split into a \\(90^\\circ\\) angle and \\(x^\\circ\\), so \\(x = 120 - 90 = 30\\)."
-        },
-        {
-          id: "CH19-Q14",
-          section: "math",
-          domain: "Geometry & Trigonometry",
-          skill: "Nested Triangle Angle Sums",
-          type: "mc",
-          prompt: `
-            <div class="mb-4 flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-4">
-              <svg viewBox="0 0 320 185" class="w-full max-w-[300px] h-auto">
-                <polygon points="160,20 55,165 265,165" fill="rgba(30,58,138,0.05)" stroke="#0f172a" stroke-width="2.2"/>
-                <polyline points="55,165 160,92 265,165" fill="rgba(30,58,138,0.07)" stroke="#0f172a" stroke-width="2"/>
-                <text x="148" y="54" font-size="13" font-weight="bold" fill="#0f172a">70°</text>
-                <text x="145" y="118" font-size="13" font-weight="bold" fill="#0f172a">100°</text>
-                <text x="86" y="142" font-size="13" font-weight="bold" fill="#1e3a8a">x°</text>
-                <text x="220" y="142" font-size="13" font-weight="bold" fill="#1e3a8a">y°</text>
-              </svg>
-              <span class="text-xs italic text-slate-500 mt-1">Note: Figure not drawn to scale.</span>
-            </div>
-            <p>In the figure above, what is the value of \\(x + y\\)?</p>
-          `,
-          choices: ["\\(10\\)", "\\(20\\)", "\\(30\\)", "\\(50\\)"],
-          correctAnswer: 2,
-          explanation: "In the inner triangle, the two base angles sum to \\(180^\\circ - 100^\\circ = 80^\\circ\\). In the outer triangle, \\(70^\\circ + (x + y) + 80^\\circ = 180^\\circ\\), so \\(x + y = 30\\)."
-        },
-        {
-          id: "CH19-Q15",
-          section: "math",
-          domain: "Geometry & Trigonometry",
-          skill: "Parallel Lines & Supplementary Pairs",
-          type: "grid",
-          prompt: `
-            <div class="mb-4 flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-4">
-              <svg viewBox="0 0 330 185" class="w-full max-w-[310px] h-auto">
-                <line x1="20" y1="40" x2="310" y2="40" stroke="#0f172a" stroke-width="2.2"/>
-                <line x1="20" y1="95" x2="310" y2="95" stroke="#0f172a" stroke-width="2.2"/>
-                <line x1="20" y1="150" x2="310" y2="150" stroke="#0f172a" stroke-width="2.2"/>
-                <text x="296" y="32" font-size="13" font-style="italic" font-weight="bold" fill="#0f172a">l</text>
-                <text x="296" y="87" font-size="13" font-style="italic" font-weight="bold" fill="#0f172a">m</text>
-                <text x="296" y="142" font-size="13" font-style="italic" font-weight="bold" fill="#0f172a">n</text>
-                <line x1="70" y1="175" x2="175" y2="15" stroke="#0f172a" stroke-width="2.2"/>
-                <line x1="255" y1="175" x2="150" y2="15" stroke="#0f172a" stroke-width="2.2"/>
-                <text x="122" y="56" font-size="13" font-weight="bold" fill="#0f172a">40°</text>
-                <text x="218" y="88" font-size="13" font-weight="bold" fill="#0f172a">60°</text>
-                <text x="188" y="88" font-size="14" font-weight="bold" fill="#1e3a8a">b°</text>
-                <text x="195" y="143" font-size="14" font-weight="bold" fill="#1e3a8a">a°</text>
-              </svg>
-              <span class="text-xs italic text-slate-500 mt-1">Note: Figure not drawn to scale.</span>
-            </div>
-            <p>In the figure above, lines \\(l\\), \\(m\\), and \\(n\\) are parallel. What is the value of \\(a + b\\)?</p>
-          `,
-          correctAnswer: ["260"],
-          explanation: "Using corresponding angles on parallel lines, \\(a^\\circ\\) is supplementary to \\(60^\\circ\\) (\\(a = 180 - 60 = 120\\)), and \\(b^\\circ\\) is supplementary to \\(40^\\circ\\) (\\(b = 180 - 40 = 140\\)). Thus, \\(a + b = 120 + 140 = 260\\)."
+          domain: "Problem-Solving & Data Analysis",
+          skill: "Mean & Averages",
+          type: "spr",
+          prompt: "The mean of five numbers is \\(18\\). When a sixth number is added, the mean of all six numbers is \\(21\\). What is the sixth number?",
+          correctAnswer: ["36"],
+          explanation: "Total of six numbers = \\(6 \\times 21 = 126\\). Total of first five = \\(5 \\times 18 = 90\\). Sixth number = \\(126 - 90 = 36\\)."
         }
       ],
 
-      /**
-       * MATH MODULE 2 (STANDARD): CHAPTER 20 — TRIANGLES (7 EXERCISES)
-       */
       math_m2_easy: [
         {
-          id: "CH20-Q1",
+          id: "MATH-M2E-1",
           section: "math",
-          domain: "Geometry & Trigonometry",
-          skill: "Pythagorean Theorem",
+          domain: "Algebra",
+          skill: "Slope",
           type: "mc",
-          prompt: "<p>The lengths of the sides of a right triangle are \\(x\\), \\(x - 2\\), and \\(x + 5\\). Which of the following equations could be used to find \\(x\\)?</p>",
-          choices: [
-            "\\(x + x - 2 = x + 5\\)",
-            "\\(x^2 + (x + 5)^2 = (x - 2)^2\\)",
-            "\\(x^2 + (x - 2)^2 = (x + 5)^2\\)",
-            "\\((x - 2)^2 + (x + 5)^2 = x^2\\)"
-          ],
+          prompt: "Line \\(k\\) passes through \\((2, 5)\\) and \\((6, 17)\\) in the \\(xy\\)-plane. What is the slope of line \\(k\\)?",
+          choices: ["\\(\\frac{1}{3}\\)", "\\(2\\)", "\\(3\\)", "\\(4\\)"],
           correctAnswer: 2,
-          explanation: "In a right triangle, the hypotenuse is the longest side, which is \\(x + 5\\). Applying the Pythagorean theorem \\(a^2 + b^2 = c^2\\) gives \\(x^2 + (x - 2)^2 = (x + 5)^2\\)."
+          explanation: "\\(m = \\frac{17 - 5}{6 - 2} = \\frac{12}{4} = 3\\)."
         },
         {
-          id: "CH20-Q3",
+          id: "MATH-M2E-2",
+          section: "math",
+          domain: "Algebra",
+          skill: "Linear Inequalities",
+          type: "mc",
+          prompt: "Which value of \\(x\\) satisfies \\(3x - 7 > 11\\)?",
+          choices: ["\\(4\\)", "\\(5\\)", "\\(6\\)", "\\(7\\)"],
+          correctAnswer: 3,
+          explanation: "\\(3x > 18 \\implies x > 6\\), so \\(7\\) is a solution."
+        },
+        {
+          id: "MATH-M2E-3",
+          section: "math",
+          domain: "Advanced Math",
+          skill: "Polynomial Operations",
+          type: "mc",
+          prompt: "Which expression is equivalent to \\((3x^2 + 5x - 2) - (x^2 - 2x + 4)\\)?",
+          choices: ["\\(2x^2 + 3x + 2\\)", "\\(2x^2 + 7x - 6\\)", "\\(4x^2 + 3x - 6\\)", "\\(2x^2 + 7x + 2\\)"],
+          correctAnswer: 1,
+          explanation: "Distribute the minus sign and combine like terms: \\(2x^2 + 7x - 6\\)."
+        },
+        {
+          id: "MATH-M2E-4",
+          section: "math",
+          domain: "Problem-Solving & Data Analysis",
+          skill: "Rates & Proportions",
+          type: "spr",
+          prompt: "A printer prints \\(45\\) pages every \\(3\\) minutes at a constant rate. How many pages does it print in \\(14\\) minutes?",
+          correctAnswer: ["210"],
+          explanation: "Rate is \\(15\\) pages/minute. In \\(14\\) minutes: \\(15 \\times 14 = 210\\) pages."
+        },
+        {
+          id: "MATH-M2E-5",
           section: "math",
           domain: "Geometry & Trigonometry",
-          skill: "Special Right Triangles (45°-45°-90°)",
+          skill: "Circles",
           type: "mc",
-          prompt: `
-            <div class="mb-4 flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-4">
-              <svg viewBox="0 0 220 175" class="w-full max-w-[200px] h-auto">
-                <rect x="45" y="25" width="120" height="120" fill="rgba(30,58,138,0.06)" stroke="#0f172a" stroke-width="2.2"/>
-                <line x1="45" y1="145" x2="165" y2="25" stroke="#1e3a8a" stroke-width="2.2"/>
-                <text x="174" y="90" font-size="14" font-weight="bold" fill="#0f172a">6</text>
-                <text x="95" y="80" font-size="15" font-weight="bold" fill="#1e3a8a">x</text>
-              </svg>
-            </div>
-            <p>A square of side length \\(6\\) is shown in the figure above. What is the value of \\(x\\)?</p>
-          `,
-          choices: ["\\(3\\sqrt{2}\\)", "\\(6\\)", "\\(6\\sqrt{2}\\)", "\\(6\\sqrt{3}\\)"],
+          prompt: "A circle has circumference \\(16\\pi\\). What is its area?",
+          choices: ["\\(8\\pi\\)", "\\(16\\pi\\)", "\\(64\\pi\\)", "\\(256\\pi\\)"],
           correctAnswer: 2,
-          explanation: "The diagonal of a square divides it into two \\(45^\\circ\\text{-}45^\\circ\\text{-}90^\\circ\\) right triangles with legs of length \\(6\\). The hypotenuse is \\(6\\sqrt{2}\\)."
+          explanation: "\\(2\\pi r = 16\\pi \\implies r = 8 \\implies \\text{Area} = \\pi(8)^2 = 64\\pi\\)."
         },
         {
-          id: "CH20-Q5",
+          id: "MATH-M2E-6",
           section: "math",
           domain: "Geometry & Trigonometry",
-          skill: "Triangle Inequality Theorem",
-          type: "grid",
-          prompt: "<p>The lengths of two sides of a triangle are \\(3\\) and \\(13\\). What is one possible length of the third side?</p>",
-          correctAnswer: ["12", "11", "13", "14", "15"],
-          validateGrid: (val) => {
-            const num = parseFloat(val);
-            if (!Number.isFinite(num) && val.includes("/")) {
-              const parts = val.split("/");
-              if (parts.length === 2) {
-                const f = parseFloat(parts[0]) / parseFloat(parts[1]);
-                return f > 10 && f < 16;
-              }
-            }
-            return Number.isFinite(num) && num > 10 && num < 16;
-          },
-          explanation: "By the Triangle Inequality Theorem, the third side \\(x\\) must lie strictly between the difference and sum of the other two sides: \\(13 - 3 < x < 13 + 3\\), so \\(10 < x < 16\\) (for example, \\(12\\))."
-        },
-        {
-          id: "CH20-Q8",
-          section: "math",
-          domain: "Geometry & Trigonometry",
-          skill: "Isosceles Triangles & Area",
-          type: "grid",
-          prompt: `
-            <div class="mb-4 flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-4">
-              <svg viewBox="0 0 280 165" class="w-full max-w-[260px] h-auto">
-                <polygon points="140,35 45,135 235,135" fill="rgba(30,58,138,0.06)" stroke="#0f172a" stroke-width="2.2"/>
-                <text x="135" y="25" font-size="14" font-weight="bold" fill="#0f172a">N</text>
-                <text x="28" y="142" font-size="14" font-weight="bold" fill="#0f172a">M</text>
-                <text x="242" y="142" font-size="14" font-weight="bold" fill="#0f172a">O</text>
-                <text x="78" y="80" font-size="14" font-weight="bold" fill="#1e3a8a">5</text>
-                <text x="194" y="80" font-size="14" font-weight="bold" fill="#1e3a8a">5</text>
-                <text x="136" y="153" font-size="14" font-weight="bold" fill="#0f172a">8</text>
-              </svg>
-            </div>
-            <p>What is the area of isosceles triangle \\(MNO\\) above?</p>
-          `,
-          correctAnswer: ["12"],
-          explanation: "Dropping an altitude from \\(N\\) to base \\(MO\\) bisects the base into two segments of length \\(4\\). Each half forms a \\(3\\text{-}4\\text{-}5\\) right triangle with height \\(h = 3\\). Thus, \\(\\text{Area} = \\frac{1}{2}(8)(3) = 12\\)."
-        },
-        {
-          id: "CH20-Q9",
-          section: "math",
-          domain: "Geometry & Trigonometry",
-          skill: "Equilateral Triangles & Special Right Triangles",
-          type: "mc",
-          prompt: `
-            <div class="mb-4 flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-4">
-              <svg viewBox="0 0 220 215" class="w-full max-w-[190px] h-auto">
-                <polygon points="110,16 60,102 160,102" fill="rgba(30,58,138,0.12)" stroke="#0f172a" stroke-width="2.2"/>
-                <rect x="60" y="102" width="100" height="100" fill="rgba(30,58,138,0.04)" stroke="#0f172a" stroke-width="2.2"/>
-              </svg>
-            </div>
-            <p>In the figure above, an equilateral triangle sits on top of a square. If the square has an area of \\(4\\), what is the area of the equilateral triangle?</p>
-          `,
-          choices: ["\\(\\sqrt{3}\\)", "\\(\\frac{\\sqrt{3}}{2}\\)", "\\(\\frac{3}{4}\\)", "\\(1\\)"],
-          correctAnswer: 0,
-          explanation: "Since the square has area \\(4\\), its side length is \\(s = 2\\), which is also the side length of the equilateral triangle. Its area is \\(\\frac{s^2\\sqrt{3}}{4} = \\frac{2^2\\sqrt{3}}{4} = \\sqrt{3}\\)."
-        },
-        {
-          id: "CH20-Q12",
-          section: "math",
-          domain: "Geometry & Trigonometry",
-          skill: "Similar Triangles & Proportions",
-          type: "grid",
-          prompt: `
-            <div class="mb-4 flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-4">
-              <svg viewBox="0 0 320 195" class="w-full max-w-[300px] h-auto">
-                <polygon points="65,25 45,165 285,165" fill="rgba(30,58,138,0.05)" stroke="#0f172a" stroke-width="2.2"/>
-                <line x1="57" y1="82" x2="180" y2="165" stroke="#0f172a" stroke-width="2"/>
-                <line x1="152" y1="84" x2="132" y2="165" stroke="#0f172a" stroke-width="2"/>
-                <text x="58" y="18" font-size="13" font-weight="bold">A</text>
-                <text x="30" y="172" font-size="13" font-weight="bold">B</text>
-                <text x="290" y="172" font-size="13" font-weight="bold">C</text>
-                <text x="41" y="85" font-size="13" font-weight="bold">D</text>
-                <text x="156" y="82" font-size="13" font-weight="bold">G</text>
-                <text x="128" y="180" font-size="13" font-weight="bold">H</text>
-                <text x="178" y="180" font-size="13" font-weight="bold">F</text>
-                <text x="127" y="114" font-size="12" font-weight="bold" fill="#1e3a8a">E</text>
-                <text x="95" y="102" font-size="12" font-weight="bold" fill="#1e3a8a">1</text>
-                <text x="148" y="104" font-size="12" font-weight="bold" fill="#1e3a8a">2</text>
-                <text x="146" y="142" font-size="12" font-weight="bold" fill="#1e3a8a">3</text>
-                <text x="205" y="158" font-size="12" font-weight="bold" fill="#1e3a8a">10</text>
-              </svg>
-              <span class="text-xs italic text-slate-500 mt-1">Note: Figure not drawn to scale.</span>
-            </div>
-            <p>In the figure above, \\(AB\\) is parallel to \\(GH\\) and \\(DF\\) is parallel to \\(BC\\). If \\(DE = 1\\), \\(EH = 3\\), \\(EG = 2\\), and \\(HC = 10\\), what is the length of \\(AD\\)?</p>
-          `,
-          correctAnswer: ["2.5", "5/2"],
-          explanation: "Because \\(DF \\parallel BC\\) and \\(GH \\parallel AB\\), quadrilateral \\(DBHE\\) is a parallelogram, so \\(BH = DE = 1\\) and \\(DB = EH = 3\\). Then \\(BC = 1 + 10 = 11\\) and \\(GH = 2 + 3 = 5\\). Since \\(\\triangle GHC \\sim \\triangle ABC\\), \\(\\frac{5}{AB} = \\frac{10}{11} \\implies AB = 5.5\\). Therefore, \\(AD = AB - DB = 5.5 - 3 = 2.5\\)."
-        },
-        {
-          id: "CH20-Q13",
-          section: "math",
-          domain: "Geometry & Trigonometry",
-          skill: "Degrees to Radians",
-          type: "mc",
-          prompt: "<p>How many radians are in \\(225^\\circ\\)?</p>",
-          choices: [
-            "\\(\\frac{3\\pi}{4}\\)",
-            "\\(\\frac{7\\pi}{6}\\)",
-            "\\(\\frac{5\\pi}{4}\\)",
-            "\\(\\frac{3\\pi}{2}\\)"
-          ],
-          correctAnswer: 2,
-          explanation: "Multiply degrees by \\(\\frac{\\pi}{180^\\circ}\\): \\(225^\\circ \\times \\frac{\\pi}{180^\\circ} = \\frac{225\\pi}{180} = \\frac{5\\pi}{4}\\)."
+          skill: "Triangle Angles",
+          type: "spr",
+          prompt: "In triangle \\(PQR\\), \\(\\angle P = 42^\\circ\\) and \\(\\angle Q = 73^\\circ\\). What is \\(\\angle R\\) in degrees?",
+          correctAnswer: ["65"],
+          explanation: "\\(180^\\circ - (42^\\circ + 73^\\circ) = 65^\\circ\\)."
         }
       ],
 
-      /**
-       * MATH MODULE 2 (HARDER): CHAPTER 21 — CIRCLES (7 EXERCISES)
-       */
       math_m2_hard: [
         {
-          id: "CH21-Q1",
+          id: "MATH-M2H-1",
           section: "math",
-          domain: "Geometry & Trigonometry",
-          skill: "Arc Length & Inscribed Polygons",
+          domain: "Algebra",
+          skill: "Systems with No Solution",
+          type: "spr",
+          prompt: "If the system \\(\\frac{2}{3}x - \\frac{1}{4}y = 7\\) and \\(kx - 3y = 19\\) has no solution, what is the value of constant \\(k\\)?",
+          correctAnswer: ["8"],
+          explanation: "Multiply the first equation by \\(12\\) to get \\(8x - 3y = 84\\). Matching the \\(x\\)-coefficient for parallel lines gives \\(k = 8\\)."
+        },
+        {
+          id: "MATH-M2H-2",
+          section: "math",
+          domain: "Advanced Math",
+          skill: "Discriminant",
           type: "mc",
-          prompt: `
-            <div class="mb-4 flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-4">
-              <svg viewBox="0 0 220 205" class="w-full max-w-[190px] h-auto">
-                <circle cx="110" cy="102" r="76" fill="rgba(30,58,138,0.04)" stroke="#0f172a" stroke-width="2.2"/>
-                <rect x="56.3" y="48.3" width="107.4" height="107.4" fill="none" stroke="#0f172a" stroke-width="2"/>
-                <circle cx="34" cy="102" r="3" fill="#1e3a8a"/>
-                <text x="41" y="45" font-size="13" font-weight="bold">A</text>
-                <text x="169" y="45" font-size="13" font-weight="bold">B</text>
-                <text x="169" y="168" font-size="13" font-weight="bold">C</text>
-                <text x="41" y="168" font-size="13" font-weight="bold">D</text>
-                <text x="18" y="106" font-size="13" font-weight="bold" fill="#1e3a8a">P</text>
-              </svg>
-            </div>
-            <p>In the figure above, the square \\(ABCD\\) is inscribed in a circle. If the radius of the circle is \\(r\\), what is the length of arc \\(APD\\) in terms of \\(r\\)?</p>
-          `,
+          prompt: "The equation \\(2x^2 - 12x + c = 0\\) has exactly one real solution. What is \\(c\\)?",
+          choices: ["\\(9\\)", "\\(18\\)", "\\(36\\)", "\\(72\\)"],
+          correctAnswer: 1,
+          explanation: "Set discriminant \\(b^2 - 4ac = 0\\): \\((-12)^2 - 4(2)(c) = 0 \\implies 144 - 8c = 0 \\implies c = 18\\)."
+        },
+        {
+          id: "MATH-M2H-3",
+          section: "math",
+          domain: "Advanced Math",
+          skill: "Exponential Models",
+          type: "mc",
+          prompt: "A population is modeled by \\(P(t) = 450(1.08)^{\\frac{t}{3}}\\), where \\(t\\) is in hours. Which statement best interprets \\(1.08\\)?",
           choices: [
-            "\\(\\frac{\\pi r}{4}\\)",
-            "\\(\\frac{\\pi r}{2}\\)",
-            "\\(\\pi r\\)",
-            "\\(\\frac{\\pi r^2}{4}\\)"
+            "The population increases by \\(8\\%\\) every hour.",
+            "The population increases by \\(8\\%\\) every \\(3\\) hours.",
+            "The population increases by \\(1.08\\%\\) every \\(3\\) hours.",
+            "The initial population is \\(1,080\\)."
           ],
           correctAnswer: 1,
-          explanation: "An inscribed square divides the circle into \\(4\\) congruent arcs, each measuring \\(\\frac{360^\\circ}{4} = 90^\\circ\\). Arc \\(APD\\) is one-fourth of the circumference: \\(\\frac{1}{4}(2\\pi r) = \\frac{\\pi r}{2}\\)."
+          explanation: "Each \\(3\\)-hour period increases the exponent \\(\\frac{t}{3}\\) by \\(1\\), multiplying by \\(1.08\\) (an \\(8\\%\\) growth)."
         },
         {
-          id: "CH21-Q3",
+          id: "MATH-M2H-4",
           section: "math",
           domain: "Geometry & Trigonometry",
-          skill: "Sector Perimeter & Circle Area",
+          skill: "Circle Equations",
           type: "mc",
-          prompt: `
-            <div class="mb-4 flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-4">
-              <svg viewBox="0 0 210 200" class="w-full max-w-[180px] h-auto">
-                <circle cx="105" cy="100" r="76" fill="rgba(30,58,138,0.05)" stroke="#0f172a" stroke-width="2.2"/>
-                <line x1="29" y1="100" x2="181" y2="100" stroke="#0f172a" stroke-width="1.6"/>
-                <line x1="105" y1="24" x2="105" y2="176" stroke="#0f172a" stroke-width="1.6"/>
-                <line x1="51.3" y1="46.3" x2="158.7" y2="153.7" stroke="#0f172a" stroke-width="1.6"/>
-                <line x1="158.7" y1="46.3" x2="51.3" y2="153.7" stroke="#0f172a" stroke-width="1.6"/>
-              </svg>
-            </div>
-            <p>The circle above has area \\(36\\pi\\) and is divided into \\(8\\) congruent regions. What is the perimeter of one of these regions?</p>
-          `,
-          choices: [
-            "\\(6 + 1.5\\pi\\)",
-            "\\(6 + 2\\pi\\)",
-            "\\(12 + 1.5\\pi\\)",
-            "\\(12 + 2\\pi\\)"
-          ],
-          correctAnswer: 2,
-          explanation: "From \\(\\pi r^2 = 36\\pi\\), the radius is \\(r = 6\\). Each of the \\(8\\) congruent sectors has central angle \\(45^\\circ\\) and arc length \\(\\frac{45}{360}(2\\pi \\cdot 6) = 1.5\\pi\\). Including the two straight radii (\\(6 + 6 = 12\\)), the perimeter is \\(12 + 1.5\\pi\\)."
-        },
-        {
-          id: "CH21-Q5",
-          section: "math",
-          domain: "Geometry & Trigonometry",
-          skill: "Inscribed Angles",
-          type: "mc",
-          prompt: `
-            <div class="mb-4 flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-4">
-              <svg viewBox="0 0 220 205" class="w-full max-w-[190px] h-auto">
-                <circle cx="110" cy="102" r="76" fill="rgba(30,58,138,0.04)" stroke="#0f172a" stroke-width="2.2"/>
-                <polyline points="175,64 42,102 175,140" fill="none" stroke="#0f172a" stroke-width="2.2"/>
-                <text x="181" y="65" font-size="13" font-weight="bold">A</text>
-                <text x="181" y="146" font-size="13" font-weight="bold">B</text>
-                <text x="26" y="106" font-size="13" font-weight="bold">C</text>
-                <text x="64" y="106" font-size="13" font-weight="bold" fill="#1e3a8a">30°</text>
-              </svg>
-              <span class="text-xs italic text-slate-500 mt-1">Note: Figure not drawn to scale.</span>
-            </div>
-            <p>In the figure above, \\(\\angle ACB\\) is inscribed in a circle. The length of minor arc \\(AB\\) is what fraction of the circumference of the circle?</p>
-          `,
-          choices: [
-            "\\(\\frac{1}{3}\\)",
-            "\\(\\frac{1}{4}\\)",
-            "\\(\\frac{1}{6}\\)",
-            "\\(\\frac{1}{12}\\)"
-          ],
-          correctAnswer: 2,
-          explanation: "An inscribed angle is half its intercepted arc, so minor arc \\(AB = 2 \\times 30^\\circ = 60^\\circ\\). As a fraction of the full circle, \\(\\frac{60^\\circ}{360^\\circ} = \\frac{1}{6}\\)."
-        },
-        {
-          id: "CH21-Q6",
-          section: "math",
-          domain: "Geometry & Trigonometry",
-          skill: "Angles Inscribed in a Semicircle",
-          type: "grid",
-          prompt: `
-            <div class="mb-4 flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-4">
-              <svg viewBox="0 0 220 205" class="w-full max-w-[190px] h-auto">
-                <circle cx="110" cy="102" r="76" fill="rgba(30,58,138,0.04)" stroke="#0f172a" stroke-width="2.2"/>
-                <polygon points="34,102 148,36 186,102" fill="rgba(30,58,138,0.08)" stroke="#0f172a" stroke-width="2.2"/>
-                <text x="20" y="106" font-size="13" font-weight="bold">A</text>
-                <text x="148" y="28" font-size="13" font-weight="bold">B</text>
-                <text x="191" y="106" font-size="13" font-weight="bold">C</text>
-              </svg>
-            </div>
-            <p>In the figure above, \\(AC\\) is a diameter of the circle and the length of \\(AB\\) is \\(1\\). If the radius of the circle is \\(1\\), what is the measure, in degrees, of \\(\\angle BAC\\)?</p>
-          `,
-          correctAnswer: ["60"],
-          explanation: "Because \\(AC\\) is a diameter, \\(\\angle ABC = 90^\\circ\\). With radius \\(1\\), hypotenuse \\(AC = 2\\) and leg \\(AB = 1\\). This is a \\(30^\\circ\\text{-}60^\\circ\\text{-}90^\\circ\\) triangle where \\(\\cos(\\angle BAC) = \\frac{1}{2}\\), so \\(\\angle BAC = 60^\\circ\\)."
-        },
-        {
-          id: "CH21-Q8",
-          section: "math",
-          domain: "Geometry & Trigonometry",
-          skill: "Sector Area in Radians",
-          type: "mc",
-          prompt: `
-            <div class="mb-4 flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-4">
-              <svg viewBox="0 0 220 205" class="w-full max-w-[190px] h-auto">
-                <circle cx="110" cy="102" r="76" fill="white" stroke="#0f172a" stroke-width="2.2"/>
-                <path d="M 110 102 L 186 102 A 76 76 0 0 0 97 27 Z" fill="rgba(30,58,138,0.22)" stroke="#0f172a" stroke-width="2.2"/>
-                <text x="95" y="114" font-size="13" font-weight="bold">C</text>
-                <text x="191" y="106" font-size="13" font-weight="bold">B</text>
-                <text x="89" y="21" font-size="13" font-weight="bold">A</text>
-                <text x="145" y="116" font-size="13" font-weight="bold" fill="#1e3a8a">6</text>
-              </svg>
-            </div>
-            <p>In the figure above, circle \\(C\\) has a radius of \\(6\\). If the area of the shaded sector is \\(10\\pi\\), what is the measure, in radians, of angle \\(ACB\\)?</p>
-          `,
-          choices: [
-            "\\(\\frac{2\\pi}{5}\\)",
-            "\\(\\frac{4\\pi}{9}\\)",
-            "\\(\\frac{5\\pi}{9}\\)",
-            "\\(\\frac{5\\pi}{8}\\)"
-          ],
-          correctAnswer: 2,
-          explanation: "Using the radian sector area formula \\(A = \\frac{1}{2}r^2\\theta\\): \\(10\\pi = \\frac{1}{2}(6^2)\\theta = 18\\theta \\implies \\theta = \\frac{10\\pi}{18} = \\frac{5\\pi}{9}\\)."
-        },
-        {
-          id: "CH21-Q11",
-          section: "math",
-          domain: "Geometry & Trigonometry",
-          skill: "Cylinder Surface Area",
-          type: "mc",
-          prompt: `
-            <div class="mb-4 flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-4">
-              <svg viewBox="0 0 220 190" class="w-full max-w-[180px] h-auto">
-                <ellipse cx="110" cy="40" rx="52" ry="16" fill="rgba(30,58,138,0.1)" stroke="#0f172a" stroke-width="2.2"/>
-                <path d="M 58 40 L 58 145 A 52 16 0 0 0 162 145 L 162 40" fill="rgba(30,58,138,0.05)" stroke="#0f172a" stroke-width="2.2"/>
-                <ellipse cx="110" cy="145" rx="52" ry="16" fill="none" stroke="#0f172a" stroke-width="1.5" stroke-dasharray="4 3"/>
-                <line x1="110" y1="40" x2="162" y2="40" stroke="#1e3a8a" stroke-width="2"/>
-                <text x="131" y="35" font-size="13" font-weight="bold" fill="#1e3a8a">4</text>
-                <text x="170" y="98" font-size="13" font-weight="bold" fill="#0f172a">5</text>
-              </svg>
-            </div>
-            <p>The base of a right circular cylinder shown above has a radius of \\(4\\). The height is \\(5\\). What is the surface area of the cylinder?</p>
-          `,
-          choices: [
-            "\\(40\\pi\\)",
-            "\\(60\\pi\\)",
-            "\\(72\\pi\\)",
-            "\\(81\\pi\\)"
-          ],
-          correctAnswer: 2,
-          explanation: "Total surface area = two circular bases + lateral side: \\(2\\pi r^2 + 2\\pi rh = 2\\pi(4^2) + 2\\pi(4)(5) = 32\\pi + 40\\pi = 72\\pi\\)."
-        },
-        {
-          id: "CH21-Q15",
-          section: "math",
-          domain: "Geometry & Trigonometry",
-          skill: "Circle Equations in the xy-Plane",
-          type: "mc",
-          prompt: `
-            <p class="font-mono text-center text-base sm:text-lg font-bold bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 mb-4">
-              \\((x + 2)^2 + (y + 4)^2 = 4\\)
-            </p>
-            <p class="mb-3">The equation of a circle in the \\(xy\\)-plane is given above. Which of the following must be true?</p>
-            <div class="space-y-1.5 pl-4 text-sm sm:text-base">
-              <div><strong>I.</strong> The center of the circle is at \\((2, 4)\\).</div>
-              <div><strong>II.</strong> The circle is tangent to the \\(x\\)-axis.</div>
-              <div><strong>III.</strong> The circle is tangent to the \\(y\\)-axis.</div>
-            </div>
-          `,
-          choices: [
-            "II only",
-            "III only",
-            "I and II only",
-            "I, II, and III"
-          ],
+          prompt: "A circle has equation \\(x^2 + 6x + y^2 - 10y = 15\\). What is its radius?",
+          choices: ["\\(\\sqrt{15}\\)", "\\(7\\)", "\\(34\\)", "\\(49\\)"],
           correctAnswer: 1,
-          explanation: "From \\((x - (-2))^2 + (y - (-4))^2 = 2^2\\), the center is \\((-2, -4)\\) and radius is \\(r = 2\\). Statement I is false. Distance from center to the \\(x\\)-axis is \\(|-4| = 4 \\neq 2\\) (II is false). Distance from center to the \\(y\\)-axis is \\(|-2| = 2 = r\\), so it is tangent to the \\(y\\)-axis (III only)."
+          explanation: "Complete the square: \\((x + 3)^2 + (y - 5)^2 = 15 + 9 + 25 = 49 \\implies r = 7\\)."
+        },
+        {
+          id: "MATH-M2H-5",
+          section: "math",
+          domain: "Problem-Solving & Data Analysis",
+          skill: "Conditional Probability",
+          type: "spr",
+          prompt: "Among \\(200\\) students, \\(120\\) take statistics, \\(95\\) take economics, and \\(40\\) take neither. Given a student takes statistics, what is the probability (as a decimal to 3 places) they also take economics?",
+          correctAnswer: ["0.458", ".458", "11/24"],
+          explanation: "\\(160\\) take at least one course, so \\(120 + 95 - 160 = 55\\) take both. Conditional probability = \\(\\frac{55}{120} = \\frac{11}{24} \\approx 0.458\\)."
+        },
+        {
+          id: "MATH-M2H-6",
+          section: "math",
+          domain: "Geometry & Trigonometry",
+          skill: "Volume Scaling",
+          type: "spr",
+          prompt: "Cylinder A has volume \\(54\\pi\\). Cylinder B has twice the radius and one-third the height of Cylinder A. What is the volume of Cylinder B divided by \\(\\pi\\)?",
+          correctAnswer: ["72"],
+          explanation: "\\(V_B = \\pi(2r)^2(\\frac{1}{3}h) = \\frac{4}{3}\\pi r^2 h = \\frac{4}{3}(54\\pi) = 72\\pi\\). Divided by \\(\\pi\\) is \\(72\\)."
         }
       ]
     };
@@ -2032,9 +1697,6 @@
       if (q.type === "mc") {
         return userAns === q.correctAnswer;
       }
-      if (typeof q.validateGrid === "function") {
-        return q.validateGrid(String(userAns).trim());
-      }
       const normalizedUser = String(userAns).replace(/\s+/g, "").toLowerCase();
       return q.correctAnswer.some(valid => valid.toLowerCase() === normalizedUser);
     }
@@ -2081,10 +1743,8 @@
       document.getElementById("transition-time").textContent = `${Math.round(nextStage.duration / 60)} Minutes`;
 
       const breakBox = document.getElementById("break-timer-box");
-      const btnLabel = document.getElementById("transition-btn-label");
       if (nextStage.hasBreakBefore) {
         breakBox.classList.remove("hidden");
-        btnLabel.textContent = "Skip Break & Start Math";
         let breakSecs = EXAM_CONFIG.timers.breakSeconds;
         const updateBreakText = () => {
           const safe = Math.max(0, breakSecs);
@@ -2105,10 +1765,9 @@
         document.getElementById("transition-tier").textContent = "Section 2 • Math Module 1";
         document.getElementById("transition-tier").className = "font-bold text-emerald-700";
         document.getElementById("transition-desc").textContent =
-          "Take an optional 10-minute break or click Skip Break & Start Math to begin Section 2.";
+          "Take an optional break or click Begin Next Module to start Math Module 1.";
       } else {
         breakBox.classList.add("hidden");
-        btnLabel.textContent = "Begin Next Module";
         const tier = examState.routingPaths[nextStage.section];
         document.getElementById("transition-badge").textContent = "Multistage Adaptive Routing";
         document.getElementById("transition-title").textContent = `Module 1 Complete (${prevCorrect}/${prevTotal} Correct)`;
