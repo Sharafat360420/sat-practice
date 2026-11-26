@@ -184,7 +184,7 @@
               <button onclick="startExam('rw_only')" class="w-full p-3.5 rounded-xl border border-slate-200 hover:border-blue-400 hover:bg-blue-50/50 transition text-left flex items-center justify-between group cursor-pointer">
                 <div>
                   <div class="font-semibold text-slate-900 group-hover:text-blue-900">Reading &amp; Writing Sprint</div>
-                  <div class="text-xs text-slate-500">12 Questions • Adaptive Module 1 &amp; 2 • 16 Mins</div>
+                  <div class="text-xs text-slate-500">12 Questions • Adaptive Module 1 &amp; 2 • 10 Mins / Module</div>
                 </div>
                 <i data-lucide="chevron-right" class="w-5 h-5 text-slate-400 group-hover:text-blue-700 shrink-0"></i>
               </button>
@@ -193,7 +193,7 @@
               <button onclick="startExam('math_only')" class="w-full p-3.5 rounded-xl border border-slate-200 hover:border-blue-400 hover:bg-blue-50/50 transition text-left flex items-center justify-between group cursor-pointer">
                 <div>
                   <div class="font-semibold text-slate-900 group-hover:text-blue-900">Math Sprint (MC + Grid-In)</div>
-                  <div class="text-xs text-slate-500">21 Questions • Adaptive Module 1 &amp; 2 • Ch 19–21 Exercises</div>
+                  <div class="text-xs text-slate-500">21 Questions • Adaptive Module 1 &amp; 2 • 10 Mins / Module</div>
                 </div>
                 <i data-lucide="chevron-right" class="w-5 h-5 text-slate-400 group-hover:text-blue-700 shrink-0"></i>
               </button>
@@ -748,11 +748,11 @@
      */
     const EXAM_CONFIG = {
       timers: {
-        rwModuleSeconds: 1920,         // 32 minutes (32 * 60)
-        mathModuleSeconds: 2100,       // 35 minutes (35 * 60)
+        rwModuleSeconds: 600,          // 10 minutes per module (10 * 60)
+        mathModuleSeconds: 600,        // 10 minutes per module (10 * 60)
         breakSeconds: 600              // 10-minute optional break (10 * 60)
       },
-      lowTimeWarningSeconds: 300,      // Timer turns red at or below 5 minutes (300s)
+      lowTimeWarningSeconds: 120,      // Timer turns red at or below 2 minutes (120s)
       adaptiveThreshold: 0.6           // 60% accuracy on Module 1 routes to Harder Module 2
     };
 
@@ -1117,13 +1117,18 @@
           type: "mc",
           prompt: `
             <div class="mb-4 flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-4">
-              <svg viewBox="0 0 320 185" class="w-full max-w-[300px] h-auto">
-                <polygon points="85,25 225,25 155,95" fill="rgba(30,58,138,0.06)" stroke="#0f172a" stroke-width="2.2"/>
-                <polygon points="155,95 95,165 245,165" fill="rgba(30,58,138,0.06)" stroke="#0f172a" stroke-width="2.2"/>
-                <text x="108" y="45" font-size="13" font-weight="bold" fill="#0f172a">45°</text>
-                <text x="190" y="45" font-size="13" font-weight="bold" fill="#1e3a8a">z°</text>
-                <text x="115" y="157" font-size="13" font-weight="bold" fill="#0f172a">40°</text>
-                <text x="202" y="157" font-size="13" font-weight="bold" fill="#0f172a">60°</text>
+              <svg viewBox="0 0 320 230" class="w-full max-w-[300px] h-auto">
+                <!-- Asymmetric intersecting triangles matching textbook figure -->
+                <polygon points="175,20 45,95 270,180 105,205" fill="none" stroke="none"/>
+                <line x1="175" y1="20" x2="45" y2="95" stroke="#0f172a" stroke-width="2.2"/>
+                <line x1="45" y1="95" x2="270" y2="180" stroke="#0f172a" stroke-width="2.2"/>
+                <line x1="175" y1="20" x2="105" y2="205" stroke="#0f172a" stroke-width="2.2"/>
+                <line x1="105" y1="205" x2="270" y2="180" stroke="#0f172a" stroke-width="2.2"/>
+                <!-- Clean angle labels inside each corner -->
+                <text x="142" y="55" font-size="14" font-weight="bold" fill="#0f172a">45°</text>
+                <text x="68" y="99" font-size="14" font-weight="bold" fill="#1e3a8a">z°</text>
+                <text x="118" y="194" font-size="14" font-weight="bold" fill="#0f172a">60°</text>
+                <text x="218" y="178" font-size="14" font-weight="bold" fill="#0f172a">40°</text>
               </svg>
               <span class="text-xs italic text-slate-500 mt-1">Note: Figure not drawn to scale.</span>
             </div>
@@ -1162,13 +1167,15 @@
           type: "mc",
           prompt: `
             <div class="mb-4 flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-4">
-              <svg viewBox="0 0 320 185" class="w-full max-w-[300px] h-auto">
-                <polygon points="160,20 55,165 265,165" fill="rgba(30,58,138,0.05)" stroke="#0f172a" stroke-width="2.2"/>
-                <polyline points="55,165 160,92 265,165" fill="rgba(30,58,138,0.07)" stroke="#0f172a" stroke-width="2"/>
-                <text x="148" y="54" font-size="13" font-weight="bold" fill="#0f172a">70°</text>
-                <text x="145" y="118" font-size="13" font-weight="bold" fill="#0f172a">100°</text>
-                <text x="86" y="142" font-size="13" font-weight="bold" fill="#1e3a8a">x°</text>
-                <text x="220" y="142" font-size="13" font-weight="bold" fill="#1e3a8a">y°</text>
+              <svg viewBox="0 0 320 230" class="w-full max-w-[300px] h-auto">
+                <!-- Tall outer triangle and inner chevron matching textbook figure -->
+                <polygon points="145,18 65,208 265,208" fill="rgba(30,58,138,0.04)" stroke="#0f172a" stroke-width="2.2"/>
+                <polyline points="65,208 162,135 265,208" fill="rgba(30,58,138,0.06)" stroke="#0f172a" stroke-width="2.2"/>
+                <!-- Clean non-overlapping angle labels -->
+                <text x="137" y="58" font-size="14" font-weight="bold" fill="#0f172a">70°</text>
+                <text x="148" y="162" font-size="14" font-weight="bold" fill="#0f172a">100°</text>
+                <text x="84" y="182" font-size="14" font-weight="bold" fill="#1e3a8a">x°</text>
+                <text x="225" y="176" font-size="14" font-weight="bold" fill="#1e3a8a">y°</text>
               </svg>
               <span class="text-xs italic text-slate-500 mt-1">Note: Figure not drawn to scale.</span>
             </div>
@@ -1186,19 +1193,22 @@
           type: "grid",
           prompt: `
             <div class="mb-4 flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-4">
-              <svg viewBox="0 0 330 185" class="w-full max-w-[310px] h-auto">
-                <line x1="20" y1="40" x2="310" y2="40" stroke="#0f172a" stroke-width="2.2"/>
-                <line x1="20" y1="95" x2="310" y2="95" stroke="#0f172a" stroke-width="2.2"/>
-                <line x1="20" y1="150" x2="310" y2="150" stroke="#0f172a" stroke-width="2.2"/>
-                <text x="296" y="32" font-size="13" font-style="italic" font-weight="bold" fill="#0f172a">l</text>
-                <text x="296" y="87" font-size="13" font-style="italic" font-weight="bold" fill="#0f172a">m</text>
-                <text x="296" y="142" font-size="13" font-style="italic" font-weight="bold" fill="#0f172a">n</text>
-                <line x1="70" y1="175" x2="175" y2="15" stroke="#0f172a" stroke-width="2.2"/>
-                <line x1="255" y1="175" x2="150" y2="15" stroke="#0f172a" stroke-width="2.2"/>
-                <text x="122" y="56" font-size="13" font-weight="bold" fill="#0f172a">40°</text>
-                <text x="218" y="88" font-size="13" font-weight="bold" fill="#0f172a">60°</text>
-                <text x="188" y="88" font-size="14" font-weight="bold" fill="#1e3a8a">b°</text>
-                <text x="195" y="143" font-size="14" font-weight="bold" fill="#1e3a8a">a°</text>
+              <svg viewBox="0 0 330 215" class="w-full max-w-[310px] h-auto">
+                <!-- Three horizontal parallel lines l, m, n -->
+                <line x1="25" y1="52" x2="290" y2="52" stroke="#0f172a" stroke-width="2.2"/>
+                <line x1="25" y1="112" x2="290" y2="112" stroke="#0f172a" stroke-width="2.2"/>
+                <line x1="25" y1="165" x2="290" y2="165" stroke="#0f172a" stroke-width="2.2"/>
+                <text x="298" y="56" font-size="14" font-style="italic" font-weight="bold" fill="#0f172a">l</text>
+                <text x="298" y="116" font-size="14" font-style="italic" font-weight="bold" fill="#0f172a">m</text>
+                <text x="298" y="169" font-size="14" font-style="italic" font-weight="bold" fill="#0f172a">n</text>
+                <!-- Two transversals intersecting right on line m at (155, 112) -->
+                <line x1="95" y1="12" x2="205" y2="202" stroke="#0f172a" stroke-width="2.2"/>
+                <line x1="265" y1="22" x2="72" y2="188" stroke="#0f172a" stroke-width="2.2"/>
+                <!-- Clean non-overlapping angle labels matching textbook -->
+                <text x="88" y="45" font-size="14" font-weight="bold" fill="#0f172a">40°</text>
+                <text x="176" y="105" font-size="14" font-weight="bold" fill="#0f172a">60°</text>
+                <text x="90" y="158" font-size="14" font-weight="bold" fill="#1e3a8a">a°</text>
+                <text x="190" y="158" font-size="14" font-weight="bold" fill="#1e3a8a">b°</text>
               </svg>
               <span class="text-xs italic text-slate-500 mt-1">Note: Figure not drawn to scale.</span>
             </div>
@@ -1321,22 +1331,27 @@
           type: "grid",
           prompt: `
             <div class="mb-4 flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-4">
-              <svg viewBox="0 0 320 195" class="w-full max-w-[300px] h-auto">
-                <polygon points="65,25 45,165 285,165" fill="rgba(30,58,138,0.05)" stroke="#0f172a" stroke-width="2.2"/>
-                <line x1="57" y1="82" x2="180" y2="165" stroke="#0f172a" stroke-width="2"/>
-                <line x1="152" y1="84" x2="132" y2="165" stroke="#0f172a" stroke-width="2"/>
-                <text x="58" y="18" font-size="13" font-weight="bold">A</text>
-                <text x="30" y="172" font-size="13" font-weight="bold">B</text>
-                <text x="290" y="172" font-size="13" font-weight="bold">C</text>
-                <text x="41" y="85" font-size="13" font-weight="bold">D</text>
-                <text x="156" y="82" font-size="13" font-weight="bold">G</text>
-                <text x="128" y="180" font-size="13" font-weight="bold">H</text>
-                <text x="178" y="180" font-size="13" font-weight="bold">F</text>
-                <text x="127" y="114" font-size="12" font-weight="bold" fill="#1e3a8a">E</text>
-                <text x="95" y="102" font-size="12" font-weight="bold" fill="#1e3a8a">1</text>
-                <text x="148" y="104" font-size="12" font-weight="bold" fill="#1e3a8a">2</text>
-                <text x="146" y="142" font-size="12" font-weight="bold" fill="#1e3a8a">3</text>
-                <text x="205" y="158" font-size="12" font-weight="bold" fill="#1e3a8a">10</text>
+              <svg viewBox="0 0 310 190" class="w-full max-w-[300px] h-auto">
+                <!-- Triangle ABC: apex A(155, 22), bottom-left B(45, 162), bottom-right C(265, 162) -->
+                <polygon points="155,22 45,162 265,162" fill="rgba(30,58,138,0.05)" stroke="#0f172a" stroke-width="2.2"/>
+                <!-- Horizontal segment DF parallel to BC at y=98 -->
+                <line x1="95" y1="98" x2="215" y2="98" stroke="#0f172a" stroke-width="2"/>
+                <!-- Slanted segment GH parallel to AB from G(177, 50) to H(89, 162), intersecting DF at E(139, 98) -->
+                <line x1="177" y1="50" x2="89" y2="162" stroke="#0f172a" stroke-width="2"/>
+                <!-- Vertex & Intersection Labels -->
+                <text x="155" y="14" text-anchor="middle" font-size="13" font-style="italic" font-weight="bold" fill="#0f172a">A</text>
+                <text x="36" y="174" text-anchor="middle" font-size="13" font-style="italic" font-weight="bold" fill="#0f172a">B</text>
+                <text x="273" y="174" text-anchor="middle" font-size="13" font-style="italic" font-weight="bold" fill="#0f172a">C</text>
+                <text x="83" y="102" text-anchor="middle" font-size="13" font-style="italic" font-weight="bold" fill="#0f172a">D</text>
+                <text x="144" y="113" font-size="13" font-style="italic" font-weight="bold" fill="#1e3a8a">E</text>
+                <text x="225" y="102" text-anchor="middle" font-size="13" font-style="italic" font-weight="bold" fill="#0f172a">F</text>
+                <text x="187" y="46" font-size="13" font-style="italic" font-weight="bold" fill="#0f172a">G</text>
+                <text x="89" y="176" text-anchor="middle" font-size="13" font-style="italic" font-weight="bold" fill="#0f172a">H</text>
+                <!-- Segment Length Labels -->
+                <text x="117" y="92" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e3a8a">1</text>
+                <text x="150" y="72" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e3a8a">2</text>
+                <text x="107" y="134" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e3a8a">3</text>
+                <text x="177" y="177" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e3a8a">10</text>
               </svg>
               <span class="text-xs italic text-slate-500 mt-1">Note: Figure not drawn to scale.</span>
             </div>
@@ -1375,15 +1390,20 @@
           type: "mc",
           prompt: `
             <div class="mb-4 flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-4">
-              <svg viewBox="0 0 220 205" class="w-full max-w-[190px] h-auto">
-                <circle cx="110" cy="102" r="76" fill="rgba(30,58,138,0.04)" stroke="#0f172a" stroke-width="2.2"/>
-                <rect x="56.3" y="48.3" width="107.4" height="107.4" fill="none" stroke="#0f172a" stroke-width="2"/>
-                <circle cx="34" cy="102" r="3" fill="#1e3a8a"/>
-                <text x="41" y="45" font-size="13" font-weight="bold">A</text>
-                <text x="169" y="45" font-size="13" font-weight="bold">B</text>
-                <text x="169" y="168" font-size="13" font-weight="bold">C</text>
-                <text x="41" y="168" font-size="13" font-weight="bold">D</text>
-                <text x="18" y="106" font-size="13" font-weight="bold" fill="#1e3a8a">P</text>
+              <svg viewBox="0 0 300 190" class="w-full max-w-[270px] h-auto">
+                <!-- Circle centered at (150, 95) with radius r=62 -->
+                <circle cx="150" cy="95" r="62" fill="rgba(30,58,138,0.04)" stroke="#0f172a" stroke-width="2.2"/>
+                <!-- Inscribed square ABCD: A(106,51), B(194,51), C(194,139), D(106,139) -->
+                <polygon points="106,51 194,51 194,139 106,139" fill="none" stroke="#0f172a" stroke-width="2"/>
+                <!-- Black center dot and point P dot -->
+                <circle cx="150" cy="95" r="3" fill="#0f172a"/>
+                <circle cx="88" cy="95" r="3" fill="#1e3a8a"/>
+                <!-- Vertex & Arc Labels -->
+                <text x="95" y="45" font-size="13" font-style="italic" font-weight="bold" fill="#0f172a">A</text>
+                <text x="203" y="45" font-size="13" font-style="italic" font-weight="bold" fill="#0f172a">B</text>
+                <text x="203" y="150" font-size="13" font-style="italic" font-weight="bold" fill="#0f172a">C</text>
+                <text x="95" y="150" font-size="13" font-style="italic" font-weight="bold" fill="#0f172a">D</text>
+                <text x="74" y="99" font-size="13" font-style="italic" font-weight="bold" fill="#1e3a8a">P</text>
               </svg>
             </div>
             <p>In the figure above, the square \\(ABCD\\) is inscribed in a circle. If the radius of the circle is \\(r\\), what is the length of arc \\(APD\\) in terms of \\(r\\)?</p>
@@ -1432,13 +1452,16 @@
           type: "mc",
           prompt: `
             <div class="mb-4 flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-4">
-              <svg viewBox="0 0 220 205" class="w-full max-w-[190px] h-auto">
-                <circle cx="110" cy="102" r="76" fill="rgba(30,58,138,0.04)" stroke="#0f172a" stroke-width="2.2"/>
-                <polyline points="175,64 42,102 175,140" fill="none" stroke="#0f172a" stroke-width="2.2"/>
-                <text x="181" y="65" font-size="13" font-weight="bold">A</text>
-                <text x="181" y="146" font-size="13" font-weight="bold">B</text>
-                <text x="26" y="106" font-size="13" font-weight="bold">C</text>
-                <text x="64" y="106" font-size="13" font-weight="bold" fill="#1e3a8a">30°</text>
+              <svg viewBox="0 0 300 190" class="w-full max-w-[270px] h-auto">
+                <!-- Circle centered at (155, 95) with radius r=62 -->
+                <circle cx="155" cy="95" r="62" fill="rgba(30,58,138,0.04)" stroke="#0f172a" stroke-width="2.2"/>
+                <!-- Inscribed angle ACB: C(101, 126), A(199, 51), B(216, 86) -->
+                <polyline points="199,51 101,126 216,86" fill="none" stroke="#0f172a" stroke-width="2.2"/>
+                <!-- Vertex Labels & Angle Measure -->
+                <text x="87" y="133" font-size="13" font-style="italic" font-weight="bold" fill="#0f172a">C</text>
+                <text x="207" y="45" font-size="13" font-style="italic" font-weight="bold" fill="#0f172a">A</text>
+                <text x="226" y="90" font-size="13" font-style="italic" font-weight="bold" fill="#0f172a">B</text>
+                <text x="133" y="114" font-size="13" font-weight="bold" fill="#1e3a8a">30°</text>
               </svg>
               <span class="text-xs italic text-slate-500 mt-1">Note: Figure not drawn to scale.</span>
             </div>
@@ -1461,12 +1484,17 @@
           type: "grid",
           prompt: `
             <div class="mb-4 flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-4">
-              <svg viewBox="0 0 220 205" class="w-full max-w-[190px] h-auto">
-                <circle cx="110" cy="102" r="76" fill="rgba(30,58,138,0.04)" stroke="#0f172a" stroke-width="2.2"/>
-                <polygon points="34,102 148,36 186,102" fill="rgba(30,58,138,0.08)" stroke="#0f172a" stroke-width="2.2"/>
-                <text x="20" y="106" font-size="13" font-weight="bold">A</text>
-                <text x="148" y="28" font-size="13" font-weight="bold">B</text>
-                <text x="191" y="106" font-size="13" font-weight="bold">C</text>
+              <svg viewBox="0 0 300 190" class="w-full max-w-[270px] h-auto">
+                <!-- Circle centered at (150, 95) with radius r=60 -->
+                <circle cx="150" cy="95" r="60" fill="rgba(30,58,138,0.04)" stroke="#0f172a" stroke-width="2.2"/>
+                <!-- Inscribed right triangle ABC with horizontal diameter AC and B(120, 43) -->
+                <polygon points="90,95 120,43 210,95" fill="rgba(30,58,138,0.08)" stroke="#0f172a" stroke-width="2.2"/>
+                <!-- Black center dot on diameter AC -->
+                <circle cx="150" cy="95" r="3" fill="#0f172a"/>
+                <!-- Vertex Labels -->
+                <text x="77" y="99" font-size="13" font-style="italic" font-weight="bold" fill="#0f172a">A</text>
+                <text x="114" y="34" font-size="13" font-style="italic" font-weight="bold" fill="#0f172a">B</text>
+                <text x="220" y="99" font-size="13" font-style="italic" font-weight="bold" fill="#0f172a">C</text>
               </svg>
             </div>
             <p>In the figure above, \\(AC\\) is a diameter of the circle and the length of \\(AB\\) is \\(1\\). If the radius of the circle is \\(1\\), what is the measure, in degrees, of \\(\\angle BAC\\)?</p>
